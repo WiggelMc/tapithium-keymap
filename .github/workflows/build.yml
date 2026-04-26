@@ -7,6 +7,7 @@ on:
     paths:
       - "**.lock"
       - "config/**"
+      - "zmk-modules/**"
 
 jobs:
   build:
