@@ -128,6 +128,10 @@ parse_config:
 
   raw_binding_map:
     # Custom behavior
+    '&key_repeat': 'Repeat'
+    '&uc UC_DE_AE': 'Ä'
+    '&uc UC_DE_OE': 'Ö'
+    '&uc UC_DE_UE': 'Ü'
     '&caps_word': $$mdi:apple-keyboard-caps$$
     '&smart_lshift': &sft $$mdi:apple-keyboard-shift$$
     '&smart_rshift': *sft
@@ -151,7 +155,7 @@ parse_config:
       type: info
 
     # Moergo behavior
-    '&magic 5 0':
+    '&magic MAGIC 0':
       tap: $$moergo$$
       hold: Magic
       type: info

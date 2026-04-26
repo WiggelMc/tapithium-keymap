@@ -1,8 +1,8 @@
 name: Update
 on:
   workflow_dispatch: # allows manual triggering
-  schedule:
-    - cron: '0 10 * * sat' # every Saturday at 10am
+  # schedule:
+  #   - cron: '0 10 * * sat' # every Saturday at 10am
 
 jobs:
   lockfile:

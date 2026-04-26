@@ -263,8 +263,8 @@ text.hold {
     }
 }
 </style>
-<g transform="translate(30, 0)" class="layer-gaming">
-<text x="0" y="28" class="label" id="gaming">gaming</text>
+<g transform="translate(30, 0)" class="layer-extra_a4">
+<text x="0" y="28" class="label" id="extra_a4">extra_a4</text>
 <g transform="translate(0, 56)">
 <g transform="translate(28, 56)" class="key trans keypos-0">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
