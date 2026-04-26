@@ -9,6 +9,7 @@ let
   keymap = ../config/glove80.keymap;
   kconfig = ../config/glove80.conf;
   extraModules = [
+    (builtins.path { path = ../zmk-modules/tapithium-core; })
     zmk-mod-unicode
   ];
 
