@@ -23,27 +23,30 @@
 #define HYPER LC(LS(LG(LALT)))
 
 // layers
-#define BASE 0
+#define L_BASE 0
 
-#define SYMBOL 1
-#define NUMBER 2
-#define EXTRA_A1 3
-#define EXTRA_A2 4
-#define EXTRA_A3 5
-#define EXTRA_A4 6
+#define L_SYMBOL 1
+#define L_NUMBER 2
+#define L_FUNCTION 3
+#define L_NAV 4
+#define L_ADV_MAGIC 5
+#define L_EXTRA_A1 6
+#define L_EXTRA_A2 7
+#define L_EXTRA_A3 8
+#define L_EXTRA_A4 9
 
-#define MODS_L 7
-#define MODS_R 8
+#define L_MODS_L 10
+#define L_MODS_R 11
 
-#define GAMING 9
-#define MOUSE 10
-#define EXTRA_B1 11
-#define EXTRA_B2 12
-#define EXTRA_B3 13
-#define EXTRA_B4 14
+#define L_GAMING 12
+#define L_MOUSE 13
+#define L_EXTRA_B1 14
+#define L_EXTRA_B2 15
+#define L_EXTRA_B3 16
+#define L_EXTRA_B4 17
 
-#define MAGIC 15
-#define FACTORY_TEST 16
+#define L_MAGIC 18
+#define L_FACTORY_TEST 19
 
 &uc {
   default-mode = <UC_MODE_LINUX>;
@@ -61,7 +64,7 @@
             label = "LAYER_TAP_DANCE";
             #binding-cells = <0>;
             tapping-term-ms = <200>;
-            bindings = <&mo SYMBOL>, <&to SYMBOL>;
+            bindings = <&mo L_SYMBOL>, <&to L_SYMBOL>;
         };
 
         magic: magic_hold_tap {
@@ -135,7 +138,7 @@
         // &none
         // &trans
         // &tp TP_MOD LSHIFT
-        // &tp TP_LAY SYMBOL
+        // &tp TP_LAY L_SYMBOL
 
         // in .h file (see bt.h)
         // #define TP_ENABLE_CMD 0
@@ -154,12 +157,12 @@
         base_layer {
             // format: glove80
             bindings = <
-                &none           &none  &none         &none         &none                                                                                                    &none  &none  &none  &none  &none
-                &none           &none  &none         &kp Q         &none         &none                                                                               &none  &none  &kp Z  &none  &none  &none
-                &none           &none  &kp Y         &kp O         &kp U         &none                                                                               &kp X  &kp L  &kp D  &kp P  &none  &none
-                &kp B           &kp C  &kp I         &kp A         &kp E         &none                                                                               &kp K  &kp H  &kp T  &kp N  &kp S  &kp W
-                &none           &none  &uc UC_DE_AE  &uc UC_DE_OE  &uc UC_DE_UE  &none    &kp ESC    &kp LSHIFT  &none            &none  &kp DEL        &kp ENTER    &none  &kp M  &kp G  &kp F  &kp V  &none
-                &magic MAGIC 0  &none  &none         &none         &none                  &kp SPACE  &kp TAB     &key_repeat      &none  &kp BACKSPACE  &kp R               &kp J  &none  &none  &none  &none
+                &none             &none         &none         &none         &none                                                                                                    &none  &none  &none  &none  &none
+                &none             &none         &none         &kp Q         &none         &none                                                                               &none  &none  &kp Z  &none  &none  &none
+                &none             &none         &kp Y         &kp O         &kp U         &none                                                                               &kp X  &kp L  &kp D  &kp P  &none  &none
+                &kp B             &kp C         &kp I         &kp A         &kp E         &none                                                                               &kp K  &kp H  &kp T  &kp N  &kp S  &kp W
+                &none             &uc UC_DE_SS  &uc UC_DE_AE  &uc UC_DE_OE  &uc UC_DE_UE  &none    &kp ESC    &kp LSHIFT  &none            &none  &kp DEL        &kp ENTER    &none  &kp M  &kp G  &kp F  &kp V  &none
+                &magic L_MAGIC 0  &none         &none         &none         &none                  &kp SPACE  &kp TAB     &key_repeat      &none  &kp BACKSPACE  &kp R               &kp J  &none  &none  &none  &none
             >;
         };
 
@@ -176,6 +179,42 @@
         };
 
         number_layer {
+            // format: glove80
+            bindings = <
+                &trans  &trans  &trans  &trans  &trans                                                                          &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &trans  &trans  &trans  &trans                                                          &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &trans  &trans  &trans  &trans                                                          &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &trans  &trans  &trans  &trans                                                          &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans      &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans      &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans
+            >;
+        };
+
+        function_layer {
+            // format: glove80
+            bindings = <
+                &trans  &trans  &trans  &trans  &trans                                                                          &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &trans  &trans  &trans  &trans                                                          &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &trans  &trans  &trans  &trans                                                          &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &trans  &trans  &trans  &trans                                                          &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans      &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans      &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans
+            >;
+        };
+
+        nav_layer {
+            // format: glove80
+            bindings = <
+                &trans  &trans  &trans  &trans  &trans                                                                          &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &trans  &trans  &trans  &trans                                                          &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &trans  &trans  &trans  &trans                                                          &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &trans  &trans  &trans  &trans                                                          &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans      &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans      &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans
+            >;
+        };
+
+        adv_magic_layer {
             // format: glove80
             bindings = <
                 &trans  &trans  &trans  &trans  &trans                                                                          &trans  &trans  &trans  &trans  &trans
@@ -275,7 +314,7 @@
                 &none        &rgb_ug RGB_SPI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &rgb_ug RGB_BRI  &rgb_ug RGB_TOG                                                           &none  &none  &none  &none  &none  &none
                 &bootloader  &rgb_ug RGB_SPD  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &rgb_ug RGB_BRD  &rgb_ug RGB_EFF                                                           &none  &none  &none  &none  &none  &bootloader
                 &sys_reset   &none            &none            &none            &none            &none              &bt_2  &bt_3  &none             &none  &none  &none    &none  &none  &none  &none  &none  &sys_reset
-                &none        &none            &none            &none            &none                               &bt_0  &bt_1  &out OUT_USB      &none  &none  &none           &none  &none  &none  &none  &to FACTORY_TEST
+                &none        &none            &none            &none            &none                               &bt_0  &bt_1  &out OUT_USB      &none  &none  &none           &none  &none  &none  &none  &to L_FACTORY_TEST
             >;
         };
 

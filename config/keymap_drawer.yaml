@@ -132,6 +132,8 @@ parse_config:
     '&uc UC_DE_AE': 'Ä'
     '&uc UC_DE_OE': 'Ö'
     '&uc UC_DE_UE': 'Ü'
+    '&uc UC_DE_SS': 'ß'
+    
     '&caps_word': $$mdi:apple-keyboard-caps$$
     '&smart_lshift': &sft $$mdi:apple-keyboard-shift$$
     '&smart_rshift': *sft
@@ -155,7 +157,7 @@ parse_config:
       type: info
 
     # Moergo behavior
-    '&magic MAGIC 0':
+    '&magic L_MAGIC 0':
       tap: $$moergo$$
       hold: Magic
       type: info
