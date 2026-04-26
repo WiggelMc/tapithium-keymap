@@ -10,6 +10,10 @@
       url = "github:hercules-ci/flake-parts";
       inputs.nixpkgs-lib.follows = "nixpkgs";
     };
+    zmk-mod-unicode = {
+      url = "github:urob/zmk-unicode";
+      flake = false;
+    };
   };
 
   outputs =

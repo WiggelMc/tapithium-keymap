@@ -57,7 +57,24 @@
       "inputs": {
         "flake-parts": "flake-parts",
         "glove80-zmk": "glove80-zmk",
-        "nixpkgs": "nixpkgs"
+        "nixpkgs": "nixpkgs",
+        "zmk-mod-unicode": "zmk-mod-unicode"
+      }
+    },
+    "zmk-mod-unicode": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1768331729,
+        "narHash": "sha256-YD7/L/El+rW9iP93VpydpCfvqbe3H0MPwSujrvnEYn4=",
+        "owner": "urob",
+        "repo": "zmk-unicode",
+        "rev": "1a6dbc797a46c4a61c3c71a7a9d013a5d5aee49e",
+        "type": "github"
+      },
+      "original": {
+        "owner": "urob",
+        "repo": "zmk-unicode",
+        "type": "github"
       }
     }
   },
