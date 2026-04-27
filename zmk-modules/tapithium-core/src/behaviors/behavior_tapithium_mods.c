@@ -11,6 +11,8 @@
 #include <zephyr/logging/log.h>
 #include <drivers/behavior.h>
 
+#include <dt-bindings/zmk/tapithium_mods.h>
+
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 #include <zmk/behavior.h>
@@ -52,14 +54,28 @@ static const struct behavior_driver_api tapithium_mods_driver_api = {
     .binding_released = on_tapithium_mods_binding_released,
 };
 
-BEHAVIOR_DT_INST_DEFINE(0,                                                // Instance Number (0)
-                        tapithium_mods_init,                          // Initialization Function
-                        NULL,                                             // Power Management Device Pointer
-                        // &tapithium_mods_data,                         // Behavior Data Pointer
-                        NULL,
-                        // &tapithium_mods_config,                       // Behavior Configuration Pointer
-                        NULL,
-                        POST_KERNEL, CONFIG_KERNEL_INIT_PRIORITY_DEFAULT,  // Initialization Level, Device Priority
-                        &tapithium_mods_driver_api);                  // API struct
+#define TAPITHIUM_MODS_INST(n)                                                                                       \
+    static struct behavior_tapithium_mods_data tapithium_mods_data_##n = {                                                                 \
+        .data_param1 = false,                                                                                             \
+        .data_param2 = false,                                                                                             \
+        .data_param3 = false,                                                                                             \
+    };                                                                                                                   \
+                                                                                                                         \
+    static struct behavior_tapithium_mods_config tapithium_mods_config_##n = {                                                               \
+        .config_param1 = false,                                                                                           \
+        .config_param2 = false,                                                                                           \
+        .config_param3 = false,                                                                                           \
+    };                                                                                                                   \
+                                                                                                                         \
+    BEHAVIOR_DT_INST_DEFINE(n,                                  /* Instance Number (Automatically populated by macro) */ \
+                            tapithium_mods_init,            /* Initialization Function */                            \
+                            NULL,                               /* Power Management Device Pointer */                    \
+                            &tapithium_mods_data_##n,       /* Behavior Data Pointer */                              \
+                            &tapithium_mods_config_##n,     /* Behavior Configuration Pointer */                     \
+                            POST_KERNEL,                        /* Initialization Level */                               \
+                            CONFIG_KERNEL_INIT_PRIORITY_DEFAULT, /* Device Priority */                                    \
+                            &tapithium_mods_driver_api);    /* API struct */                                         \
+
+DT_INST_FOREACH_STATUS_OKAY(TAPITHIUM_MODS_INST)
 
 #endif /* DT_HAS_COMPAT_STATUS_OKAY(DT_DRV_COMPAT) */
