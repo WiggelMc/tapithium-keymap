@@ -12,6 +12,7 @@
 #include <dt-bindings/zmk/rgb.h>
 
 #include <behaviors/unicode.dtsi>
+#include <behaviors/tapithium_mods.dtsi>
 
 #define TRANS5 &trans &trans &trans &trans &trans
 #define TRANS10 TRANS5 TRANS5
@@ -144,7 +145,7 @@
         base_layer {
             // format: glove80
             bindings = <
-                &tp TP_ENABLED     &tp TP_STICKY  &tp TP_RESET  &tp TP_MOD LSHIFT  &tp TP_LAY L_SYMBOL                                                                                             &none  &none  &none  &none  &none
+                &tp TP_ENABLE     &tp TP_STICKY  &tp TP_RESET  &tp TP_MOD LSHIFT  &tp TP_LAY L_SYMBOL                                                                                             &none  &none  &none  &none  &none
                 &none             &none          &none         &kp Q              &none                &none                                                                               &none  &none  &kp Z  &none  &none  &none
                 &none             &none          &kp Y         &kp O              &kp U                &none                                                                               &kp X  &kp L  &kp D  &kp P  &none  &none
                 &kp B             &kp C          &kp I         &kp A              &kp E                &none                                                                               &kp K  &kp H  &kp T  &kp N  &kp S  &kp W

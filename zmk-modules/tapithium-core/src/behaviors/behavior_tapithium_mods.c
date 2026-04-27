@@ -55,9 +55,11 @@ static const struct behavior_driver_api tapithium_mods_driver_api = {
 BEHAVIOR_DT_INST_DEFINE(0,                                                // Instance Number (0)
                         tapithium_mods_init,                          // Initialization Function
                         NULL,                                             // Power Management Device Pointer
-                        &tapithium_mods_data,                         // Behavior Data Pointer
-                        &tapithium_mods_config,                       // Behavior Configuration Pointer
-                        POST_KERNEL, CONFIG_KERNEL_INIT_PRIORITY_DEFAULT  // Initialization Level, Device Priority
+                        // &tapithium_mods_data,                         // Behavior Data Pointer
+                        NULL,
+                        // &tapithium_mods_config,                       // Behavior Configuration Pointer
+                        NULL,
+                        POST_KERNEL, CONFIG_KERNEL_INIT_PRIORITY_DEFAULT,  // Initialization Level, Device Priority
                         &tapithium_mods_driver_api);                  // API struct
 
 #endif /* DT_HAS_COMPAT_STATUS_OKAY(DT_DRV_COMPAT) */
