@@ -55,6 +55,11 @@
   win-compose-key = <RALT>;
 };
 
+&tp {
+    mod-layers = <L_MODS_L L_MODS_R>;
+    cancel-after-idle-ms = <2000>;
+};
+
 / {
     behaviors {
         // For the "layer" key, it'd nice to be able to use it as either a shift or a toggle.
@@ -126,11 +131,6 @@
     keymap {
         compatible = "zmk,keymap";
 
-        // &tp {
-        //     cancel-after-idle-ms = <2000>;
-        //     mod-layers = <MODS_L MODS_R>;
-        // };
-
         // &tp TP_ENABLE
         // &tp TP_STICKY
         // &tp TP_RESET
@@ -140,29 +140,16 @@
         // &tp TP_MOD LSHIFT
         // &tp TP_LAY L_SYMBOL
 
-        // in .h file (see bt.h)
-        // #define TP_ENABLE_CMD 0
-        // #define TP_STICKY_CMD 1
-        // #define TP_RESET_CMD 2
-        // #define TP_MOD_CMD 3
-        // #define TP_LAY_CMD 4
-
-        // #define TP_ENABLE TP_ENABLE_CMD 0
-        // #define TP_STICKY TP_STICKY_CMD 0
-        // #define TP_RESET TP_RESET_CMD 0
-        // #define TP_MOD TP_MOD_CMD
-        // #define TP_LAY TP_LAY_CMD
-
 
         base_layer {
             // format: glove80
             bindings = <
-                &none             &none         &none         &none         &none                                                                                                    &none  &none  &none  &none  &none
-                &none             &none         &none         &kp Q         &none         &none                                                                               &none  &none  &kp Z  &none  &none  &none
-                &none             &none         &kp Y         &kp O         &kp U         &none                                                                               &kp X  &kp L  &kp D  &kp P  &none  &none
-                &kp B             &kp C         &kp I         &kp A         &kp E         &none                                                                               &kp K  &kp H  &kp T  &kp N  &kp S  &kp W
-                &none             &uc UC_DE_SS  &uc UC_DE_AE  &uc UC_DE_OE  &uc UC_DE_UE  &none    &kp ESC    &kp LSHIFT  &none            &none  &kp DEL        &kp ENTER    &none  &kp M  &kp G  &kp F  &kp V  &none
-                &magic L_MAGIC 0  &none         &none         &none         &none                  &kp SPACE  &kp TAB     &key_repeat      &none  &kp BACKSPACE  &kp R               &kp J  &none  &none  &none  &none
+                &tp TP_ENABLED     &tp TP_STICKY  &tp TP_RESET  &tp TP_MOD LSHIFT  &tp TP_LAY L_SYMBOL                                                                                             &none  &none  &none  &none  &none
+                &none             &none          &none         &kp Q              &none                &none                                                                               &none  &none  &kp Z  &none  &none  &none
+                &none             &none          &kp Y         &kp O              &kp U                &none                                                                               &kp X  &kp L  &kp D  &kp P  &none  &none
+                &kp B             &kp C          &kp I         &kp A              &kp E                &none                                                                               &kp K  &kp H  &kp T  &kp N  &kp S  &kp W
+                &none             &uc UC_DE_SS   &uc UC_DE_AE  &uc UC_DE_OE       &uc UC_DE_UE         &none    &kp ESC    &kp LSHIFT  &none            &none  &kp DEL        &kp ENTER    &none  &kp M  &kp G  &kp F  &kp V  &none
+                &magic L_MAGIC 0  &none          &none         &none              &none                         &kp SPACE  &kp TAB     &key_repeat      &none  &kp BACKSPACE  &kp R               &kp J  &none  &none  &none  &none
             >;
         };
 
@@ -245,12 +232,12 @@
         mods_l_layer {
             // format: glove80
             bindings = <
-                &trans  &trans  &trans  &trans  &trans                                                                          &trans  &trans  &trans  &trans  &trans
-                &trans  &trans  &trans  &trans  &trans  &trans                                                          &trans  &trans  &trans  &trans  &trans  &trans
-                &trans  &trans  &trans  &trans  &trans  &trans                                                          &trans  &trans  &trans  &trans  &trans  &trans
-                &trans  &trans  &trans  &trans  &trans  &trans                                                          &trans  &trans  &trans  &trans  &trans  &trans
-                &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans      &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans      &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans
+                &trans  &trans             &trans             &trans             &trans                                                                                     &trans  &trans  &trans  &trans  &trans
+                &trans  &trans             &trans             &trans             &trans             &trans                                                          &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &trans             &trans             &trans             &trans             &trans                                                          &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &tp TP_MOD LSHIFT  &tp TP_MOD LSHIFT  &tp TP_MOD LSHIFT  &tp TP_MOD LSHIFT  &trans                                                          &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &trans             &trans             &trans             &trans             &trans    &trans  &trans  &trans      &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
+                &trans  &trans             &trans             &trans             &trans                       &trans  &trans  &trans      &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans
             >;
         };
 

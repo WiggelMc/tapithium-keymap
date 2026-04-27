@@ -1,0 +1,22 @@
+/*
+ * Copyright (c) 2026 WiggelMc
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <dt-bindings/zmk/behaviors.h>
+
+/ {
+    behaviors {
+#if ZMK_BEHAVIOR_OMIT(TP)
+        /omit-if-no-ref/
+#endif
+        tp: tapithium_mods {
+            compatible = "zmk,behavior-tapithium-mods";
+            #binding-cells = <2>;
+            mod-layers = <>;
+            cancel-after-idle-ms = <2000>;
+            display-name = "Tapithium Mods";
+        };
+    };
+};

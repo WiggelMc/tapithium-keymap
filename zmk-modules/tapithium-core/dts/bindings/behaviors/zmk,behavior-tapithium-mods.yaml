@@ -1,0 +1,16 @@
+# Copyright (c) 2026 WiggelMc
+# SPDX-License-Identifier: MIT
+
+description: Tapithium Mods
+
+compatible: "zmk,behavior-tapithium-mods"
+
+include: two_param.yaml
+
+properties:
+  mod-layers:
+    type: array
+    required: true
+  cancel-after-idle-ms:
+    type: int
+    required: true
