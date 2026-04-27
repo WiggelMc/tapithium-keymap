@@ -1,11 +1,11 @@
 layout: {zmk_keyboard: glove80}
 layers:
   base:
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
+  - '&tp TP_ENABLE'
+  - '&tp TP_STICKY'
+  - '&tp TP_RESET'
+  - '&tp TP_MOD LSHIFT'
+  - '&tp TP_LAY 1'
   - ''
   - ''
   - ''
@@ -846,10 +846,10 @@ layers:
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - '&tp TP_MOD LSHIFT'
+  - '&tp TP_MOD LSHIFT'
+  - '&tp TP_MOD LSHIFT'
+  - '&tp TP_MOD LSHIFT'
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
