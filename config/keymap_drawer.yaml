@@ -217,17 +217,17 @@ parse_config:
       tap: $$moergo$$
       hold: Magic
       type: info
-    "&bt_0": &bt
+    "&bt_sel 0": &bt
       type: info
       tap: $$mdi:bluetooth$$
       shifted: 0
-    "&bt_1":
+    "&bt_sel 1":
       <<: *bt
       shifted: 1
-    "&bt_2":
+    "&bt_sel 2":
       <<: *bt
       shifted: 2
-    "&bt_3":
+    "&bt_sel 3":
       <<: *bt
       shifted: 3
     "&bt BT_CLR": &bt_clr

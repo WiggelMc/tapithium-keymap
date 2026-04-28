@@ -74,40 +74,14 @@
                 = <&rgb_ug RGB_STATUS>;
         };
 
-        bt_0: bt_profile_macro_0 {
-            label = "BT_0";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
+        bt_sel: bt_profile_select {
+            label = "BT_SEL";
+            compatible = "zmk,behavior-macro-one-param";
+            #binding-cells = <1>;
             bindings
                 = <&out OUT_BLE>,
-                  <&bt BT_SEL 0>;
-        };
-
-        bt_1: bt_profile_macro_1 {
-            label = "BT_1";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&out OUT_BLE>,
-                  <&bt BT_SEL 1>;
-        };
-
-        bt_2: bt_profile_macro_2 {
-            label = "BT_2";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&out OUT_BLE>,
-                  <&bt BT_SEL 2>;
-        };
-
-        bt_3: bt_profile_macro_3 {
-            label = "BT_3";
-            compatible = "zmk,behavior-macro";
-            #binding-cells = <0>;
-            bindings
-                = <&out OUT_BLE>,
-                  <&bt BT_SEL 3>;
+                  <&macro_param_1to2>,
+                  <&bt BT_SEL MACRO_PLACEHOLDER>;
         };
 
         rto: reset_to_layer {
@@ -187,12 +161,12 @@
         adv_magic_layer {
             // format: glove80
             bindings = <
-                &none        &none            &none            &none            &none                                                                                            &none  &none       &none           &none  &none
-                &none        &none            &none            &none            &none            &none                                                                    &none  &none  &bt BT_CLR  &bt BT_CLR_ALL  &none  &none
-                &none        &none            &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &rgb_ug RGB_BRI  &rgb_ug RGB_TOG                                                          &none  &bt_2  &bt_3       &none           &none  &none
-                &bootloader  &rgb_ug RGB_SPI  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &rgb_ug RGB_BRD  &rgb_ug RGB_EFF                                                          &none  &bt_0  &bt_1       &out OUT_USB    &none  &bootloader
-                &sys_reset   &rgb_ug RGB_SPD  &none            &none            &none            &none              &trans  &trans  &trans      &trans  &trans  &trans    &none  &none  &none       &none           &none  &sys_reset
-                &none        &none            &none            &none            &none                               &none   &trans  &trans      &trans  &trans  &none            &none  &none       &none           &none  &none
+                &none        &none            &none            &none            &none                                                                                            &none      &none       &none           &none  &none
+                &none        &none            &none            &none            &none            &none                                                                    &none  &none      &bt BT_CLR  &bt BT_CLR_ALL  &none  &none
+                &none        &none            &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &rgb_ug RGB_BRI  &rgb_ug RGB_TOG                                                          &none  &bt_sel 2  &bt_sel 3   &none           &none  &none
+                &bootloader  &rgb_ug RGB_SPI  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &rgb_ug RGB_BRD  &rgb_ug RGB_EFF                                                          &none  &bt_sel 0  &bt_sel 1   &out OUT_USB    &none  &bootloader
+                &sys_reset   &rgb_ug RGB_SPD  &none            &none            &none            &none              &trans  &trans  &trans      &trans  &trans  &trans    &none  &none      &none       &none           &none  &sys_reset
+                &none        &none            &none            &none            &none                               &none   &trans  &trans      &trans  &trans  &none            &none      &none       &none           &none  &none
             >;
         };
 
@@ -248,12 +222,12 @@
         magic_layer {
             // format: glove80
             bindings = <
-                &bt BT_CLR   &none            &none            &none            &none                                                                                             &none  &none  &none  &none  &bt BT_CLR_ALL
-                &none        &none            &none            &none            &none            &none                                                                     &none  &none  &none  &none  &none  &none
-                &none        &rgb_ug RGB_SPI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &rgb_ug RGB_BRI  &rgb_ug RGB_TOG                                                           &none  &none  &none  &none  &none  &none
-                &bootloader  &rgb_ug RGB_SPD  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &rgb_ug RGB_BRD  &rgb_ug RGB_EFF                                                           &none  &none  &none  &none  &none  &bootloader
-                &sys_reset   &none            &none            &none            &none            &none              &bt_2  &bt_3  &none             &none  &none  &none    &none  &none  &none  &none  &none  &sys_reset
-                &none        &none            &none            &none            &none                               &bt_0  &bt_1  &out OUT_USB      &none  &none  &none           &none  &none  &none  &none  &rto L_FACTORY_TEST
+                &bt BT_CLR   &none            &none            &none            &none                                                                                                     &none  &none  &none  &none  &bt BT_CLR_ALL
+                &none        &none            &none            &none            &none            &none                                                                             &none  &none  &none  &none  &none  &none
+                &none        &rgb_ug RGB_SPI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &rgb_ug RGB_BRI  &rgb_ug RGB_TOG                                                                   &none  &none  &none  &none  &none  &none
+                &bootloader  &rgb_ug RGB_SPD  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &rgb_ug RGB_BRD  &rgb_ug RGB_EFF                                                                   &none  &none  &none  &none  &none  &bootloader
+                &sys_reset   &none            &none            &none            &none            &none              &bt_sel 2  &bt_sel 3  &none             &none  &none  &none    &none  &none  &none  &none  &none  &sys_reset
+                &none        &none            &none            &none            &none                               &bt_sel 0  &bt_sel 1  &out OUT_USB      &none  &none  &none           &none  &none  &none  &none  &rto L_FACTORY_TEST
             >;
         };
 
