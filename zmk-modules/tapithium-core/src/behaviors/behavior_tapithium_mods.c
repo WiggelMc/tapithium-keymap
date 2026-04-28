@@ -11,14 +11,20 @@
 #include <zephyr/device.h>
 #include <zephyr/logging/log.h>
 
+#include <zmk/behavior.h>
+#include <zmk/event_manager.h>
+#include <zmk/events/keycode_state_changed.h>
+#include <zmk/events/layer_state_changed.h>
+#include <zmk/events/modifiers_state_changed.h>
+#include <zmk/events/position_state_changed.h>
+#include <zmk/hid.h>
 #include <zmk/keymap.h>
 #include <zmk/keys.h>
+#include <zmk/matrix.h>
 
 #include <dt-bindings/zmk/tapithium_mods.h>
 
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
-
-#include <zmk/behavior.h>
 
 #if DT_HAS_COMPAT_STATUS_OKAY(DT_DRV_COMPAT)
 
@@ -48,13 +54,12 @@ struct behavior_tapithium_mods_engine_data {
   zmk_mod_flags_t pending_mods;
 };
 
-static const struct behavior_tapithium_mods_engine_data
-    tapithium_mods_engine_data = {
-        .stage = TP_STAGE_IDLE,
-        .mode = TP_MODE_ENABLE,
-        .config = NULL,
-        .pending_layer = 0,
-        .pending_mods = 0,
+static struct behavior_tapithium_mods_engine_data tapithium_mods_engine_data = {
+    .stage = TP_STAGE_IDLE,
+    .mode = TP_MODE_ENABLE,
+    .config = NULL,
+    .pending_layer = 0,
+    .pending_mods = 0,
 };
 
 static int tapithium_mods_init(const struct device *dev) { return 0; };
@@ -76,17 +81,86 @@ static const struct behavior_driver_api tapithium_mods_driver_api = {
     .binding_released = on_tapithium_mods_binding_released,
 };
 
-#define LAYER_BIT(node_id, prop, idx)                                          \
+static int tapithium_mods_keycode_state_changed_listener(const zmk_event_t *eh);
+
+ZMK_LISTENER(behavior_tapithium_mods_keycode_state_changed,
+             tapithium_mods_keycode_state_changed_listener);
+ZMK_SUBSCRIPTION(behavior_tapithium_mods_keycode_state_changed,
+                 zmk_keycode_state_changed);
+
+static int
+tapithium_mods_keycode_state_changed_listener(const zmk_event_t *eh) {
+  struct zmk_keycode_state_changed *ev = as_zmk_keycode_state_changed(eh);
+  if (ev == NULL) {
+    return ZMK_EV_EVENT_BUBBLE;
+  }
+
+  return ZMK_EV_EVENT_BUBBLE;
+}
+
+static int
+tapithium_mods_position_state_changed_listener(const zmk_event_t *eh);
+
+ZMK_LISTENER(behavior_tapithium_mods_position_state_changed,
+             tapithium_mods_position_state_changed_listener);
+ZMK_SUBSCRIPTION(behavior_tapithium_mods_position_state_changed,
+                 zmk_position_state_changed);
+
+static int
+tapithium_mods_position_state_changed_listener(const zmk_event_t *eh) {
+  struct zmk_position_state_changed *ev = as_zmk_position_state_changed(eh);
+  if (ev == NULL) {
+    return ZMK_EV_EVENT_BUBBLE;
+  }
+
+  return ZMK_EV_EVENT_BUBBLE;
+}
+
+static int tapithium_mods_layer_state_changed_listener(const zmk_event_t *eh);
+
+ZMK_LISTENER(behavior_tapithium_mods_layer_state_changed,
+             tapithium_mods_layer_state_changed_listener);
+ZMK_SUBSCRIPTION(behavior_tapithium_mods_layer_state_changed,
+                 zmk_layer_state_changed);
+
+static int tapithium_mods_layer_state_changed_listener(const zmk_event_t *eh) {
+  struct zmk_layer_state_changed *ev = as_zmk_layer_state_changed(eh);
+  if (ev == NULL) {
+    return ZMK_EV_EVENT_BUBBLE;
+  }
+
+  return ZMK_EV_EVENT_BUBBLE;
+}
+
+static int
+tapithium_mods_modifiers_state_changed_listener(const zmk_event_t *eh);
+
+ZMK_LISTENER(behavior_tapithium_mods_modifiers_state_changed,
+             tapithium_mods_modifiers_state_changed_listener);
+ZMK_SUBSCRIPTION(behavior_tapithium_mods_modifiers_state_changed,
+                 zmk_modifiers_state_changed);
+
+static int
+tapithium_mods_modifiers_state_changed_listener(const zmk_event_t *eh) {
+  struct zmk_modifiers_state_changed *ev = as_zmk_modifiers_state_changed(eh);
+  if (ev == NULL) {
+    return ZMK_EV_EVENT_BUBBLE;
+  }
+
+  return ZMK_EV_EVENT_BUBBLE;
+}
+
+#define TP_LAYER_BIT(node_id, prop, idx)                                       \
   (1U << DT_PROP_BY_IDX(node_id, prop, idx)) |
 
-#define BUILD_LAYER_MASK(n, prop)                                              \
-  (DT_INST_FOREACH_PROP_ELEM(n, prop, LAYER_BIT) 0U)
+#define TP_BUILD_LAYER_MASK(n, prop)                                           \
+  (DT_INST_FOREACH_PROP_ELEM(n, prop, TP_LAYER_BIT) 0U)
 
 #define TAPITHIUM_MODS_INST(n)                                                 \
   static struct behavior_tapithium_mods_data tapithium_mods_data_##n = {};     \
                                                                                \
   static struct behavior_tapithium_mods_config tapithium_mods_config_##n = {   \
-      .mod_layers = BUILD_LAYER_MASK(n, mod_layers),                           \
+      .mod_layers = TP_BUILD_LAYER_MASK(n, mod_layers),                        \
       .cancel_after_idle_ms = DT_INST_PROP(n, cancel_after_idle_ms),           \
   };                                                                           \
                                                                                \
