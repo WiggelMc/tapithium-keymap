@@ -14,7 +14,6 @@
 #include <zmk/event_manager.h>
 #include <zmk/events/keycode_state_changed.h>
 #include <zmk/events/layer_state_changed.h>
-#include <zmk/events/modifiers_state_changed.h>
 #include <zmk/events/position_state_changed.h>
 #include <zmk/hid.h>
 #include <zmk/keymap.h>
@@ -70,14 +69,16 @@ static int
 on_tapithium_mods_binding_pressed(struct zmk_behavior_binding *binding,
                                   struct zmk_behavior_binding_event event) {
 
-  LOG_DBG("TP Binding pressed");
+  LOG_DBG("TP Binding pressed: param1=%d, param2=%d, layer=%d, position=%d",
+          binding->param1, binding->param2, event.layer, event.position);
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
 static int
 on_tapithium_mods_binding_released(struct zmk_behavior_binding *binding,
                                    struct zmk_behavior_binding_event event) {
-  LOG_DBG("TP Binding released");
+  LOG_DBG("TP Binding released: param1=%d, param2=%d, layer=%d, position=%d",
+          binding->param1, binding->param2, event.layer, event.position);
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
@@ -100,7 +101,7 @@ tapithium_mods_keycode_state_changed_listener(const zmk_event_t *eh) {
     return ZMK_EV_EVENT_BUBBLE;
   }
 
-  LOG_DBG("TP Keycode State changed");
+  LOG_DBG("TP Keycode State changed: keycode: %d", ev->keycode);
 
   return ZMK_EV_EVENT_BUBBLE;
 }
@@ -120,7 +121,7 @@ tapithium_mods_position_state_changed_listener(const zmk_event_t *eh) {
     return ZMK_EV_EVENT_BUBBLE;
   }
 
-  LOG_DBG("TP Position State changed");
+  LOG_DBG("TP Position State changed: position: %d", ev->position);
 
   return ZMK_EV_EVENT_BUBBLE;
 }
@@ -139,26 +140,6 @@ static int tapithium_mods_layer_state_changed_listener(const zmk_event_t *eh) {
   }
 
   LOG_DBG("TP Layer State changed");
-
-  return ZMK_EV_EVENT_BUBBLE;
-}
-
-static int
-tapithium_mods_modifiers_state_changed_listener(const zmk_event_t *eh);
-
-ZMK_LISTENER(behavior_tapithium_mods_modifiers_state_changed,
-             tapithium_mods_modifiers_state_changed_listener);
-ZMK_SUBSCRIPTION(behavior_tapithium_mods_modifiers_state_changed,
-                 zmk_modifiers_state_changed);
-
-static int
-tapithium_mods_modifiers_state_changed_listener(const zmk_event_t *eh) {
-  struct zmk_modifiers_state_changed *ev = as_zmk_modifiers_state_changed(eh);
-  if (ev == NULL) {
-    return ZMK_EV_EVENT_BUBBLE;
-  }
-
-  LOG_DBG("TP Modifiers State changed");
 
   return ZMK_EV_EVENT_BUBBLE;
 }

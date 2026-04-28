@@ -118,7 +118,6 @@ draw_config:
         <path d="m5 2.318.647.414c.496-.67 1.174-1.102 2.004-1.192l-.04-.764a.371.372 0 0 1 .376-.373.375.376 0 0 1 .375.375l-.04.76c.83.096 1.505.528 2.004 1.192l.645-.414a.38.38 0 0 1 .513.137.369.369 0 0 1-.137.51l-.686.347a2.94 2.944 0 0 1 0 2.383l.685.35a.37.37 0 0 1 .138.509.377.377 0 0 1-.512.136l-.648-.414c-.495.67-1.173 1.102-2.003 1.192l.041.764a.371.372 0 0 1-.376.373.375.376 0 0 1-.376-.375l.038-.76c-.828-.096-1.504-.528-2.002-1.192l-.644.414a.38.38 0 0 1-.515-.137.369.369 0 0 1 .137-.511l.686-.346a2.94 2.944 0 0 1 0-2.383l-.685-.35a.37.37 0 0 1-.136-.51A.377.377 0 0 1 5 2.316m2.232 1.431c.156-.172.29-.285.519-.33l-.063-1.13c-.588.079-1.047.383-1.41.848l.954.612m1.317-.212c.104.06.191.132.266.212l.877-.61a2.225 2.228 0 0 0-.656-.57 1.903 1.905 0 0 0-.75-.28L8.23 3.413a1.106 1.107 0 0 1 .318.123m.436 1.304 1.01.514a2.214 2.217 0 0 0-.004-1.701l-1.016.51a1.051 1.052 0 0 1 .008.677m-.168.42a1.076 1.077 0 0 1-.595.33l.063 1.128c.588-.077 1.047-.381 1.41-.847l-.878-.611m-1.392.212c-.105-.06-.117-.132-.194-.215l-.95.614c.174.222.393.418.656.57.263.15.468.241.75.278l.059-1.123a1.147 1.148 0 0 1-.32-.123m-.438-1.305-1.008-.514a2.227 2.227 0 0 0 .002 1.701l1.016-.51a1.05 1.051 0 0 1-.008-.677z"/>
       </svg>
 
-
 parse_config:
   mark_alternate_layer_activators: true
 
@@ -128,63 +127,120 @@ parse_config:
 
   raw_binding_map:
     # Custom behavior
-    '&key_repeat': 'Repeat'
-    '&uc UC_DE_AE': 'Ä'
-    '&uc UC_DE_OE': 'Ö'
-    '&uc UC_DE_UE': 'Ü'
-    '&uc UC_DE_SS': 'ß'
-    
-    '&caps_word': $$mdi:apple-keyboard-caps$$
-    '&smart_lshift': &sft $$mdi:apple-keyboard-shift$$
-    '&smart_rshift': *sft
-    '&tog 1':
+    "&key_repeat": "Repeat"
+    "&uc UC_DE_AE": "Ä"
+    "&uc UC_DE_OE": "Ö"
+    "&uc UC_DE_UE": "Ü"
+    "&uc UC_DE_SS": "ß"
+
+    "&tp TP_ENABLE": "TP Enable"
+    "&tp TP_RESET": "TP Reset"
+    "&tp TP_STICKY": "TP Sticky"
+
+    "&tp TP_MOD LGUI": &gui Meta
+    "&tp TP_MOD LALT": &lalt Alt
+    "&tp TP_MOD LCTRL": &ctrl Ctrl
+    "&tp TP_MOD LSHIFT": &sft Shift
+
+    "&tp TP_LAY L_SYMBOL": "Symbol"
+    "&tp TP_LAY L_NUMBER": "Number"
+    "&tp TP_LAY L_FUNCTION": "Function"
+    "&tp TP_LAY L_NAV": "Nav"
+    "&tp TP_LAY L_ADV_MAGIC": "Magic"
+
+    "&rto L_MOUSE": "Mouse"
+    "&rto L_GAMING": "Gaming"
+    "&rto L_FACTORY_TEST": "Debug"
+
+    "&rgb_ug RGB_TOG": &rgb
+      tap: Toggle
+    "&rgb_ug RGB_EFF":
+      <<: *rgb
+      tap: Effect
+    "&rgb_ug RGB_BRI":
+      <<: *rgb
+      tap: Brightness
+      shifted: +
+    "&rgb_ug RGB_BRD":
+      <<: *rgb
+      tap: Brightness
+      shifted: "-"
+    "&rgb_ug RGB_HUI":
+      <<: *rgb
+      tap: Hue
+      shifted: +
+    "&rgb_ug RGB_HUD":
+      <<: *rgb
+      tap: Hue
+      shifted: "-"
+    "&rgb_ug RGB_SAI":
+      <<: *rgb
+      tap: Saturation
+      shifted: +
+    "&rgb_ug RGB_SAD":
+      <<: *rgb
+      tap: Saturation
+      shifted: "-"
+    "&rgb_ug RGB_SPI":
+      <<: *rgb
+      tap: Speed
+      shifted: +
+    "&rgb_ug RGB_SPD":
+      <<: *rgb
+      tap: Speed
+      shifted: "-"
+
+    "&caps_word": $$mdi:apple-keyboard-caps$$
+    "&smart_lshift": *sft
+    "&smart_rshift": *sft
+    "&tog 1":
       tap: $$mdi:keyboard-outline$$
       hold: Qwerty
       type: info
-    '&symbols': &symbols
+    "&symbols": &symbols
       tap: $$mdi:symbol$$
       hold: Symbols
       type: info
-    '&tog 2': *symbols
-    '&nav': &nav
+    "&tog 2": *symbols
+    "&nav": &nav
       tap: $$num-nav$$
       hold: Num/Nav
       type: info
-    '&tog 3': *nav
-    '&tog 4':
+    "&tog 3": *nav
+    "&tog 4":
       tap: $$mdi:controller$$
       hold: Gaming
       type: info
 
     # Moergo behavior
-    '&magic L_MAGIC 0':
+    "&magic L_MAGIC 0":
       tap: $$moergo$$
       hold: Magic
       type: info
-    '&bt_0': &bt
+    "&bt_0": &bt
       type: info
       tap: $$mdi:bluetooth$$
       shifted: 0
-    '&bt_1':
+    "&bt_1":
       <<: *bt
       shifted: 1
-    '&bt_2':
+    "&bt_2":
       <<: *bt
       shifted: 2
-    '&bt_3':
+    "&bt_3":
       <<: *bt
       shifted: 3
-    '&bt BT_CLR': &bt_clr
+    "&bt BT_CLR": &bt_clr
       type: info
       tap: $$mdi:bluetooth-off$$
       hold: Clear
-    '&bt BT_CLR_ALL':
+    "&bt BT_CLR_ALL":
       <<: *bt_clr
       hold: Clr All
-    '&out OUT_USB': $$mdi:usb$$
-    '&bootloader': Boot
-    '&reset': Reset
-    '&sys_reset': Reset
+    "&out OUT_USB": $$mdi:usb$$
+    "&bootloader": Boot
+    "&reset": Reset
+    "&sys_reset": Reset
 
   zmk_keycode_map:
     RET: &ret $$mdi:keyboard-return$$
@@ -200,11 +256,11 @@ parse_config:
     DEL: &del $$mdi:backspace-reverse-outline$$
     DELETE: *del
 
-    LALT: &lalt Alt
+    LALT: *lalt
     LEFT_ALT: *lalt
     RALT: &ralt AltGr # UK layout
     RIGHT_ALT: *ralt
-    LCTRL: &ctrl Ctrl
+    LCTRL: *ctrl
     LEFT_CONTROL: *ctrl
     RCTRL: *ctrl
     RIGHT_CONTROL: *ctrl
@@ -214,24 +270,21 @@ parse_config:
     RSHFT: *sft
     RSHIFT: *sft
     RIGHT_SHIFT: *sft
-    LGUI: &gui
-      tap: $$mdi:monitor-dashboard$$
-      hold: Meta
-      type: info
+    LGUI: *gui
     LEFT_GUI: *gui
     LMETA: *gui
     LEFT_META: *gui
-    
-    COMMA: ','
+
+    COMMA: ","
     PERIOD: .
     DOT: .
-    QUESTION: '?'
-    QMARK: '?'
-    EXCLAMATION: '!'
-    EXCL: '!'
+    QUESTION: "?"
+    QMARK: "?"
+    EXCLAMATION: "!"
+    EXCL: "!"
     SEMICOLON: ;
     SEMI: ;
-    COLON: ':'
+    COLON: ":"
 
     SINGLE_QUOTE: "'"
     SQT: "'"
@@ -240,112 +293,92 @@ parse_config:
     AT_SIGN: '"' # UK layout
     AT: '"' # UK layout
 
-    HASH: '£' # UK layout
-    POUND: '£' # UK layout
+    HASH: "£" # UK layout
+    POUND: "£" # UK layout
     DOLLAR: $
     DLLR: $
-    'RA(N4)': € # UK layout
+    "RA(N4)": € # UK layout
 
-    PERCENT: '%'
-    PRCNT: '%'
+    PERCENT: "%"
+    PRCNT: "%"
     CARET: ^
-    AMPERSAND: '&'
-    AMPS: '&'
-    ASTERISK: '*'
-    ASTRK: '*'
-    STAR: '*'
-    EQUAL: '='
+    AMPERSAND: "&"
+    AMPS: "&"
+    ASTERISK: "*"
+    ASTRK: "*"
+    STAR: "*"
+    EQUAL: "="
     PLUS: +
-    MINUS: '-'
+    MINUS: "-"
     UNDERSCORE: _
     UNDER: _
     SLASH: /
     FSLH: /
-    DOUBLE_QUOTES: '@' # UK layout
-    DQT: '@' # UK layout
+    DOUBLE_QUOTES: "@" # UK layout
+    DQT: "@" # UK layout
 
     LEFT_PARENTHESIS: (
     LPAR: (
     RIGHT_PARENTHESIS: )
     RPAR: )
-    LEFT_BRACKET: '['
-    LBKT: '['
-    RIGHT_BRACKET: ']'
-    RBKT: ']'
-    LEFT_BRACE: '{'
-    LBRC: '{'
-    RIGHT_BRACE: '}'
-    RBRC: '}'
+    LEFT_BRACKET: "["
+    LBKT: "["
+    RIGHT_BRACKET: "]"
+    RBKT: "]"
+    LEFT_BRACE: "{"
+    LBRC: "{"
+    RIGHT_BRACE: "}"
+    RBRC: "}"
     LESS_THAN: <
     LT: <
-    GREATER_THAN: '>'
-    GT: '>'
+    GREATER_THAN: ">"
+    GT: ">"
 
     # This block is kinda funky on UK layout:
-    BACKSLASH: &hash '#' # UK layout
+    BACKSLASH: &hash "#" # UK layout
     BSLH: *hash
     NUHS: *hash
     NON_US_HASH: *hash
-    PIPE: '~' # UK layout
-    TILDE2: '~' # UK layout
+    PIPE: "~" # UK layout
+    TILDE2: "~" # UK layout
     NON_US_BSLH: '\'
     NON_US_BACKSLASH: '\'
-    PIPE2: '|'
-    GRAVE: '`'
-    TILDE: '¬' # UK layout
+    PIPE2: "|"
+    GRAVE: "`"
+    TILDE: "¬" # UK layout
 
-    N1:
-      tap: 1
-      shifted: '!'
-    N2:
-      tap: 2
-      shifted: '"' # UK layout
-    N3:
-      tap: 3
-      shifted: '£' # UK layout
-    N4:
-      tap: 4
-      shifted: '$'
-    N5:
-      tap: 5
-      shifted: '%'
-    N6:
-      tap: 6
-      shifted: '^'
-    N7:
-      tap: 7
-      shifted: '&'
-    N8:
-      tap: 8
-      shifted: '*'
-    N9:
-      tap: 9
-      shifted: '('
-    N0:
-      tap: 0
-      shifted: ')'
+    N1: "1"
+    N2: "2"
+    N3: "3"
+    N4: "4"
+    N5: "5"
+    N6: "6"
+    N7: "7"
+    N8: "8"
+    N9: "9"
+    N0: "0"
 
-    KP_NUM: 'Num Lock'
-    KP_NUMLOCK: 'Num Lock'
-    KP_MINUS: '-'
-    KP_PLUS: '+'
-    KP_SLASH: '/'
-    KP_MULTIPLY: '*'
-    KP_EQUAL: '='
-    KP_DOT: '.'
-    KP_N1: '1'
-    KP_N2: '2'
-    KP_N3: '3'
-    KP_N4: '4'
-    KP_N5: '5'
-    KP_N6: '6'
-    KP_N7: '7'
-    KP_N8: '8'
-    KP_N9: '9'
-    KP_N0: '0'
+    KP_NUM: "Num Lock"
+    KP_NUMLOCK: "Num Lock"
+    KP_MINUS: "-"
+    KP_PLUS: "+"
+    KP_SLASH: "/"
+    KP_MULTIPLY: "*"
+    KP_EQUAL: "="
+    KP_DOT: "."
+    KP_N1: "1"
+    KP_N2: "2"
+    KP_N3: "3"
+    KP_N4: "4"
+    KP_N5: "5"
+    KP_N6: "6"
+    KP_N7: "7"
+    KP_N8: "8"
+    KP_N9: "9"
+    KP_N0: "0"
 
-    'LC(LEFT)': $$mdi:chevron-double-left$$
-    'LC(RIGHT)': $$mdi:chevron-double-right$$
+    "LC(LEFT)": $$mdi:chevron-double-left$$
+    "LC(RIGHT)": $$mdi:chevron-double-right$$
     LEFT: &left $$mdi:arrow-left-bold$$
     LEFT_ARROW: *left
     RIGHT: &right $$mdi:arrow-right-bold$$
@@ -373,44 +406,3 @@ parse_config:
     C_VOLUME_UP: $$mdi:volume-high$$
     C_VOL_DN: $$mdi:volume-low$$
     C_VOLUME_DOWN: $$mdi:volume-low$$
-
-    RGB_TOG: &rgb
-      tap: $$mdi:palette$$
-      hold: Toggle
-      type: info
-    RGB_EFF:
-      <<: *rgb
-      hold: Effect
-    RGB_BRI:
-      <<: *rgb
-      hold: Brightness
-      shifted: +
-    RGB_BRD:
-      <<: *rgb
-      hold: Brightness
-      shifted: '-'
-    RGB_HUI:
-      <<: *rgb
-      hold: Hue
-      shifted: +
-    RGB_HUD:
-      <<: *rgb
-      hold: Hue
-      shifted: '-'
-    RGB_SAI:
-      <<: *rgb
-      hold: Saturation
-      shifted: +
-    RGB_SAD:
-      <<: *rgb
-      hold: Saturation
-      shifted: '-'
-    RGB_SPI:
-      <<: *rgb
-      hold: Speed
-      shifted: +
-    RGB_SPD:
-      <<: *rgb
-      hold: Speed
-      shifted: '-'
-
