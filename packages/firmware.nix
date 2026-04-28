@@ -12,14 +12,27 @@ let
     (builtins.path { path = ../zmk-modules/tapithium-core; })
     zmk-mod-unicode
   ];
+  snippets = [
+    # "zmk-usb-logging"
+  ];
 
   left = firmware.zmk.override {
-    inherit keymap kconfig extraModules;
+    inherit
+      keymap
+      kconfig
+      extraModules
+      snippets
+      ;
     board = "glove80_lh";
   };
 
   right = firmware.zmk.override {
-    inherit keymap kconfig extraModules;
+    inherit
+      keymap
+      kconfig
+      extraModules
+      snippets
+      ;
     board = "glove80_rh";
   };
 in

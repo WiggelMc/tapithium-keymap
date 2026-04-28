@@ -6,7 +6,6 @@
 
 #define DT_DRV_COMPAT zmk_behavior_tapithium_mods
 
-// Dependencies
 #include <drivers/behavior.h>
 #include <zephyr/device.h>
 #include <zephyr/logging/log.h>
@@ -62,17 +61,23 @@ static struct behavior_tapithium_mods_engine_data tapithium_mods_engine_data = {
     .pending_mods = 0,
 };
 
-static int tapithium_mods_init(const struct device *dev) { return 0; };
+static int tapithium_mods_init(const struct device *dev) {
+  LOG_DBG("TP Initialized");
+  return 0;
+};
 
 static int
 on_tapithium_mods_binding_pressed(struct zmk_behavior_binding *binding,
                                   struct zmk_behavior_binding_event event) {
+
+  LOG_DBG("TP Binding pressed");
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
 static int
 on_tapithium_mods_binding_released(struct zmk_behavior_binding *binding,
                                    struct zmk_behavior_binding_event event) {
+  LOG_DBG("TP Binding released");
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
@@ -95,6 +100,8 @@ tapithium_mods_keycode_state_changed_listener(const zmk_event_t *eh) {
     return ZMK_EV_EVENT_BUBBLE;
   }
 
+  LOG_DBG("TP Keycode State changed");
+
   return ZMK_EV_EVENT_BUBBLE;
 }
 
@@ -113,6 +120,8 @@ tapithium_mods_position_state_changed_listener(const zmk_event_t *eh) {
     return ZMK_EV_EVENT_BUBBLE;
   }
 
+  LOG_DBG("TP Position State changed");
+
   return ZMK_EV_EVENT_BUBBLE;
 }
 
@@ -128,6 +137,8 @@ static int tapithium_mods_layer_state_changed_listener(const zmk_event_t *eh) {
   if (ev == NULL) {
     return ZMK_EV_EVENT_BUBBLE;
   }
+
+  LOG_DBG("TP Layer State changed");
 
   return ZMK_EV_EVENT_BUBBLE;
 }
@@ -146,6 +157,8 @@ tapithium_mods_modifiers_state_changed_listener(const zmk_event_t *eh) {
   if (ev == NULL) {
     return ZMK_EV_EVENT_BUBBLE;
   }
+
+  LOG_DBG("TP Modifiers State changed");
 
   return ZMK_EV_EVENT_BUBBLE;
 }
