@@ -134,8 +134,17 @@ parse_config:
     "&uc UC_DE_SS": "ß"
 
     "&tp TP_ENABLE": "TP Enable"
-    "&tp TP_RESET": "TP Reset"
     "&tp TP_STICKY": "TP Sticky"
+    "&tp TP_CANCEL": "TP Cancel"
+    "&tp TP_RESET": "TP Reset"
+
+    "&tp TP_NEXT": &tp_next
+      hold: $$mdi:triangle$$
+      type: trans
+    "&tp TP___": *tp_next
+    "&tp TP_NONE": &tp_none
+      tap: ""
+    "&tp TP_": *tp_none
 
     "&tp TP_MOD LGUI": &gui Meta
     "&tp TP_MOD LALT": &lalt Alt
@@ -159,36 +168,36 @@ parse_config:
       tap: Effect
     "&rgb_ug RGB_BRI":
       <<: *rgb
-      tap: Brightness
-      shifted: +
+      tap: Bright
+      shifted: &plus $$mdi:plus$$
     "&rgb_ug RGB_BRD":
       <<: *rgb
-      tap: Brightness
-      shifted: "-"
+      tap: Bright
+      shifted: &minus $$mdi:minus$$
     "&rgb_ug RGB_HUI":
       <<: *rgb
       tap: Hue
-      shifted: +
+      shifted: *plus
     "&rgb_ug RGB_HUD":
       <<: *rgb
       tap: Hue
-      shifted: "-"
+      shifted: *minus
     "&rgb_ug RGB_SAI":
       <<: *rgb
-      tap: Saturation
-      shifted: +
+      tap: Satur
+      shifted: *plus
     "&rgb_ug RGB_SAD":
       <<: *rgb
-      tap: Saturation
-      shifted: "-"
+      tap: Satur
+      shifted: *minus
     "&rgb_ug RGB_SPI":
       <<: *rgb
       tap: Speed
-      shifted: +
+      shifted: *plus
     "&rgb_ug RGB_SPD":
       <<: *rgb
       tap: Speed
-      shifted: "-"
+      shifted: *minus
 
     "&caps_word": $$mdi:apple-keyboard-caps$$
     "&smart_lshift": *sft
@@ -220,16 +229,16 @@ parse_config:
     "&bt_sel 0": &bt
       type: info
       tap: $$mdi:bluetooth$$
-      shifted: 0
+      shifted: $$mdi:circle-medium$$
     "&bt_sel 1":
       <<: *bt
-      shifted: 1
+      shifted: $$mdi:tally-mark-1$$
     "&bt_sel 2":
       <<: *bt
-      shifted: 2
+      shifted: $$mdi:tally-mark-2$$
     "&bt_sel 3":
       <<: *bt
-      shifted: 3
+      shifted: $$mdi:tally-mark-3$$
     "&bt BT_CLR": &bt_clr
       type: info
       tap: $$mdi:bluetooth-off$$

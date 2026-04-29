@@ -101,12 +101,12 @@
         base_layer {
             // format: glove80
             bindings = <
-                &none             &none         &none         &none         &none                                                                                                                   &none  &none  &none  &none  &none
-                &none             &none         &none         &kp Q         &none         &none                                                                                              &none  &none  &kp Z  &none  &none  &none
-                &none             &none         &kp Y         &kp O         &kp U         &none                                                                                              &kp X  &kp L  &kp D  &kp P  &none  &none
-                &kp B             &kp C         &kp I         &kp A         &kp E         &none                                                                                              &kp K  &kp H  &kp T  &kp N  &kp S  &kp W
-                &none             &uc UC_DE_SS  &uc UC_DE_AE  &uc UC_DE_OE  &uc UC_DE_UE  &none    &key_repeat  &kp DEL        &none             &none         &kp BACKSPACE  &key_repeat    &none  &kp M  &kp G  &kp F  &kp V  &none
-                &magic L_MAGIC 0  &none         &none         &none         &none                  &kp SPACE    &tp TP_ENABLE  &tp TP_RESET      &tp TP_RESET  &tp TP_STICKY  &kp R                 &kp J  &none  &none  &none  &none
+                &none             &none         &none         &none         &none                                                                                                                    &none  &none  &none  &none  &none
+                &none             &none         &none         &kp Q         &none         &none                                                                                               &none  &none  &kp Z  &none  &none  &none
+                &none             &none         &kp Y         &kp O         &kp U         &none                                                                                               &kp X  &kp L  &kp D  &kp P  &none  &none
+                &kp B             &kp C         &kp I         &kp A         &kp E         &none                                                                                               &kp K  &kp H  &kp T  &kp N  &kp S  &kp W
+                &none             &uc UC_DE_SS  &uc UC_DE_AE  &uc UC_DE_OE  &uc UC_DE_UE  &none    &key_repeat  &kp DEL        &none             &none          &kp BACKSPACE  &key_repeat    &none  &kp M  &kp G  &kp F  &kp V  &none
+                &magic L_MAGIC 0  &none         &none         &none         &none                  &kp SPACE    &tp TP_ENABLE  &tp TP_RESET      &tp TP_CANCEL  &tp TP_STICKY  &kp R                 &kp J  &none  &none  &none  &none
             >;
         };
 
@@ -173,12 +173,12 @@
         mods_l_layer {
             // format: glove80
             bindings = <
-                &none                   &none             &none            &none             &none                                                                                                       &trans  &trans  &trans  &trans  &trans
-                &none                   &none             &none            &none             &none                  &none                                                                        &trans  &trans  &trans  &trans  &trans  &trans
-                &none                   &none             &none            &none             &tp TP_LAY L_SYMBOL    &none                                                                        &trans  &trans  &trans  &trans  &trans  &trans
-                &tp TP_LAY L_ADV_MAGIC  &tp TP_MOD LGUI   &tp TP_MOD LALT  &tp TP_MOD LCTRL  &tp TP_MOD LSHIFT      &tp TP_LAY L_NUMBER                                                          &trans  &trans  &trans  &trans  &trans  &trans
-                &none                   &tp TP_LAY L_NAV  &none            &none             &tp TP_LAY L_FUNCTION  &none                  &trans  &trans  &trans      &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-                &none                   &none             &none            &none             &none                                         &none   &trans  &trans      &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans
+                &tp TP_                 &tp TP_           &tp TP_          &tp TP_           &tp TP_                                                                                                                    &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
+                &tp TP_                 &tp TP_           &tp TP_          &tp TP_           &tp TP_                &tp TP_                                                                                  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
+                &tp TP_                 &tp TP_           &tp TP_          &tp TP_           &tp TP_LAY L_SYMBOL    &tp TP_                                                                                  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
+                &tp TP_LAY L_ADV_MAGIC  &tp TP_MOD LGUI   &tp TP_MOD LALT  &tp TP_MOD LCTRL  &tp TP_MOD LSHIFT      &tp TP_LAY L_NUMBER                                                                      &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
+                &tp TP_                 &tp TP_LAY L_NAV  &tp TP_          &tp TP_           &tp TP_LAY L_FUNCTION  &tp TP_                &tp TP_  &tp TP_  &tp TP_      &tp TP___  &tp TP___  &tp TP___    &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
+                &tp TP_                 &tp TP_           &tp TP_          &tp TP_           &tp TP_                                       &tp TP_  &trans   &trans       &trans     &trans     &tp TP___               &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
             >;
         };
 
@@ -186,12 +186,12 @@
         mods_r_layer {
             // format: glove80
             bindings = <
-                &trans  &trans  &trans  &trans  &trans                                                                                       &none                  &none             &none            &none             &none
-                &trans  &trans  &trans  &trans  &trans  &trans                                                          &none                &none                  &none             &none            &none             &none
-                &trans  &trans  &trans  &trans  &trans  &trans                                                          &none                &tp TP_LAY L_SYMBOL    &none             &none            &none             &none
-                &trans  &trans  &trans  &trans  &trans  &trans                                                          &tp TP_LAY L_NUMBER  &tp TP_MOD LSHIFT      &tp TP_MOD LCTRL  &tp TP_MOD LALT  &tp TP_MOD LGUI   &tp TP_LAY L_ADV_MAGIC
-                &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans      &trans  &trans  &trans    &none                &tp TP_LAY L_FUNCTION  &none             &none            &tp TP_LAY L_NAV  &none
-                &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans      &trans  &trans  &none                          &none                  &none             &none            &none             &none
+                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                                                      &tp TP_                &tp TP_           &tp TP_          &tp TP_           &tp TP_
+                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                      &tp TP_              &tp TP_                &tp TP_           &tp TP_          &tp TP_           &tp TP_
+                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                      &tp TP_              &tp TP_LAY L_SYMBOL    &tp TP_           &tp TP_          &tp TP_           &tp TP_
+                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                      &tp TP_LAY L_NUMBER  &tp TP_MOD LSHIFT      &tp TP_MOD LCTRL  &tp TP_MOD LALT  &tp TP_MOD LGUI   &tp TP_LAY L_ADV_MAGIC
+                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___    &tp TP___  &tp TP___  &tp TP___      &tp TP_  &tp TP_  &tp TP_    &tp TP_              &tp TP_LAY L_FUNCTION  &tp TP_           &tp TP_          &tp TP_LAY L_NAV  &tp TP_
+                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___               &tp TP___  &trans     &trans         &trans   &trans   &tp TP_                         &tp TP_                &tp TP_           &tp TP_          &tp TP_           &tp TP_
             >;
         };
 

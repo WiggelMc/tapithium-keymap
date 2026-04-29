@@ -73,7 +73,7 @@ layers:
   - $$mdi:keyboard-space$$
   - TP Enable
   - TP Reset
-  - TP Reset
+  - TP Cancel
   - TP Sticky
   - R
   - J
@@ -430,30 +430,30 @@ layers:
   - ''
   - ''
   - ''
-  - {t: Saturation, s: +}
-  - {t: Hue, s: +}
-  - {t: Brightness, s: +}
+  - {t: Satur, s: '$$mdi:plus$$'}
+  - {t: Hue, s: '$$mdi:plus$$'}
+  - {t: Bright, s: '$$mdi:plus$$'}
   - Toggle
   - ''
-  - {t: '$$mdi:bluetooth$$', s: '2', type: info}
-  - {t: '$$mdi:bluetooth$$', s: '3', type: info}
+  - {t: '$$mdi:bluetooth$$', s: '$$mdi:tally-mark-2$$', type: info}
+  - {t: '$$mdi:bluetooth$$', s: '$$mdi:tally-mark-3$$', type: info}
   - ''
   - ''
   - ''
   - Boot
-  - {t: Speed, s: +}
-  - {t: Saturation, s: '-'}
-  - {t: Hue, s: '-'}
-  - {t: Brightness, s: '-'}
+  - {t: Speed, s: '$$mdi:plus$$'}
+  - {t: Satur, s: '$$mdi:minus$$'}
+  - {t: Hue, s: '$$mdi:minus$$'}
+  - {t: Bright, s: '$$mdi:minus$$'}
   - Effect
   - ''
-  - {t: '$$mdi:bluetooth$$', s: '0', type: info}
-  - {t: '$$mdi:bluetooth$$', s: '1', type: info}
+  - {t: '$$mdi:bluetooth$$', s: '$$mdi:circle-medium$$', type: info}
+  - {t: '$$mdi:bluetooth$$', s: '$$mdi:tally-mark-1$$', type: info}
   - $$mdi:usb$$
   - ''
   - Boot
   - Reset
-  - {t: Speed, s: '-'}
+  - {t: Speed, s: '$$mdi:minus$$'}
   - ''
   - ''
   - ''
@@ -492,65 +492,65 @@ layers:
   - ''
   - ''
   - ''
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
   - ''
   - ''
   - ''
   - ''
   - ''
   - ''
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
   - ''
   - ''
   - ''
   - ''
   - Symbol
   - ''
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
   - Magic
   - Meta
   - Alt
   - Ctrl
   - Shift
   - Number
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
   - ''
   - Nav
   - ''
   - ''
   - Function
   - ''
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - ''
+  - ''
+  - ''
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
   - ''
   - ''
   - ''
@@ -561,83 +561,83 @@ layers:
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
   mods_r:
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
   - ''
   - ''
   - ''
   - ''
   - ''
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
   - ''
   - ''
   - ''
   - ''
   - ''
   - ''
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
   - ''
   - Symbol
   - ''
   - ''
   - ''
   - ''
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
   - Number
   - Shift
   - Ctrl
   - Alt
   - Meta
   - Magic
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - ''
+  - ''
+  - ''
   - ''
   - Function
   - ''
   - ''
   - Nav
   - ''
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
@@ -678,10 +678,10 @@ layers:
   - ''
   - ''
   - ''
-  - {t: Speed, s: +}
-  - {t: Saturation, s: +}
-  - {t: Hue, s: +}
-  - {t: Brightness, s: +}
+  - {t: Speed, s: '$$mdi:plus$$'}
+  - {t: Satur, s: '$$mdi:plus$$'}
+  - {t: Hue, s: '$$mdi:plus$$'}
+  - {t: Bright, s: '$$mdi:plus$$'}
   - Toggle
   - ''
   - ''
@@ -690,10 +690,10 @@ layers:
   - ''
   - ''
   - Boot
-  - {t: Speed, s: '-'}
-  - {t: Saturation, s: '-'}
-  - {t: Hue, s: '-'}
-  - {t: Brightness, s: '-'}
+  - {t: Speed, s: '$$mdi:minus$$'}
+  - {t: Satur, s: '$$mdi:minus$$'}
+  - {t: Hue, s: '$$mdi:minus$$'}
+  - {t: Bright, s: '$$mdi:minus$$'}
   - Effect
   - ''
   - ''
@@ -707,8 +707,8 @@ layers:
   - ''
   - ''
   - ''
-  - {t: '$$mdi:bluetooth$$', s: '2', type: info}
-  - {t: '$$mdi:bluetooth$$', s: '3', type: info}
+  - {t: '$$mdi:bluetooth$$', s: '$$mdi:tally-mark-2$$', type: info}
+  - {t: '$$mdi:bluetooth$$', s: '$$mdi:tally-mark-3$$', type: info}
   - ''
   - ''
   - ''
@@ -724,8 +724,8 @@ layers:
   - ''
   - ''
   - ''
-  - {t: '$$mdi:bluetooth$$', s: '0', type: info}
-  - {t: '$$mdi:bluetooth$$', s: '1', type: info}
+  - {t: '$$mdi:bluetooth$$', s: '$$mdi:circle-medium$$', type: info}
+  - {t: '$$mdi:bluetooth$$', s: '$$mdi:tally-mark-1$$', type: info}
   - $$mdi:usb$$
   - ''
   - ''

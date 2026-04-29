@@ -15,8 +15,29 @@
 <svg id="mdi:chevron-down">
 <svg xmlns="http://www.w3.org/2000/svg" id="mdi-chevron-down" viewBox="0 0 24 24"><path d="M7.41,8.58L12,13.17L16.59,8.58L18,10L12,16L6,10L7.41,8.58Z" /></svg>
 </svg>
+<svg id="mdi:circle-medium">
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-circle-medium" viewBox="0 0 24 24"><path d="M12,8A4,4 0 0,0 8,12A4,4 0 0,0 12,16A4,4 0 0,0 16,12A4,4 0 0,0 12,8Z" /></svg>
+</svg>
 <svg id="mdi:keyboard-space">
 <svg xmlns="http://www.w3.org/2000/svg" id="mdi-keyboard-space" viewBox="0 0 24 24"><path d="M3 15H5V19H19V15H21V19C21 20.1 20.1 21 19 21H5C3.9 21 3 20.1 3 19V15Z" /></svg>
+</svg>
+<svg id="mdi:minus">
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-minus" viewBox="0 0 24 24"><path d="M19,13H5V11H19V13Z" /></svg>
+</svg>
+<svg id="mdi:plus">
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-plus" viewBox="0 0 24 24"><path d="M19,13H13V19H11V13H5V11H11V5H13V11H19V13Z" /></svg>
+</svg>
+<svg id="mdi:tally-mark-1">
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-tally-mark-1" viewBox="0 0 24 24"><path d="M13 19H11V5H13V19Z" /></svg>
+</svg>
+<svg id="mdi:tally-mark-2">
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-tally-mark-2" viewBox="0 0 24 24"><path d="M11 19H9V5H11V19M15 5H13V19H15V5Z" /></svg>
+</svg>
+<svg id="mdi:tally-mark-3">
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-tally-mark-3" viewBox="0 0 24 24"><path d="M9 19H7V5H9V19M13 5H11V19H13V5M17 5H15V19H17V5Z" /></svg>
+</svg>
+<svg id="mdi:triangle">
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-triangle" viewBox="0 0 24 24"><path d="M1,21H23L12,2" /></svg>
 </svg>
 <svg id="mdi:usb">
 <svg xmlns="http://www.w3.org/2000/svg" id="mdi-usb" viewBox="0 0 24 24"><path d="M15,7V11H16V13H13V5H15L12,1L9,5H11V13H8V10.93C8.7,10.56 9.2,9.85 9.2,9C9.2,7.78 8.21,6.8 7,6.8C5.78,6.8 4.8,7.78 4.8,9C4.8,9.85 5.3,10.56 6,10.93V13A2,2 0 0,0 8,15H11V18.05C10.29,18.41 9.8,19.15 9.8,20A2.2,2.2 0 0,0 12,22.2A2.2,2.2 0 0,0 14.2,20C14.2,19.15 13.71,18.41 13,18.05V15H16A2,2 0 0,0 18,13V11H19V7H15Z" /></svg>
@@ -517,7 +538,7 @@ text.hold {
 <g transform="translate(598, 427) rotate(-60.0)" class="key keypos-72">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">
-<tspan x="0" dy="-0.6em">TP</tspan><tspan x="0" dy="1.2em">Reset</tspan>
+<tspan x="0" dy="-0.6em" style="font-size: 83%">TP</tspan><tspan x="0" dy="1.2em" style="font-size: 83%">Cancel</tspan>
 </text>
 </g>
 <g transform="translate(639, 379) rotate(-40.0)" class="key keypos-73">
@@ -1659,18 +1680,18 @@ text.hold {
 </g>
 <g transform="translate(140, 140)" class="key keypos-24">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap"><tspan style="font-size: 62%">Saturat…</tspan></text>
-<text x="0" y="-24" class="key shifted">+</text>
+<text x="0" y="0" class="key tap">Satur</text>
+<use href="#mdi:plus" xlink:href="#mdi:plus" x="-5" y="-24" height="10" width="10.0" class="key shifted glyph mdi:plus"/>
 </g>
 <g transform="translate(196, 140)" class="key keypos-25">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">Hue</text>
-<text x="0" y="-24" class="key shifted">+</text>
+<use href="#mdi:plus" xlink:href="#mdi:plus" x="-5" y="-24" height="10" width="10.0" class="key shifted glyph mdi:plus"/>
 </g>
 <g transform="translate(252, 140)" class="key keypos-26">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap"><tspan style="font-size: 62%">Brightn…</tspan></text>
-<text x="0" y="-24" class="key shifted">+</text>
+<text x="0" y="0" class="key tap"><tspan style="font-size: 83%">Bright</tspan></text>
+<use href="#mdi:plus" xlink:href="#mdi:plus" x="-5" y="-24" height="10" width="10.0" class="key shifted glyph mdi:plus"/>
 </g>
 <g transform="translate(308, 140)" class="key keypos-27">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -1682,12 +1703,12 @@ text.hold {
 <g transform="translate(756, 140)" class="key info keypos-29">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key info"/>
 <use href="#mdi:bluetooth" xlink:href="#mdi:bluetooth" x="-7" y="-7" height="14" width="14.0" class="key info tap glyph mdi:bluetooth"/>
-<text x="0" y="-24" class="key info shifted">2</text>
+<use href="#mdi:tally-mark-2" xlink:href="#mdi:tally-mark-2" x="-5" y="-24" height="10" width="10.0" class="key info shifted glyph mdi:tally-mark-2"/>
 </g>
 <g transform="translate(812, 140)" class="key info keypos-30">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key info"/>
 <use href="#mdi:bluetooth" xlink:href="#mdi:bluetooth" x="-7" y="-7" height="14" width="14.0" class="key info tap glyph mdi:bluetooth"/>
-<text x="0" y="-24" class="key info shifted">3</text>
+<use href="#mdi:tally-mark-3" xlink:href="#mdi:tally-mark-3" x="-5" y="-24" height="10" width="10.0" class="key info shifted glyph mdi:tally-mark-3"/>
 </g>
 <g transform="translate(868, 140)" class="key keypos-31">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -1705,22 +1726,22 @@ text.hold {
 <g transform="translate(84, 224)" class="key keypos-35">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">Speed</text>
-<text x="0" y="-24" class="key shifted">+</text>
+<use href="#mdi:plus" xlink:href="#mdi:plus" x="-5" y="-24" height="10" width="10.0" class="key shifted glyph mdi:plus"/>
 </g>
 <g transform="translate(140, 196)" class="key keypos-36">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap"><tspan style="font-size: 62%">Saturat…</tspan></text>
-<text x="0" y="-24" class="key shifted">-</text>
+<text x="0" y="0" class="key tap">Satur</text>
+<use href="#mdi:minus" xlink:href="#mdi:minus" x="-5" y="-24" height="10" width="10.0" class="key shifted glyph mdi:minus"/>
 </g>
 <g transform="translate(196, 196)" class="key keypos-37">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">Hue</text>
-<text x="0" y="-24" class="key shifted">-</text>
+<use href="#mdi:minus" xlink:href="#mdi:minus" x="-5" y="-24" height="10" width="10.0" class="key shifted glyph mdi:minus"/>
 </g>
 <g transform="translate(252, 196)" class="key keypos-38">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap"><tspan style="font-size: 62%">Brightn…</tspan></text>
-<text x="0" y="-24" class="key shifted">-</text>
+<text x="0" y="0" class="key tap"><tspan style="font-size: 83%">Bright</tspan></text>
+<use href="#mdi:minus" xlink:href="#mdi:minus" x="-5" y="-24" height="10" width="10.0" class="key shifted glyph mdi:minus"/>
 </g>
 <g transform="translate(308, 196)" class="key keypos-39">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -1732,12 +1753,12 @@ text.hold {
 <g transform="translate(756, 196)" class="key info keypos-41">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key info"/>
 <use href="#mdi:bluetooth" xlink:href="#mdi:bluetooth" x="-7" y="-7" height="14" width="14.0" class="key info tap glyph mdi:bluetooth"/>
-<text x="0" y="-24" class="key info shifted">0</text>
+<use href="#mdi:circle-medium" xlink:href="#mdi:circle-medium" x="-5" y="-24" height="10" width="10.0" class="key info shifted glyph mdi:circle-medium"/>
 </g>
 <g transform="translate(812, 196)" class="key info keypos-42">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key info"/>
 <use href="#mdi:bluetooth" xlink:href="#mdi:bluetooth" x="-7" y="-7" height="14" width="14.0" class="key info tap glyph mdi:bluetooth"/>
-<text x="0" y="-24" class="key info shifted">1</text>
+<use href="#mdi:tally-mark-1" xlink:href="#mdi:tally-mark-1" x="-5" y="-24" height="10" width="10.0" class="key info shifted glyph mdi:tally-mark-1"/>
 </g>
 <g transform="translate(868, 196)" class="key keypos-43">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -1757,7 +1778,7 @@ text.hold {
 <g transform="translate(84, 280)" class="key keypos-47">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">Speed</text>
-<text x="0" y="-24" class="key shifted">-</text>
+<use href="#mdi:minus" xlink:href="#mdi:minus" x="-5" y="-24" height="10" width="10.0" class="key shifted glyph mdi:minus"/>
 </g>
 <g transform="translate(140, 252)" class="key keypos-48">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -1888,23 +1909,23 @@ text.hold {
 </g>
 <g transform="translate(756, 28)" class="key trans keypos-5">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(812, 28)" class="key trans keypos-6">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(868, 28)" class="key trans keypos-7">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(924, 56)" class="key trans keypos-8">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(980, 56)" class="key trans keypos-9">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(28, 112)" class="key keypos-10">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -1926,27 +1947,27 @@ text.hold {
 </g>
 <g transform="translate(700, 84)" class="key trans keypos-16">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(756, 84)" class="key trans keypos-17">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(812, 84)" class="key trans keypos-18">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(868, 84)" class="key trans keypos-19">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(924, 112)" class="key trans keypos-20">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(980, 112)" class="key trans keypos-21">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(28, 168)" class="key keypos-22">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -1969,27 +1990,27 @@ text.hold {
 </g>
 <g transform="translate(700, 140)" class="key trans keypos-28">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(756, 140)" class="key trans keypos-29">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(812, 140)" class="key trans keypos-30">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(868, 140)" class="key trans keypos-31">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(924, 168)" class="key trans keypos-32">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(980, 168)" class="key trans keypos-33">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(28, 224)" class="key keypos-34">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -2017,27 +2038,27 @@ text.hold {
 </g>
 <g transform="translate(700, 196)" class="key trans keypos-40">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(756, 196)" class="key trans keypos-41">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(812, 196)" class="key trans keypos-42">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(868, 196)" class="key trans keypos-43">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(924, 224)" class="key trans keypos-44">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(980, 224)" class="key trans keypos-45">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(28, 280)" class="key keypos-46">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -2059,53 +2080,50 @@ text.hold {
 <g transform="translate(308, 252)" class="key keypos-51">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 </g>
-<g transform="translate(371, 312) rotate(30.0)" class="key trans keypos-52">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<g transform="translate(371, 312) rotate(30.0)" class="key keypos-52">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 </g>
-<g transform="translate(420, 350) rotate(45.0)" class="key trans keypos-53">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<g transform="translate(420, 350) rotate(45.0)" class="key keypos-53">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 </g>
-<g transform="translate(458, 399) rotate(60.0)" class="key trans keypos-54">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<g transform="translate(458, 399) rotate(60.0)" class="key keypos-54">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 </g>
 <g transform="translate(550, 399) rotate(-60.0)" class="key trans keypos-55">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(588, 350) rotate(-45.0)" class="key trans keypos-56">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(637, 312) rotate(-30.0)" class="key trans keypos-57">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(700, 252)" class="key trans keypos-58">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(756, 252)" class="key trans keypos-59">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(812, 252)" class="key trans keypos-60">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(868, 252)" class="key trans keypos-61">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(924, 280)" class="key trans keypos-62">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(980, 280)" class="key trans keypos-63">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(28, 336)" class="key keypos-64">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -2143,27 +2161,27 @@ text.hold {
 </g>
 <g transform="translate(694, 347) rotate(-20.0)" class="key trans keypos-74">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(756, 308)" class="key trans keypos-75">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(812, 308)" class="key trans keypos-76">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(868, 308)" class="key trans keypos-77">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(924, 336)" class="key trans keypos-78">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(980, 336)" class="key trans keypos-79">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 </g>
 </g>
@@ -2172,23 +2190,23 @@ text.hold {
 <g transform="translate(0, 56)">
 <g transform="translate(28, 56)" class="key trans keypos-0">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(84, 56)" class="key trans keypos-1">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(140, 28)" class="key trans keypos-2">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(196, 28)" class="key trans keypos-3">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(252, 28)" class="key trans keypos-4">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(756, 28)" class="key keypos-5">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -2207,27 +2225,27 @@ text.hold {
 </g>
 <g transform="translate(28, 112)" class="key trans keypos-10">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(84, 112)" class="key trans keypos-11">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(140, 84)" class="key trans keypos-12">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(196, 84)" class="key trans keypos-13">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(252, 84)" class="key trans keypos-14">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(308, 84)" class="key trans keypos-15">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(700, 84)" class="key keypos-16">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -2249,27 +2267,27 @@ text.hold {
 </g>
 <g transform="translate(28, 168)" class="key trans keypos-22">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(84, 168)" class="key trans keypos-23">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(140, 140)" class="key trans keypos-24">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(196, 140)" class="key trans keypos-25">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(252, 140)" class="key trans keypos-26">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(308, 140)" class="key trans keypos-27">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(700, 140)" class="key keypos-28">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -2292,27 +2310,27 @@ text.hold {
 </g>
 <g transform="translate(28, 224)" class="key trans keypos-34">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(84, 224)" class="key trans keypos-35">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(140, 196)" class="key trans keypos-36">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(196, 196)" class="key trans keypos-37">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(252, 196)" class="key trans keypos-38">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(308, 196)" class="key trans keypos-39">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(700, 196)" class="key keypos-40">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -2340,51 +2358,48 @@ text.hold {
 </g>
 <g transform="translate(28, 280)" class="key trans keypos-46">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(84, 280)" class="key trans keypos-47">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(140, 252)" class="key trans keypos-48">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(196, 252)" class="key trans keypos-49">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(252, 252)" class="key trans keypos-50">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(308, 252)" class="key trans keypos-51">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(371, 312) rotate(30.0)" class="key trans keypos-52">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(420, 350) rotate(45.0)" class="key trans keypos-53">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(458, 399) rotate(60.0)" class="key trans keypos-54">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
-<g transform="translate(550, 399) rotate(-60.0)" class="key trans keypos-55">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<g transform="translate(550, 399) rotate(-60.0)" class="key keypos-55">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 </g>
-<g transform="translate(588, 350) rotate(-45.0)" class="key trans keypos-56">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<g transform="translate(588, 350) rotate(-45.0)" class="key keypos-56">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 </g>
-<g transform="translate(637, 312) rotate(-30.0)" class="key trans keypos-57">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<g transform="translate(637, 312) rotate(-30.0)" class="key keypos-57">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 </g>
 <g transform="translate(700, 252)" class="key keypos-58">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -2408,27 +2423,27 @@ text.hold {
 </g>
 <g transform="translate(28, 336)" class="key trans keypos-64">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(84, 336)" class="key trans keypos-65">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(140, 308)" class="key trans keypos-66">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(196, 308)" class="key trans keypos-67">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(252, 308)" class="key trans keypos-68">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(314, 347) rotate(20.0)" class="key trans keypos-69">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(369, 379) rotate(40.0)" class="key trans keypos-70">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
@@ -3035,22 +3050,22 @@ text.hold {
 <g transform="translate(84, 168)" class="key keypos-23">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">Speed</text>
-<text x="0" y="-24" class="key shifted">+</text>
+<use href="#mdi:plus" xlink:href="#mdi:plus" x="-5" y="-24" height="10" width="10.0" class="key shifted glyph mdi:plus"/>
 </g>
 <g transform="translate(140, 140)" class="key keypos-24">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap"><tspan style="font-size: 62%">Saturat…</tspan></text>
-<text x="0" y="-24" class="key shifted">+</text>
+<text x="0" y="0" class="key tap">Satur</text>
+<use href="#mdi:plus" xlink:href="#mdi:plus" x="-5" y="-24" height="10" width="10.0" class="key shifted glyph mdi:plus"/>
 </g>
 <g transform="translate(196, 140)" class="key keypos-25">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">Hue</text>
-<text x="0" y="-24" class="key shifted">+</text>
+<use href="#mdi:plus" xlink:href="#mdi:plus" x="-5" y="-24" height="10" width="10.0" class="key shifted glyph mdi:plus"/>
 </g>
 <g transform="translate(252, 140)" class="key keypos-26">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap"><tspan style="font-size: 62%">Brightn…</tspan></text>
-<text x="0" y="-24" class="key shifted">+</text>
+<text x="0" y="0" class="key tap"><tspan style="font-size: 83%">Bright</tspan></text>
+<use href="#mdi:plus" xlink:href="#mdi:plus" x="-5" y="-24" height="10" width="10.0" class="key shifted glyph mdi:plus"/>
 </g>
 <g transform="translate(308, 140)" class="key keypos-27">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -3081,22 +3096,22 @@ text.hold {
 <g transform="translate(84, 224)" class="key keypos-35">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">Speed</text>
-<text x="0" y="-24" class="key shifted">-</text>
+<use href="#mdi:minus" xlink:href="#mdi:minus" x="-5" y="-24" height="10" width="10.0" class="key shifted glyph mdi:minus"/>
 </g>
 <g transform="translate(140, 196)" class="key keypos-36">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap"><tspan style="font-size: 62%">Saturat…</tspan></text>
-<text x="0" y="-24" class="key shifted">-</text>
+<text x="0" y="0" class="key tap">Satur</text>
+<use href="#mdi:minus" xlink:href="#mdi:minus" x="-5" y="-24" height="10" width="10.0" class="key shifted glyph mdi:minus"/>
 </g>
 <g transform="translate(196, 196)" class="key keypos-37">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">Hue</text>
-<text x="0" y="-24" class="key shifted">-</text>
+<use href="#mdi:minus" xlink:href="#mdi:minus" x="-5" y="-24" height="10" width="10.0" class="key shifted glyph mdi:minus"/>
 </g>
 <g transform="translate(252, 196)" class="key keypos-38">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap"><tspan style="font-size: 62%">Brightn…</tspan></text>
-<text x="0" y="-24" class="key shifted">-</text>
+<text x="0" y="0" class="key tap"><tspan style="font-size: 83%">Bright</tspan></text>
+<use href="#mdi:minus" xlink:href="#mdi:minus" x="-5" y="-24" height="10" width="10.0" class="key shifted glyph mdi:minus"/>
 </g>
 <g transform="translate(308, 196)" class="key keypos-39">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -3143,12 +3158,12 @@ text.hold {
 <g transform="translate(371, 312) rotate(30.0)" class="key info keypos-52">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key info"/>
 <use href="#mdi:bluetooth" xlink:href="#mdi:bluetooth" x="-7" y="-7" height="14" width="14.0" class="key info tap glyph mdi:bluetooth"/>
-<text x="0" y="-24" class="key info shifted">2</text>
+<use href="#mdi:tally-mark-2" xlink:href="#mdi:tally-mark-2" x="-5" y="-24" height="10" width="10.0" class="key info shifted glyph mdi:tally-mark-2"/>
 </g>
 <g transform="translate(420, 350) rotate(45.0)" class="key info keypos-53">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key info"/>
 <use href="#mdi:bluetooth" xlink:href="#mdi:bluetooth" x="-7" y="-7" height="14" width="14.0" class="key info tap glyph mdi:bluetooth"/>
-<text x="0" y="-24" class="key info shifted">3</text>
+<use href="#mdi:tally-mark-3" xlink:href="#mdi:tally-mark-3" x="-5" y="-24" height="10" width="10.0" class="key info shifted glyph mdi:tally-mark-3"/>
 </g>
 <g transform="translate(458, 399) rotate(60.0)" class="key keypos-54">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -3199,12 +3214,12 @@ text.hold {
 <g transform="translate(314, 347) rotate(20.0)" class="key info keypos-69">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key info"/>
 <use href="#mdi:bluetooth" xlink:href="#mdi:bluetooth" x="-7" y="-7" height="14" width="14.0" class="key info tap glyph mdi:bluetooth"/>
-<text x="0" y="-24" class="key info shifted">0</text>
+<use href="#mdi:circle-medium" xlink:href="#mdi:circle-medium" x="-5" y="-24" height="10" width="10.0" class="key info shifted glyph mdi:circle-medium"/>
 </g>
 <g transform="translate(369, 379) rotate(40.0)" class="key info keypos-70">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key info"/>
 <use href="#mdi:bluetooth" xlink:href="#mdi:bluetooth" x="-7" y="-7" height="14" width="14.0" class="key info tap glyph mdi:bluetooth"/>
-<text x="0" y="-24" class="key info shifted">1</text>
+<use href="#mdi:tally-mark-1" xlink:href="#mdi:tally-mark-1" x="-5" y="-24" height="10" width="10.0" class="key info shifted glyph mdi:tally-mark-1"/>
 </g>
 <g transform="translate(410, 427) rotate(60.0)" class="key keypos-71">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>

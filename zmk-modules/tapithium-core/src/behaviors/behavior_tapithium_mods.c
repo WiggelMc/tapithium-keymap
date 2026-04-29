@@ -26,17 +26,15 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 #if DT_HAS_COMPAT_STATUS_OKAY(DT_DRV_COMPAT)
 
-typedef uint8_t zmk_tp_stage_t;
-#define TP_STAGE_IDLE 0
-#define TP_STAGE_MODS_SELECT 1
-#define TP_STAGE_MODS_ON 2
+enum tp_stage {
+  TP_STAGE_IDLE,
+  TP_STAGE_MODS_SELECT,
+  TP_STAGE_MODS_ON,
+};
 
-typedef uint8_t zmk_tp_mode_t;
-#define TP_MODE_ENABLE 0
-#define TP_MODE_STICKY 1
-
-struct behavior_tapithium_mods_data {
-  bool is_active;
+enum tp_mode {
+  TP_MODE_ENABLE,
+  TP_MODE_STICKY,
 };
 
 struct behavior_tapithium_mods_config {
@@ -45,8 +43,8 @@ struct behavior_tapithium_mods_config {
 };
 
 struct behavior_tapithium_mods_engine_data {
-  zmk_tp_stage_t stage;
-  zmk_tp_mode_t mode;
+  enum tp_stage stage;
+  enum tp_mode mode;
   struct behavior_tapithium_mods_config *config;
   zmk_keymap_layer_index_t pending_layer;
   zmk_mod_flags_t pending_mods;
@@ -151,8 +149,6 @@ static int tapithium_mods_layer_state_changed_listener(const zmk_event_t *eh) {
   (DT_INST_FOREACH_PROP_ELEM(n, prop, TP_LAYER_BIT) 0U)
 
 #define TAPITHIUM_MODS_INST(n)                                                 \
-  static struct behavior_tapithium_mods_data tapithium_mods_data_##n = {};     \
-                                                                               \
   static struct behavior_tapithium_mods_config tapithium_mods_config_##n = {   \
       .mod_layers = TP_BUILD_LAYER_MASK(n, mod_layers),                        \
       .cancel_after_idle_ms = DT_INST_PROP(n, cancel_after_idle_ms),           \
@@ -162,7 +158,7 @@ static int tapithium_mods_layer_state_changed_listener(const zmk_event_t *eh) {
       n, /* Instance Number (Automatically populated by macro) */              \
       tapithium_mods_init,        /* Initialization Function */                \
       NULL,                       /* Power Management Device Pointer */        \
-      &tapithium_mods_data_##n,   /* Behavior Data Pointer */                  \
+      NULL,                       /* Behavior Data Pointer */                  \
       &tapithium_mods_config_##n, /* Behavior Configuration Pointer */         \
       POST_KERNEL,                /* Initialization Level */                   \
       CONFIG_KERNEL_INIT_PRIORITY_DEFAULT, /* Device Priority */               \
