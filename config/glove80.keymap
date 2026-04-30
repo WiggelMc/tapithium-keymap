@@ -12,6 +12,7 @@
 #include <dt-bindings/zmk/rgb.h>
 
 #include <behaviors/unicode.dtsi>
+#include <zmk-unicode/keys-extra.h>
 #include <behaviors/tapithium_mods.dtsi>
 
 // layers
