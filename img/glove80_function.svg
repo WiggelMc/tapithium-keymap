@@ -219,13 +219,13 @@ path.combo {
 
 /* styling for layer labels */
 text.label {
-    font-weight: bold !important;
+    font-weight: normal !important;
     text-anchor: start !important;
     stroke: black !important;
     fill: white !important;
     stroke-width: 2 !important;
     paint-order: stroke !important;
-    font-size: 24px !important;
+    font-size: 18px !important;
     opacity: 100% !important;
 }
 
