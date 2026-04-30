@@ -187,6 +187,7 @@ parse_config:
     "&sl L_EXIT": "Exit Layer"
     "&rto L_FACTORY_TEST": "Factory Test Layer"
 
+    "&rgb_status": RGB Status
     "&rgb_ug RGB_TOG": &rgb
       tap: Toggle
     "&rgb_ug RGB_EFF":
