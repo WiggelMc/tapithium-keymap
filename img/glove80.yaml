@@ -324,6 +324,87 @@ layers:
   - ''
   - ''
   - {t: '$$mdi:chevron-down$$', type: trans}
+  special:
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - ''
+  - ''
+  - ''
+  - ''
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - {t: '$$mdi:chevron-down$$', type: trans}
   nav:
   - ''
   - ''
@@ -511,7 +592,7 @@ layers:
   - {h: '$$mdi:triangle$$', type: trans}
   - ''
   - ''
-  - ''
+  - Shift
   - ''
   - Symbol Layer
   - ''
@@ -535,8 +616,8 @@ layers:
   - {h: '$$mdi:triangle$$', type: trans}
   - ''
   - Nav Layer
-  - ''
-  - ''
+  - Ctrl
+  - Special Layer
   - Function Layer
   - ''
   - ''
@@ -552,10 +633,10 @@ layers:
   - {h: '$$mdi:triangle$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
   - ''
-  - ''
-  - ''
-  - ''
-  - ''
+  - Right Meta
+  - Right Alt
+  - Right Ctrl
+  - Right Shift
   - ''
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
@@ -599,7 +680,7 @@ layers:
   - ''
   - Symbol Layer
   - ''
-  - ''
+  - Shift
   - ''
   - ''
   - {h: '$$mdi:triangle$$', type: trans}
@@ -628,8 +709,8 @@ layers:
   - ''
   - ''
   - Function Layer
-  - ''
-  - ''
+  - Special Layer
+  - Ctrl
   - Nav Layer
   - ''
   - {h: '$$mdi:triangle$$', type: trans}
@@ -643,10 +724,10 @@ layers:
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - ''
-  - ''
-  - ''
-  - ''
-  - ''
+  - Right Shift
+  - Right Ctrl
+  - Right Alt
+  - Right Meta
   - ''
   gaming: [Esc, P, O, N, '$$mdi:backspace$$', F1, F2, F3, F4, F5, M, '6', '7', '8', '9', '0', F6, F7, F8, F9, F10, F11, I, '1', '2', '3', '4', '5', Y, U, I, O, P,
     F12, T, '$$mdi:keyboard-tab$$', Q, W, E, R, H, J, K, L, ;, '''', G, Shift, A, S, D, F, Shift, Alt, V, Esc, '$$mdi:arrow-up-bold$$', Exit Layer, N, M, ',', .,

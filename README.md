@@ -20,10 +20,11 @@ The keyboard firmware can be built locally using `nix`, which is also used for [
 ![Number](img/glove80_number.svg)
 ![Function](img/glove80_function.svg)
 
-### Special Layers
+### Extra Layers
 
+![Special](img/glove80_special.svg)
 ![Nav](img/glove80_nav.svg)
-![Adv Magic](img/glove80_magic.svg)
+![Magic](img/glove80_magic.svg)
 
 ### Functional Layers
 
@@ -33,7 +34,7 @@ The keyboard firmware can be built locally using `nix`, which is also used for [
 
 ### Moergo Layers
 
-![Magic](img/glove80_moergo_magic.svg)
+![Moergo Magic](img/glove80_moergo_magic.svg)
 ![Factory](img/glove80_factory_test.svg)
 
 ## Setup

@@ -156,12 +156,17 @@ parse_config:
     "&tp TP_MOD LALT": &lalt Alt
     "&tp TP_MOD LCTRL": &ctrl Ctrl
     "&tp TP_MOD LSHIFT": &sft Shift
+    "&tp TP_MOD RGUI": Right Meta
+    "&tp TP_MOD RALT": Right Alt
+    "&tp TP_MOD RCTRL": Right Ctrl
+    "&tp TP_MOD RSHIFT": Right Shift
 
     "&to L_BASE": "Base Layer"
 
     "&tp TP_LAY L_SYMBOL": "Symbol Layer"
     "&tp TP_LAY L_NUMBER": "Number Layer"
     "&tp TP_LAY L_FUNCTION": "Function Layer"
+    "&tp TP_LAY L_SPECIAL": "Special Layer"
     "&tp TP_LAY L_NAV": "Nav Layer"
     "&tp TP_LAY L_MAGIC": "Magic Layer"
 

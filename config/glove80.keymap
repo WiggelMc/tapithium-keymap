@@ -20,18 +20,19 @@
 #define L_SYMBOL 1
 #define L_NUMBER 2
 #define L_FUNCTION 3
-#define L_NAV 4
-#define L_MAGIC 5
+#define L_SPECIAL 4
+#define L_NAV 5
+#define L_MAGIC 6
 
-#define L_MODS_L 6
-#define L_MODS_R 7
+#define L_MODS_L 7
+#define L_MODS_R 8
 
-#define L_GAMING 8
-#define L_MOUSE 9
-#define L_EXIT 10
+#define L_GAMING 9
+#define L_MOUSE 10
+#define L_EXIT 11
 
-#define L_MOERGO_MAGIC 11
-#define L_FACTORY_TEST 12
+#define L_MOERGO_MAGIC 12
+#define L_FACTORY_TEST 13
 
 // keys
 #define HYPER LC(LS(LG(LALT)))
@@ -151,6 +152,18 @@
             >;
         };
 
+        special_layer {
+            // format: glove80
+            bindings = <
+                &none   &none  &none  &none  &none                                                                        &none  &none  &none  &none  &none
+                &none   &none  &none  &none  &none  &none                                                          &none  &none  &none  &none  &none  &none
+                &none   &none  &none  &none  &none  &none                                                          &none  &none  &none  &none  &none  &none
+                &none   &none  &none  &none  &none  &none                                                          &none  &none  &none  &none  &none  &none
+                &none   &none  &none  &none  &none  &none    &trans  &trans  &trans      &trans  &trans  &trans    &none  &none  &none  &none  &none  &none
+                &trans  &none  &none  &none  &none           &trans  &trans  &trans      &trans  &trans  &none            &none  &none  &none  &none  &trans
+            >;
+        };
+
         nav_layer {
             // format: glove80
             bindings = <
@@ -178,12 +191,12 @@
         mods_l_layer {
             // format: glove80
             bindings = <
-                &tp TP_             &tp TP_           &tp TP_          &tp TP_           &tp TP_                                                                                                                    &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
-                &tp TP_             &tp TP_           &tp TP_          &tp TP_           &tp TP_                &tp TP_                                                                                  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
-                &tp TP_             &tp TP_           &tp TP_          &tp TP_           &tp TP_LAY L_SYMBOL    &tp TP_                                                                                  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
-                &tp TP_LAY L_MAGIC  &tp TP_MOD LGUI   &tp TP_MOD LALT  &tp TP_MOD LCTRL  &tp TP_MOD LSHIFT      &tp TP_LAY L_NUMBER                                                                      &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
-                &tp TP_             &tp TP_LAY L_NAV  &tp TP_          &tp TP_           &tp TP_LAY L_FUNCTION  &tp TP_                &tp TP_  &tp TP_  &tp TP_      &tp TP___  &tp TP___  &tp TP___    &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
-                &tp TP_             &tp TP_           &tp TP_          &tp TP_           &tp TP_                                       &tp TP_  &trans   &trans       &trans     &trans     &tp TP___               &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
+                &tp TP_             &tp TP_           &tp TP_            &tp TP_               &tp TP_                                                                                                                    &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
+                &tp TP_             &tp TP_           &tp TP_            &tp TP_               &tp TP_                &tp TP_                                                                                  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
+                &tp TP_             &tp TP_           &tp TP_MOD LSHIFT  &tp TP_               &tp TP_LAY L_SYMBOL    &tp TP_                                                                                  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
+                &tp TP_LAY L_MAGIC  &tp TP_MOD LGUI   &tp TP_MOD LALT    &tp TP_MOD LCTRL      &tp TP_MOD LSHIFT      &tp TP_LAY L_NUMBER                                                                      &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
+                &tp TP_             &tp TP_LAY L_NAV  &tp TP_MOD LCTRL   &tp TP_LAY L_SPECIAL  &tp TP_LAY L_FUNCTION  &tp TP_                &tp TP_  &tp TP_  &tp TP_      &tp TP___  &tp TP___  &tp TP___    &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
+                &tp TP_             &tp TP_MOD RGUI   &tp TP_MOD RALT    &tp TP_MOD RCTRL      &tp TP_MOD RSHIFT                             &tp TP_  &trans   &trans       &trans     &trans     &tp TP___               &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
             >;
         };
 
@@ -191,12 +204,12 @@
         mods_r_layer {
             // format: glove80
             bindings = <
-                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                                                      &tp TP_                &tp TP_           &tp TP_          &tp TP_           &tp TP_
-                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                      &tp TP_              &tp TP_                &tp TP_           &tp TP_          &tp TP_           &tp TP_
-                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                      &tp TP_              &tp TP_LAY L_SYMBOL    &tp TP_           &tp TP_          &tp TP_           &tp TP_
-                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                      &tp TP_LAY L_NUMBER  &tp TP_MOD LSHIFT      &tp TP_MOD LCTRL  &tp TP_MOD LALT  &tp TP_MOD LGUI   &tp TP_LAY L_MAGIC
-                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___    &tp TP___  &tp TP___  &tp TP___      &tp TP_  &tp TP_  &tp TP_    &tp TP_              &tp TP_LAY L_FUNCTION  &tp TP_           &tp TP_          &tp TP_LAY L_NAV  &tp TP_
-                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___               &tp TP___  &trans     &trans         &trans   &trans   &tp TP_                         &tp TP_                &tp TP_           &tp TP_          &tp TP_           &tp TP_
+                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                                                      &tp TP_                &tp TP_               &tp TP_            &tp TP_           &tp TP_
+                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                      &tp TP_              &tp TP_                &tp TP_               &tp TP_            &tp TP_           &tp TP_
+                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                      &tp TP_              &tp TP_LAY L_SYMBOL    &tp TP_               &tp TP_MOD LSHIFT  &tp TP_           &tp TP_
+                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                      &tp TP_LAY L_NUMBER  &tp TP_MOD LSHIFT      &tp TP_MOD LCTRL      &tp TP_MOD LALT    &tp TP_MOD LGUI   &tp TP_LAY L_MAGIC
+                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___    &tp TP___  &tp TP___  &tp TP___      &tp TP_  &tp TP_  &tp TP_    &tp TP_              &tp TP_LAY L_FUNCTION  &tp TP_LAY L_SPECIAL  &tp TP_MOD LCTRL   &tp TP_LAY L_NAV  &tp TP_
+                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___               &tp TP___  &trans     &trans         &trans   &trans   &tp TP_                         &tp TP_MOD RSHIFT      &tp TP_MOD RCTRL      &tp TP_MOD RALT    &tp TP_MOD RGUI   &tp TP_
             >;
         };
 

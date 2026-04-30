@@ -76,15 +76,15 @@ KP_DOT /Number
 
 KP_N0-KP_N9 /Number
 
-LCTRL /*
-LSHIFT /*
-LALT /*
-LGUI /*
+LCTRL /MODS+&none
+LSHIFT /MODS+&none
+LALT /MODS+&none
+LGUI /MODS+&none
 
-RCTRL /*
-RSHIFT /*
-RALT /*
-RGUI /*
+RCTRL /MODS+&none
+RSHIFT /MODS+&none
+RALT /MODS+&none
+RGUI /MODS+&none
 
 C_VOL_UP /*
 C_VOL_DN /*
