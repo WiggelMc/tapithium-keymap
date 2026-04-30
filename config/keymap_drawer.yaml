@@ -155,6 +155,8 @@ parse_config:
     "&tp TP_STICKY": "TP Sticky"
     "&tp TP_CANCEL": "TP Cancel"
     "&tp TP_RESET": "TP Reset"
+    "&tp TP_MPRESS": &tp_mpress "TP Mod"
+    "&tp TP_MP": *tp_mpress
 
     "&tp TP_NEXT": &tp_next
       hold: $$mdi:triangle$$
