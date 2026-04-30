@@ -29,6 +29,7 @@ The keyboard firmware can be built locally using `nix`, which is also used for [
 
 ![Gaming](img/glove80_gaming.svg)
 ![Mouse](img/glove80_mouse.svg)
+![Mouse](img/glove80_exit.svg)
 
 ### Moergo Layers
 

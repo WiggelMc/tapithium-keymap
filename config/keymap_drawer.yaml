@@ -157,15 +157,18 @@ parse_config:
     "&tp TP_MOD LCTRL": &ctrl Ctrl
     "&tp TP_MOD LSHIFT": &sft Shift
 
-    "&tp TP_LAY L_SYMBOL": "Symbol"
-    "&tp TP_LAY L_NUMBER": "Number"
-    "&tp TP_LAY L_FUNCTION": "Function"
-    "&tp TP_LAY L_NAV": "Nav"
-    "&tp TP_LAY L_MAGIC": "Magic"
+    "&to L_BASE": "Base Layer"
 
-    "&rto L_MOUSE": "Mouse"
-    "&rto L_GAMING": "Gaming"
-    "&rto L_FACTORY_TEST": "Debug"
+    "&tp TP_LAY L_SYMBOL": "Symbol Layer"
+    "&tp TP_LAY L_NUMBER": "Number Layer"
+    "&tp TP_LAY L_FUNCTION": "Function Layer"
+    "&tp TP_LAY L_NAV": "Nav Layer"
+    "&tp TP_LAY L_MAGIC": "Magic Layer"
+
+    "&rto L_MOUSE": "Mouse Layer"
+    "&rto L_GAMING": "Gaming Layer"
+    "&sl L_EXIT": "Exit Layer"
+    "&rto L_FACTORY_TEST": "Factory Test Layer"
 
     "&rgb_ug RGB_TOG": &rgb
       tap: Toggle
