@@ -183,7 +183,7 @@ path.combo {
     --dark2: #3b4252;
     --dark3: #434c5e;
     --dark4: #4c566a;
-   --light1: #d8dee9;
+   --light1: #c8ced9;
    --light2: #e5e9f0;
    --light3: #eceff4;
     --blue1: #8fbcbb;
@@ -195,6 +195,8 @@ path.combo {
    --yellow: #ebcb8b;
     --green: #a3be8c;
    --purple: #b48ead;
+   --purple2: #846eed;
+    --grey1: #444444;
 }
 
 .key rect {
@@ -236,14 +238,16 @@ text.hold {
 .trans, .none, .ghost {
     opacity: 0.8!important;
     &amp; .tap {
-        fill: var(--blue2) !important;
+        fill: var(--grey1) !important;
     }
 }
 
 /* Row 2,3,4 (alpha keys) */
-.keypos-23, .keypos-24, .keypos-25, .keypos-26, .keypos-27, .keypos-28, .keypos-29, .keypos-30, .keypos-31, .keypos-32,
-.keypos-35, .keypos-36, .keypos-37, .keypos-38, .keypos-39, .keypos-40, .keypos-41, .keypos-42, .keypos-43, .keypos-44,
-.keypos-47, .keypos-48, .keypos-49, .keypos-50, .keypos-51, .keypos-58, .keypos-59, .keypos-60, .keypos-61, .keypos-62
+.keypos-13, .keypos-18,
+.keypos-24, .keypos-25, .keypos-26, .keypos-27, .keypos-28, .keypos-29, .keypos-30, .keypos-31,
+.keypos-34, .keypos-35, .keypos-36, .keypos-37, .keypos-38, .keypos-39, .keypos-40, .keypos-41, .keypos-42, .keypos-43, .keypos-44, .keypos-45,
+.keypos-47, .keypos-48, .keypos-49, .keypos-50, .keypos-59, .keypos-60, .keypos-61, .keypos-62,
+.keypos-67, .keypos-68, .keypos-75, .keypos-76
 {
     &amp; rect {
         fill: var(--light1);
@@ -254,7 +258,7 @@ text.hold {
 .keypos-35, .keypos-36, .keypos-37, .keypos-38, .keypos-41, .keypos-42, .keypos-43, .keypos-44
 {
     &amp; rect {
-        stroke: var(--purple);
+        stroke: var(--purple2);
     }
 }
 
@@ -266,6 +270,7 @@ text.hold {
 }
 
 /* Highlight WASD */
+/*
 .layer-gaming {
     &amp; .keypos-25 rect {
         stroke: var(--purple);
@@ -274,6 +279,7 @@ text.hold {
         stroke: var(--light1);
     }
 }
+*/
 </style>
 <g transform="translate(30, 0)" class="layer-mods_r">
 <text x="0" y="28" class="label" id="mods_r">mods_r</text>
