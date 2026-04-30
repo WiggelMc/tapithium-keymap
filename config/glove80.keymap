@@ -14,8 +14,6 @@
 #include <behaviors/unicode.dtsi>
 #include <behaviors/tapithium_mods.dtsi>
 
-#define HYPER LC(LS(LG(LALT)))
-
 // layers
 #define L_BASE 0
 
@@ -34,8 +32,13 @@
 #define L_MOERGO_MAGIC 10
 #define L_FACTORY_TEST 11
 
+// keys
+#define HYPER LC(LS(LG(LALT)))
+
+// params
 #define MAGIC L_MOERGO_MAGIC 0
 
+//config
 &uc {
   default-mode = <UC_MODE_LINUX>;
   minimum-length = <0>;
@@ -47,6 +50,7 @@
     mod-layers = <L_MODS_L L_MODS_R>;
     cancel-after-idle-ms = <2000>;
 };
+
 
 / {
     behaviors {
@@ -241,27 +245,3 @@
 
     };
 };
-
-        // layer {
-        //     // format: glove80
-        //     bindings = <
-        //         &none  &none  &none  &none  &none                                                                  &none  &none  &none  &none  &none
-        //         &none  &none  &none  &none  &none  &none                                                    &none  &none  &none  &none  &none  &none
-        //         &none  &none  &none  &none  &none  &none                                                    &none  &none  &none  &none  &none  &none
-        //         &none  &none  &none  &none  &none  &none                                                    &none  &none  &none  &none  &none  &none
-        //         &none  &none  &none  &none  &none  &none    &none  &none  &none      &none  &none  &none    &none  &none  &none  &none  &none  &none
-        //         &none  &none  &none  &none  &none           &none  &none  &none      &none  &none  &none           &none  &none  &none  &none  &none
-        //     >;
-        // };
-
-        // layer {
-        //     // format: glove80
-        //     bindings = <
-        //         &trans  &trans  &trans  &trans  &trans                                                                          &trans  &trans  &trans  &trans  &trans
-        //         &trans  &trans  &trans  &trans  &trans  &trans                                                          &trans  &trans  &trans  &trans  &trans  &trans
-        //         &trans  &trans  &trans  &trans  &trans  &trans                                                          &trans  &trans  &trans  &trans  &trans  &trans
-        //         &trans  &trans  &trans  &trans  &trans  &trans                                                          &trans  &trans  &trans  &trans  &trans  &trans
-        //         &trans  &trans  &trans  &trans  &trans  &trans    &trans  &trans  &trans      &trans  &trans  &trans    &trans  &trans  &trans  &trans  &trans  &trans
-        //         &trans  &trans  &trans  &trans  &trans            &trans  &trans  &trans      &trans  &trans  &trans            &trans  &trans  &trans  &trans  &trans
-        //     >;
-        // };
