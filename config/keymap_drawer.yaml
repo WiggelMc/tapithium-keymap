@@ -31,10 +31,10 @@ draw_config:
         font-weight: bold !important;
         text-anchor: start !important;
         stroke: black !important;
-        color: white !important;
+        fill: white !important;
         stroke-width: 2 !important;
         paint-order: stroke !important;
-        font-size: 20px !important;
+        font-size: 24px !important;
         opacity: 100% !important;
     }
 
