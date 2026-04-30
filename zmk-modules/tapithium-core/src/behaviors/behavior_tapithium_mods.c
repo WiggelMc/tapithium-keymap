@@ -105,7 +105,56 @@ on_tapithium_mods_binding_pressed(struct zmk_behavior_binding *binding,
 
   LOG_DBG("TP Binding pressed: param1=%d, param2=%d, layer=%d, position=%d",
           binding->param1, binding->param2, event.layer, event.position);
+
+  uint32_t command = binding->param1;
+  uint32_t param = binding->param2;
+
+  switch (command) {
+  case TP_ENABLE_CMD:
+    // TODO (Enable with Enable Mode)
+    break;
+  case TP_STICKY_CMD:
+    // TODO (Enable with Sticky Mode)
+    break;
+  case TP_CANCEL_CMD:
+    // TODO (Cancel)
+    break;
+  case TP_RESET_CMD:
+    // TODO (Reset)
+    break;
+  case TP_MPRESS_CMD:
+    // Do nothing
+    break;
+  case TP_NONE_CMD:
+    // TODO (Capture)
+    break;
+  case TP_NEXT_CMD:
+    // TODO (Fall through, Exit)
+    break;
+  case TP_MOD_CMD:
+    // zmk_key_t (type is already the same)
+    // TODO (Capture, add Mod)
+    break;
+  case TP_LAY_CMD:
+    // zmk_keymap_layer_index_t (downcast?? u32 -> u8)
+    // TODO (Capture, set Layer)
+    break;
+  }
+
   return ZMK_BEHAVIOR_OPAQUE;
+}
+
+static void tp_cancel_idle() {
+  // TODO
+}
+
+static void tp_reset_idle() {
+  // TODO
+}
+
+static void
+tp_reset_idle_with_config(struct behavior_tapithium_mods_config *config) {
+  // TODO
 }
 
 static int
@@ -113,6 +162,31 @@ on_tapithium_mods_binding_released(struct zmk_behavior_binding *binding,
                                    struct zmk_behavior_binding_event event) {
   LOG_DBG("TP Binding released: param1=%d, param2=%d, layer=%d, position=%d",
           binding->param1, binding->param2, event.layer, event.position);
+
+  uint32_t command = binding->param1;
+
+  switch (command) {
+  case TP_ENABLE_CMD:
+  case TP_STICKY_CMD:
+    tp_reset_idle();
+    break;
+  case TP_CANCEL_CMD:
+  case TP_RESET_CMD:
+  case TP_MPRESS_CMD:
+    // Do nothing
+    break;
+  case TP_NONE_CMD:
+    tp_reset_idle();
+    break;
+  case TP_NEXT_CMD:
+    // Do nothing
+    break;
+  case TP_MOD_CMD:
+  case TP_LAY_CMD:
+    tp_reset_idle();
+    break;
+  }
+
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
