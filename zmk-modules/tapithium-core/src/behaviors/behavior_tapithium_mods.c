@@ -37,26 +37,62 @@ enum tp_mode {
   TP_MODE_STICKY,
 };
 
+typedef int32_t tp_optional_keymap_layer_index_t;
+
 struct behavior_tapithium_mods_config {
   zmk_keymap_layers_state_t mod_layers;
   int32_t cancel_after_idle_ms;
 };
 
+struct tp_action_props {
+  tp_optional_keymap_layer_index_t layer;
+  zmk_mod_flags_t mods;
+};
+
+struct tp_action_data {
+  struct tp_action_props scheduled;
+  struct tp_action_props active;
+};
+
+#define DEFAULT_TP_ACTION_PROPS                                                \
+  {                                                                            \
+      .layer = -1,                                                             \
+      .mods = 0,                                                               \
+  }
+
+#define DEFAULT_TP_ACTION_DATA                                                 \
+  {                                                                            \
+      .scheduled = DEFAULT_TP_ACTION_PROPS,                                    \
+      .active = DEFAULT_TP_ACTION_PROPS,                                       \
+  }
+
 struct behavior_tapithium_mods_engine_data {
   enum tp_stage stage;
   enum tp_mode mode;
   struct behavior_tapithium_mods_config *config;
-  zmk_keymap_layer_index_t pending_layer;
-  zmk_mod_flags_t pending_mods;
+  int64_t last_input_timestamp;
+  struct tp_action_data enabled;
+  struct tp_action_data sticky;
+  bool is_sticky_pressed;
+  uint32_t sticky_position;
 };
 
 static struct behavior_tapithium_mods_engine_data tapithium_mods_engine_data = {
     .stage = TP_STAGE_IDLE,
     .mode = TP_MODE_ENABLE,
     .config = NULL,
-    .pending_layer = 0,
-    .pending_mods = 0,
+    .last_input_timestamp = 0,
+    .enabled = DEFAULT_TP_ACTION_DATA,
+    .sticky = DEFAULT_TP_ACTION_DATA,
+    .is_sticky_pressed = false,
+    .sticky_position = 0,
 };
+
+// TODO:
+// TP Key Press => [Actions + Keypress] (Used for selection with TP_NEXT and for
+//   exit with TP_NEXT and for disable of sticky before press)
+// TP Key Release => [Keypress + Actions] (Used for disable
+//   of sticky after release)
 
 static int tapithium_mods_init(const struct device *dev) {
   LOG_DBG("TP Initialized");
