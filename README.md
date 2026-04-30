@@ -18,11 +18,8 @@ The keyboard firmware can be built locally using `nix`, which is also used for [
 ![Base](img/glove80_base.svg)
 ![Symbol](img/glove80_symbol.svg)
 ![Number](img/glove80_number.svg)
+![Command](img/glove80_command.svg)
 ![Function](img/glove80_function.svg)
-
-### Extra Layers
-
-![Special](img/glove80_special.svg)
 ![Nav](img/glove80_nav.svg)
 ![Magic](img/glove80_magic.svg)
 

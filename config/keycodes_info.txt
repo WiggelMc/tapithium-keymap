@@ -6,9 +6,9 @@ SPACE /Base/Thumb
 ÄÖÜß /Base
 N0-N9 /Number
 
-ESC /*
-TAB /*
-RETURN /*
+ESC /Function
+TAB /Function
+RETURN /Function
 BACKSPACE /Base/Thumb
 DEL /Base/Thumb
 
@@ -47,24 +47,21 @@ LESS_THAN /*
 GREATER_THAN /*
 
 
-F1-F12 /*
-F13-F24 /*
+PRINTSCREEN /Function
+SCROLLLOCK /Function
+PAUSE_BREAK /Function
 
-PRINTSCREEN /*
-SCROLLLOCK /*
-PAUSE_BREAK /*
-
-INSERT /*
-HOME /*
-END /*
-PAGE_UP /*
-PAGE_DOWN /*
+INSERT /Function
+HOME /Function
+END /Function
+PAGE_UP /Function
+PAGE_DOWN /Function
 
 
-RIGHT /*
-LEFT /*
-DOWN /*
-UP /*
+RIGHT /Function
+LEFT /Function
+DOWN /Function
+UP /Function
 
 KP_NUMLOCK /Number
 KP_DIVIDE /Number
@@ -86,16 +83,20 @@ RSHIFT /MODS+&none
 RALT /MODS+&none
 RGUI /MODS+&none
 
-C_VOL_UP /*
-C_VOL_DN /*
-C_MUTE /*
-C_BRI_UP /*
-C_BRI_DN /*
-C_BRI_MAX /*
-C_BRI_MIN /*
-C_PLAY_PAUSE /*
-C_PREV /*
-C_NEXT /*
+F1-F12 /Special
+F13-F16 /Special
+F17-F24 /None
+
+C_VOL_UP /Special
+C_VOL_DN /Special
+C_MUTE /Special
+C_BRI_UP /Special
+C_BRI_DN /Special
+C_BRI_MAX /Special
+C_BRI_MIN /Special
+C_PLAY_PAUSE /Special
+C_PREV /Special
+C_NEXT /Special
 
 SYS_PWR /None
 SYS_SLEEP /None
