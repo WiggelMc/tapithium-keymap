@@ -155,7 +155,7 @@ parse_config:
     "&tp TP_LAY L_NUMBER": "Number"
     "&tp TP_LAY L_FUNCTION": "Function"
     "&tp TP_LAY L_NAV": "Nav"
-    "&tp TP_LAY L_ADV_MAGIC": "Magic"
+    "&tp TP_LAY L_MAGIC": "Magic"
 
     "&rto L_MOUSE": "Mouse"
     "&rto L_GAMING": "Gaming"
@@ -199,30 +199,8 @@ parse_config:
       tap: Speed
       shifted: *minus
 
-    "&caps_word": $$mdi:apple-keyboard-caps$$
-    "&smart_lshift": *sft
-    "&smart_rshift": *sft
-    "&tog 1":
-      tap: $$mdi:keyboard-outline$$
-      hold: Qwerty
-      type: info
-    "&symbols": &symbols
-      tap: $$mdi:symbol$$
-      hold: Symbols
-      type: info
-    "&tog 2": *symbols
-    "&nav": &nav
-      tap: $$num-nav$$
-      hold: Num/Nav
-      type: info
-    "&tog 3": *nav
-    "&tog 4":
-      tap: $$mdi:controller$$
-      hold: Gaming
-      type: info
-
     # Moergo behavior
-    "&magic L_MAGIC 0":
+    "&magic MAGIC":
       tap: $$moergo$$
       hold: Magic
       type: info
@@ -285,51 +263,50 @@ parse_config:
     LEFT_META: *gui
 
     COMMA: ","
-    PERIOD: .
-    DOT: .
+    PERIOD: "."
+    DOT: "."
     QUESTION: "?"
     QMARK: "?"
     EXCLAMATION: "!"
     EXCL: "!"
-    SEMICOLON: ;
-    SEMI: ;
+    SEMICOLON: ";"
+    SEMI: ";"
     COLON: ":"
 
     SINGLE_QUOTE: "'"
     SQT: "'"
     APOSTROPHE: "'"
     APOS: "'"
-    AT_SIGN: '"' # UK layout
-    AT: '"' # UK layout
+    AT_SIGN: "@"
+    AT: "@"
 
-    HASH: "£" # UK layout
-    POUND: "£" # UK layout
-    DOLLAR: $
-    DLLR: $
-    "RA(N4)": € # UK layout
+    HASH: "#"
+    POUND: "#"
+    DOLLAR: "$"
+    DLLR: "$"
 
     PERCENT: "%"
     PRCNT: "%"
-    CARET: ^
+    CARET: "^"
     AMPERSAND: "&"
     AMPS: "&"
     ASTERISK: "*"
     ASTRK: "*"
     STAR: "*"
     EQUAL: "="
-    PLUS: +
+    PLUS: "+"
     MINUS: "-"
-    UNDERSCORE: _
-    UNDER: _
-    SLASH: /
-    FSLH: /
-    DOUBLE_QUOTES: "@" # UK layout
-    DQT: "@" # UK layout
+    UNDERSCORE: "_"
+    UNDER: "_"
+    SLASH: "/"
+    FSLH: "/"
+    DOUBLE_QUOTES: '"'
+    DQT: '"'
 
-    LEFT_PARENTHESIS: (
-    LPAR: (
-    RIGHT_PARENTHESIS: )
-    RPAR: )
+    LEFT_PARENTHESIS: "("
+    LPAR: "("
+    RIGHT_PARENTHESIS: ")"
+    RPAR: ")"
     LEFT_BRACKET: "["
     LBKT: "["
     RIGHT_BRACKET: "]"
@@ -338,23 +315,17 @@ parse_config:
     LBRC: "{"
     RIGHT_BRACE: "}"
     RBRC: "}"
-    LESS_THAN: <
-    LT: <
+    LESS_THAN: "<"
+    LT: "<"
     GREATER_THAN: ">"
     GT: ">"
 
-    # This block is kinda funky on UK layout:
-    BACKSLASH: &hash "#" # UK layout
-    BSLH: *hash
-    NUHS: *hash
-    NON_US_HASH: *hash
-    PIPE: "~" # UK layout
-    TILDE2: "~" # UK layout
-    NON_US_BSLH: '\'
-    NON_US_BACKSLASH: '\'
-    PIPE2: "|"
+    BACKSLASH: '\'
+    BSLH: '\'
+    NUHS: '\'
+    PIPE: "|"
     GRAVE: "`"
-    TILDE: "¬" # UK layout
+    TILDE: "~"
 
     N1: "1"
     N2: "2"
