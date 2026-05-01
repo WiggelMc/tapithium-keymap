@@ -99,12 +99,17 @@ struct behavior_tapithium_mods_engine_data {
   enum tp_stage stage;
   enum tp_mode mode;
   struct behavior_tapithium_mods_config *config;
-  int64_t last_input_timestamp;
   struct tp_action_data enabled;
   struct tp_action_data sticky;
   bool is_sticky_pressed;
   uint32_t sticky_position;
+  int64_t last_input_timestamp;
+  struct k_work_delayable idle_timer;
 };
+
+void behavior_tapithium_mods_idle_timer_handler(struct k_work *item) {
+  LOG_DBG("TP Idle Handler called");
+}
 
 static uint32_t test_data = 0;
 
@@ -112,11 +117,11 @@ static struct behavior_tapithium_mods_engine_data tapithium_mods_engine_data = {
     .stage = TP_STAGE_IDLE,
     .mode = TP_MODE_ENABLE,
     .config = NULL,
-    .last_input_timestamp = 0,
     .enabled = DEFAULT_TP_ACTION_DATA,
     .sticky = DEFAULT_TP_ACTION_DATA,
     .is_sticky_pressed = false,
     .sticky_position = 0,
+    .last_input_timestamp = 0,
 };
 
 // TODO:
@@ -126,6 +131,9 @@ static struct behavior_tapithium_mods_engine_data tapithium_mods_engine_data = {
 //   of sticky after release)
 
 static int tapithium_mods_init(const struct device *dev) {
+  k_work_init_delayable(&tapithium_mods_engine_data.idle_timer,
+                        behavior_tapithium_mods_idle_timer_handler);
+
   LOG_DBG("TP Initialized");
   return 0;
 };
@@ -163,6 +171,7 @@ on_tapithium_mods_binding_pressed(struct zmk_behavior_binding *binding,
   case TP_ENABLE_CMD:
     // TODO (Enable with Enable Mode)
     test_data = 0;
+    k_work_schedule(&tapithium_mods_engine_data.idle_timer, K_MSEC(1500));
     break;
   case TP_STICKY_CMD:
     // TODO (Enable with Sticky Mode)
@@ -313,6 +322,11 @@ tapithium_mods_position_state_changed_listener(const zmk_event_t *eh) {
 
   LOG_DBG("TP Position State changed: position: %d, source: %d", ev->position,
           ev->source);
+
+  if (ev->state) {
+    k_work_cancel_delayable(&tapithium_mods_engine_data.idle_timer);
+    // Cancel on keypress
+  }
 
   switch (test_data) {
   case 1:
