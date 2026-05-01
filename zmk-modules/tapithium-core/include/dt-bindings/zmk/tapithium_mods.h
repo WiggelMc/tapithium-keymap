@@ -4,6 +4,8 @@
  * SPDX-License-Identifier: MIT
  */
 
+#pragma once
+
 #define TP_ENABLE_CMD 0
 #define TP_STICKY_CMD 1
 #define TP_CANCEL_CMD 2

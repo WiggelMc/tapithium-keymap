@@ -26,6 +26,35 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 #if DT_HAS_COMPAT_STATUS_OKAY(DT_DRV_COMPAT)
 
+static zmk_mod_flags_t tp_to_mod_flag(const zmk_key_t keycode) {
+  switch (keycode) {
+  case LCTRL:
+    return MOD_LCTL;
+  case LSHIFT:
+    return MOD_LSFT;
+  case LALT:
+    return MOD_LALT;
+  case LGUI:
+    return MOD_LGUI;
+  case RCTRL:
+    return MOD_RCTL;
+  case RSHIFT:
+    return MOD_RSFT;
+  case RALT:
+    return MOD_RALT;
+  case RGUI:
+    return MOD_RGUI;
+  default:
+    return 0;
+  }
+}
+
+static zmk_mod_flags_t tp_extract_mods(const zmk_key_t keycode) {
+  const zmk_mod_flags_t mods = SELECT_MODS(keycode);
+  const zmk_mod_flags_t key_mod = tp_to_mod_flag(STRIP_MODS(keycode));
+  return mods | key_mod;
+}
+
 enum tp_stage {
   TP_STAGE_IDLE,
   TP_STAGE_MODS_SELECT,
@@ -106,8 +135,8 @@ on_tapithium_mods_binding_pressed(struct zmk_behavior_binding *binding,
   LOG_DBG("TP Binding pressed: param1=%d, param2=%d, layer=%d, position=%d",
           binding->param1, binding->param2, event.layer, event.position);
 
-  uint32_t command = binding->param1;
-  uint32_t param = binding->param2;
+  const uint32_t command = binding->param1;
+  const uint32_t param = binding->param2;
 
   switch (command) {
   case TP_ENABLE_CMD:
@@ -163,7 +192,7 @@ on_tapithium_mods_binding_released(struct zmk_behavior_binding *binding,
   LOG_DBG("TP Binding released: param1=%d, param2=%d, layer=%d, position=%d",
           binding->param1, binding->param2, event.layer, event.position);
 
-  uint32_t command = binding->param1;
+  const uint32_t command = binding->param1;
 
   switch (command) {
   case TP_ENABLE_CMD:
@@ -204,7 +233,7 @@ ZMK_SUBSCRIPTION(behavior_tapithium_mods_keycode_state_changed,
 
 static int
 tapithium_mods_keycode_state_changed_listener(const zmk_event_t *eh) {
-  struct zmk_keycode_state_changed *ev = as_zmk_keycode_state_changed(eh);
+  const struct zmk_keycode_state_changed *ev = as_zmk_keycode_state_changed(eh);
   if (ev == NULL) {
     return ZMK_EV_EVENT_BUBBLE;
   }
@@ -224,7 +253,8 @@ ZMK_SUBSCRIPTION(behavior_tapithium_mods_position_state_changed,
 
 static int
 tapithium_mods_position_state_changed_listener(const zmk_event_t *eh) {
-  struct zmk_position_state_changed *ev = as_zmk_position_state_changed(eh);
+  const struct zmk_position_state_changed *ev =
+      as_zmk_position_state_changed(eh);
   if (ev == NULL) {
     return ZMK_EV_EVENT_BUBBLE;
   }
@@ -242,7 +272,7 @@ ZMK_SUBSCRIPTION(behavior_tapithium_mods_layer_state_changed,
                  zmk_layer_state_changed);
 
 static int tapithium_mods_layer_state_changed_listener(const zmk_event_t *eh) {
-  struct zmk_layer_state_changed *ev = as_zmk_layer_state_changed(eh);
+  const struct zmk_layer_state_changed *ev = as_zmk_layer_state_changed(eh);
   if (ev == NULL) {
     return ZMK_EV_EVENT_BUBBLE;
   }
