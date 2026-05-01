@@ -134,7 +134,8 @@ static int
 tp_raise_position_event_from_behaviour(struct zmk_behavior_binding_event event,
                                        bool pressed) {
   struct zmk_position_state_changed data = {
-      .source = 0,
+      .source = 0, // TODO: Use stored last_source in engine data. Store on
+                   // every call to position handler
       .position = event.position,
       .state = pressed,
       .timestamp = k_uptime_get(),

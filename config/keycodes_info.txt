@@ -6,9 +6,9 @@ SPACE /Base/Thumb
 ÄÖÜß /Base
 N0-N9 /Number
 
-ESC /Function
-TAB /Function
-RETURN /Function
+ESC /Command
+TAB /Command
+RETURN /Command
 BACKSPACE /Base/Thumb
 DEL /Base/Thumb
 
@@ -53,21 +53,21 @@ GREATER_THAN /Symbol
 &uc UC_SECTION_SIGN /None
 
 
-PRINTSCREEN /Function
-SCROLLLOCK /Function
-PAUSE_BREAK /Function
+PRINTSCREEN /Command
+SCROLLLOCK /Command
+PAUSE_BREAK /Command
 
-INSERT /Function
-HOME /Function
-END /Function
-PAGE_UP /Function
-PAGE_DOWN /Function
+INSERT /Command
+HOME /Command
+END /Command
+PAGE_UP /Command
+PAGE_DOWN /Command
 
 
-RIGHT /Function
-LEFT /Function
-DOWN /Function
-UP /Function
+RIGHT /Command
+LEFT /Command
+DOWN /Command
+UP /Command
 
 KP_NUMLOCK /Number
 KP_DIVIDE /Number
@@ -89,20 +89,20 @@ RSHIFT /MODS+&none
 RALT /MODS+&none
 RGUI /MODS+&none
 
-F1-F12 /Special
-F13-F16 /Special
+F1-F12 /Function
+F13-F16 /Function
 F17-F24 /None
 
-C_VOL_UP /Special
-C_VOL_DN /Special
-C_MUTE /Special
-C_BRI_UP /Special
-C_BRI_DN /Special
-C_BRI_MAX /Special
-C_BRI_MIN /Special
-C_PLAY_PAUSE /Special
-C_PREV /Special
-C_NEXT /Special
+C_VOL_UP /Function
+C_VOL_DN /Function
+C_MUTE /Function
+C_BRI_UP /Function
+C_BRI_DN /Function
+C_BRI_MAX /Function
+C_BRI_MIN /Function
+C_PLAY_PAUSE /Function
+C_PREV /Function
+C_NEXT /Function
 
 SYS_PWR /None
 SYS_SLEEP /None
@@ -110,36 +110,3 @@ SYS_WAKE /None
 CAPSLOCK /None
 K_APP /None
 K_POWER /None
-
-
-ZMK_EVENT_RAISE_AFTER
-ZMK_EVENT_RAISE_AT
-zmk_behavior_invoke_binding
-zmk_keymap_layer_activate
-zmk_keymap_layer_deactivate
-
-
-struct zmk_position_state_changed {
-    uint8_t source;
-    uint32_t position;
-    bool state;
-    int64_t timestamp;
-};
-
-int raise_##event_type(struct event_type data) {                                               \
-        e             \
-        return ZMK_EVENT_RAISE(ev);                                                                \
-    };     
-
-
-const struct zmk_position_state_changed data = {
-    .source,
-    .position,
-    .state,
-    .timestamp,
-};
-
-
-zmk_keycode_state_changed_from_encoded
-zmk_keycode_state_changed_from_encoded(uint32_t encoded, bool pressed, int64_t timestamp)
-
