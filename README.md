@@ -6,6 +6,13 @@ The keyboard firmware can be built locally using `nix`, which is also used for [
 
 [Keymap Drawer] is used to render images of each layer (see below).
 
+## Work in Progress
+
+- Implement Tapithium Mods
+- Tweak Symbol Layer
+- Add Mouse Layer
+- Add Descriptions and Documentation to README 
+
 ## Layers
 
 ### Tapithium Mods

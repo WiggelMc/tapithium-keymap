@@ -106,6 +106,8 @@ struct behavior_tapithium_mods_engine_data {
   uint32_t sticky_position;
 };
 
+static uint32_t test_data = 0;
+
 static struct behavior_tapithium_mods_engine_data tapithium_mods_engine_data = {
     .stage = TP_STAGE_IDLE,
     .mode = TP_MODE_ENABLE,
@@ -129,6 +131,24 @@ static int tapithium_mods_init(const struct device *dev) {
 };
 
 static int
+tp_raise_position_event_from_behaviour(struct zmk_behavior_binding_event event,
+                                       bool pressed) {
+  struct zmk_position_state_changed data = {
+      .source = 0,
+      .position = event.position,
+      .state = pressed,
+      .timestamp = k_uptime_get(),
+  };
+#if IS_ENABLED(CONFIG_ZMK_SPLIT)
+  data.source = event.source;
+#endif
+
+  struct zmk_position_state_changed_event ev = {
+      .data = data, .header = {.event = &zmk_event_zmk_position_state_changed}};
+  return ZMK_EVENT_RAISE(ev);
+}
+
+static int
 on_tapithium_mods_binding_pressed(struct zmk_behavior_binding *binding,
                                   struct zmk_behavior_binding_event event) {
 
@@ -141,15 +161,19 @@ on_tapithium_mods_binding_pressed(struct zmk_behavior_binding *binding,
   switch (command) {
   case TP_ENABLE_CMD:
     // TODO (Enable with Enable Mode)
+    test_data = 0;
     break;
   case TP_STICKY_CMD:
     // TODO (Enable with Sticky Mode)
+    test_data = 3;
     break;
   case TP_CANCEL_CMD:
     // TODO (Cancel)
+    test_data = 2;
     break;
   case TP_RESET_CMD:
     // TODO (Reset)
+    test_data = 1;
     break;
   case TP_MPRESS_CMD:
     // Do nothing
@@ -159,6 +183,15 @@ on_tapithium_mods_binding_pressed(struct zmk_behavior_binding *binding,
     break;
   case TP_NEXT_CMD:
     // TODO (Fall through, Exit)
+    // Test Mod Injection
+    const int raise_status =
+        tp_raise_position_event_from_behaviour(event, false);
+    if (raise_status < 0) {
+      return raise_status;
+    }
+    zmk_keymap_layer_deactivate(event.layer);
+    return tp_raise_position_event_from_behaviour(event, true);
+    //
     break;
   case TP_MOD_CMD:
     // zmk_key_t (type is already the same)
@@ -238,7 +271,8 @@ tapithium_mods_keycode_state_changed_listener(const zmk_event_t *eh) {
     return ZMK_EV_EVENT_BUBBLE;
   }
 
-  LOG_DBG("TP Keycode State changed: keycode: %d", ev->keycode);
+  LOG_DBG("TP Keycode State changed: keycode: %d, state: %d", ev->keycode,
+          ev->state);
 
   return ZMK_EV_EVENT_BUBBLE;
 }
@@ -251,6 +285,23 @@ ZMK_LISTENER(behavior_tapithium_mods_position_state_changed,
 ZMK_SUBSCRIPTION(behavior_tapithium_mods_position_state_changed,
                  zmk_position_state_changed);
 
+static int tp_raise_keycode_event(zmk_key_t keycode, bool pressed) {
+  struct zmk_keycode_state_changed data =
+      zmk_keycode_state_changed_from_encoded(keycode, pressed, k_uptime_get());
+
+  struct zmk_keycode_state_changed_event ev = {
+      .data = data, .header = {.event = &zmk_event_zmk_keycode_state_changed}};
+  return ZMK_EVENT_RAISE(ev);
+}
+
+static int
+tp_reraise_position_event(const struct zmk_position_state_changed *ev) {
+  struct zmk_position_state_changed_event dupe_ev =
+      copy_raised_zmk_position_state_changed(ev);
+  return ZMK_EVENT_RAISE_AFTER(dupe_ev,
+                               behavior_tapithium_mods_position_state_changed);
+}
+
 static int
 tapithium_mods_position_state_changed_listener(const zmk_event_t *eh) {
   const struct zmk_position_state_changed *ev =
@@ -259,7 +310,40 @@ tapithium_mods_position_state_changed_listener(const zmk_event_t *eh) {
     return ZMK_EV_EVENT_BUBBLE;
   }
 
-  LOG_DBG("TP Position State changed: position: %d", ev->position);
+  LOG_DBG("TP Position State changed: position: %d, source: %d", ev->position,
+          ev->source);
+
+  switch (test_data) {
+  case 1:
+    if (ev->state) {
+      test_data = 0;
+      tp_raise_keycode_event(LSHIFT, true);
+      return ZMK_EV_EVENT_BUBBLE;
+      // inject press shift before press
+    }
+    break;
+  case 2:
+    if (!(ev->state)) {
+      test_data = 20;
+    }
+    break;
+  case 20:
+    if (!(ev->state)) {
+      test_data = 0;
+      tp_reraise_position_event(ev);
+      tp_raise_keycode_event(LSHIFT, false);
+      return ZMK_EV_EVENT_HANDLED;
+      // Inject Release shift after release
+    }
+    break;
+  case 3:
+    if (ev->state) {
+      test_data = 0;
+      zmk_keymap_layer_activate(1);
+      // Inject moving to layer 1 before press
+    }
+    break;
+  }
 
   return ZMK_EV_EVENT_BUBBLE;
 }

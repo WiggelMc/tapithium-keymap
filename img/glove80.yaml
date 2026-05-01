@@ -1,9 +1,9 @@
 layout: {zmk_keyboard: glove80}
 layers:
   base:
+  - {t: mods_r, h: toggle}
   - ''
-  - ''
-  - ''
+  - Shift
   - ''
   - ''
   - ''
@@ -55,7 +55,7 @@ layers:
   - ''
   - Repeat
   - $$mdi:backspace-reverse-outline$$
-  - ''
+  - Base Layer
   - ''
   - $$mdi:backspace$$
   - Repeat
