@@ -255,6 +255,7 @@ parse_config:
       hold: Clr All
     "&out OUT_USB": $$mdi:usb$$
     "&uc UC_SET_LINUX": "UC Linux"
+    "&uc UC_SET_LINUX_ALT": "UC LinuxAlt"
     "&uc UC_SET_WIN_COMPOSE": "UC WinComp"
     "&uc UC_SET_MACOS": "UC Macos"
     "&uc UC_SET_EMACS": "UC Emacs"
