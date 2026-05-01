@@ -546,9 +546,9 @@ layers:
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - ''
-  - ''
-  - ''
-  - ''
+  - UC Linux
+  - UC WinComp
+  - UC Macos
   - ''
   - Reset
   - ''
@@ -562,8 +562,8 @@ layers:
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - ''
-  - ''
-  - ''
+  - UC Emacs
+  - UC WinAlt
   - ''
   - ''
   - ''

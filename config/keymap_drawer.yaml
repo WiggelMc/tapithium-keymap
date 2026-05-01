@@ -254,6 +254,11 @@ parse_config:
       <<: *bt_clr
       hold: Clr All
     "&out OUT_USB": $$mdi:usb$$
+    "&uc UC_SET_LINUX": "UC Linux"
+    "&uc UC_SET_WIN_COMPOSE": "UC WinComp"
+    "&uc UC_SET_MACOS": "UC Macos"
+    "&uc UC_SET_EMACS": "UC Emacs"
+    "&uc UC_SET_WIN_ALT": "UC WinAlt"
     "&bootloader": Boot
     "&reset": Reset
     "&sys_reset": Reset
