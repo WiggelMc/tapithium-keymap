@@ -150,6 +150,11 @@ parse_config:
     "&uc UC_DE_OE": "Ö"
     "&uc UC_DE_UE": "Ü"
     "&uc UC_DE_SS": "ß"
+    "&uc UC_EURO_SIGN": "€"
+    "&uc UC_ACUTE_ACCENT": "´"
+    "&uc UC_MICRO_SIGN": "µ"
+    "&uc UC_DEGREE_SIGN": "°"
+    "&uc UC_SECTION_SIGN": "§"
 
     "&tp TP_ENABLE": "TP Enable"
     "&tp TP_STICKY": "TP Sticky"

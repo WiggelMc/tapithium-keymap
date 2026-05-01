@@ -12,45 +12,45 @@ RETURN /Function
 BACKSPACE /Base/Thumb
 DEL /Base/Thumb
 
-EXCLAMATION /*
-AT_SIGN /*
-HASH /*
-DOLLAR /*
-PERCENT /*
-CARET /*
-AMPERSAND /*
-ASTERISK /*
-MINUS /*
-UNDERSCORE /*
-EQUAL /*
-PLUS /*
-BACKSLASH /*
-PIPE /*
-SEMICOLON /*
-COLON /*
-SINGLE_QUOTE /*
-DOUBLE_QUOTES /*
-GRAVE /*
-TILDE /*
-COMMA /*
-PERIOD /*
-SLASH /*
-QUESTION /*
+EXCLAMATION /Symbol
+AT_SIGN /Symbol
+HASH /Symbol
+DOLLAR /Symbol
+PERCENT /Symbol
+CARET /Symbol
+AMPERSAND /Symbol
+ASTERISK /Symbol
+MINUS /Symbol
+UNDERSCORE /Symbol
+EQUAL /Symbol
+PLUS /Symbol
+BACKSLASH /Symbol
+PIPE /Symbol
+SEMICOLON /Symbol
+COLON /Symbol
+SINGLE_QUOTE /Symbol
+DOUBLE_QUOTES /Symbol
+GRAVE /Symbol
+TILDE /Symbol
+COMMA /Symbol
+PERIOD /Symbol
+SLASH /Symbol
+QUESTION /Symbol
 
-LPAR /*
-RPAR /*
-LBKT /*
-LBRC /*
-RBKT /*
-RBRC /*
-LESS_THAN /*
-GREATER_THAN /*
+LPAR /Symbol
+RPAR /Symbol
+LBKT /Symbol
+LBRC /Symbol
+RBKT /Symbol
+RBRC /Symbol
+LESS_THAN /Symbol
+GREATER_THAN /Symbol
 
-&uc UC_EURO_SIGN /*
-&uc UC_ACUTE_ACCENT /*
-&uc UC_MICRO_SIGN /*
-&uc UC_DEGREE_SIGN /*
-&uc UC_SECTION_SIGN /*
+&uc UC_EURO_SIGN /Symbol
+&uc UC_ACUTE_ACCENT /None
+&uc UC_MICRO_SIGN /Symbol
+&uc UC_DEGREE_SIGN /None
+&uc UC_SECTION_SIGN /None
 
 
 PRINTSCREEN /Function
