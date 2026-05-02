@@ -52,14 +52,13 @@ enum tp_mode {
   TP_MODE_STICKY,
 };
 
-typedef int32_t tp_optional_keymap_layer_index_t;
-
 struct behavior_tapithium_mods_config {
   zmk_keymap_layers_state_t mod_layers;
 };
 
 struct tp_action_props {
-  tp_optional_keymap_layer_index_t layer;
+  zmk_keymap_layer_index_t layer;
+  bool has_layer;
   zmk_mod_flags_t mods;
 };
 
@@ -67,18 +66,6 @@ struct tp_action_data {
   struct tp_action_props scheduled;
   struct tp_action_props active;
 };
-
-#define DEFAULT_TP_ACTION_PROPS                                                \
-  {                                                                            \
-      .layer = -1,                                                             \
-      .mods = 0,                                                               \
-  }
-
-#define DEFAULT_TP_ACTION_DATA                                                 \
-  {                                                                            \
-      .scheduled = DEFAULT_TP_ACTION_PROPS,                                    \
-      .active = DEFAULT_TP_ACTION_PROPS,                                       \
-  }
 
 struct behavior_tapithium_mods_engine_data {
   enum tp_stage stage;
@@ -95,8 +82,8 @@ static struct behavior_tapithium_mods_engine_data tp_data = {
     .stage = TP_STAGE_IDLE,
     .mode = TP_MODE_ENABLE,
     .config = NULL,
-    .enabled = DEFAULT_TP_ACTION_DATA,
-    .sticky = DEFAULT_TP_ACTION_DATA,
+    .enabled = {},
+    .sticky = {},
     .is_sticky_pressed = false,
     .sticky_position = 0,
     .last_source = 0,
@@ -105,6 +92,15 @@ static struct behavior_tapithium_mods_engine_data tp_data = {
 //
 // Helpers
 //
+
+static zmk_keymap_layer_index_t tp_layer_index_from_int(const int layer_int) {
+  // TODO: Fix this when actual type of int is known
+  if (layer_int < ZMK_KEYMAP_LAYERS_LEN) {
+    return (zmk_keymap_layer_index_t)layer_int;
+  } else {
+    return ZMK_KEYMAP_LAYER_ID_INVAL;
+  }
+}
 
 static zmk_mod_flags_t tp_to_mod_flag(const zmk_key_t keycode) {
   switch (keycode) {
@@ -135,7 +131,7 @@ static zmk_mod_flags_t tp_extract_mods(const zmk_key_t keycode) {
   return mods | key_mod;
 }
 
-static int tp_raise_keycode_event(zmk_key_t keycode, bool pressed) {
+static int tp_raise_keycode_event(const zmk_key_t keycode, const bool pressed) {
   struct zmk_keycode_state_changed data =
       zmk_keycode_state_changed_from_encoded(keycode, pressed, k_uptime_get());
 
@@ -151,9 +147,8 @@ tp_reraise_position_event(const struct zmk_position_state_changed *ev) {
   return ZMK_EVENT_RAISE_AFTER(dupe_ev, behavior_tapithium_mods);
 }
 
-static int
-tp_raise_position_event_from_behaviour(struct zmk_behavior_binding_event event,
-                                       bool pressed) {
+static int tp_raise_position_event_from_behaviour(
+    const struct zmk_behavior_binding_event event, const bool pressed) {
   struct zmk_position_state_changed data = {
       .source = tp_data.last_source,
       .position = event.position,
@@ -173,7 +168,7 @@ tp_raise_position_event_from_behaviour(struct zmk_behavior_binding_event event,
 // Engine Handlers
 //
 
-static int tp_handle_on(enum tp_mode mode,
+static int tp_handle_on(const enum tp_mode mode,
                         const struct behavior_tapithium_mods_config *config) {
   // TODO
   const struct behavior_tapithium_mods_config *old_cfg = tp_data.config;
@@ -221,7 +216,7 @@ static int tp_handle_mpress() {
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
-static int tp_handle_none() { // TODO: Param (mod_layer_index)
+static int tp_handle_none(const zmk_keymap_layer_index_t mod_layer_index) {
   // TODO
 
   if (tp_data.stage == TP_STAGE_MODS_SELECT) {
@@ -232,7 +227,8 @@ static int tp_handle_none() { // TODO: Param (mod_layer_index)
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
-static int tp_handle_next() { // TODO: Param (mod_layer_index)
+static int tp_handle_next(const zmk_keymap_layer_index_t mod_layer_index,
+                          const struct zmk_behavior_binding_event event) {
   // TODO
   const enum tp_stage old_stage = tp_data.stage;
 
@@ -265,7 +261,8 @@ static int tp_handle_next() { // TODO: Param (mod_layer_index)
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
-static int tp_handle_mod(zmk_key_t keycode) { // TODO: Param (mod_layer_index)
+static int tp_handle_mod(const zmk_key_t keycode,
+                         const zmk_keymap_layer_index_t mod_layer_index) {
   const zmk_mod_flags_t mods = tp_extract_mods(keycode);
   // TODO
   const enum tp_stage old_stage = tp_data.stage;
@@ -282,8 +279,8 @@ static int tp_handle_mod(zmk_key_t keycode) { // TODO: Param (mod_layer_index)
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
-static int tp_handle_lay(
-    zmk_keymap_layer_index_t layer_index) { // TODO: Param (mod_layer_index)
+static int tp_handle_lay(const zmk_keymap_layer_index_t layer_index,
+                         const zmk_keymap_layer_index_t mod_layer_index) {
   // TODO
   const enum tp_stage old_stage = tp_data.stage;
 
@@ -357,6 +354,8 @@ on_tapithium_mods_binding_pressed(struct zmk_behavior_binding *binding,
 
   const uint32_t command = binding->param1;
   const uint32_t param = binding->param2;
+  const zmk_keymap_layer_index_t mod_layer_index =
+      tp_layer_index_from_int(event.layer);
 
   switch (command) {
   case TP_ENABLE_CMD:
@@ -370,14 +369,14 @@ on_tapithium_mods_binding_pressed(struct zmk_behavior_binding *binding,
   case TP_MPRESS_CMD:
     return tp_handle_mpress();
   case TP_NONE_CMD:
-    return tp_handle_none();
+    return tp_handle_none(mod_layer_index);
   case TP_NEXT_CMD:
-    return tp_handle_next();
+    return tp_handle_next(mod_layer_index, event);
   case TP_MOD_CMD:
-    return tp_handle_mod(param);
+    return tp_handle_mod(param, mod_layer_index);
   case TP_LAY_CMD:
     if (param < ZMK_KEYMAP_LAYERS_LEN) {
-      return tp_handle_lay((zmk_keymap_layer_index_t)param);
+      return tp_handle_lay((zmk_keymap_layer_index_t)param, mod_layer_index);
     } else {
       return ZMK_BEHAVIOR_OPAQUE;
     }
