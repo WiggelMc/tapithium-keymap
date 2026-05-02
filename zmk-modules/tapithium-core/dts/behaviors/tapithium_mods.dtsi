@@ -16,7 +16,6 @@
             compatible = "zmk,behavior-tapithium-mods";
             #binding-cells = <2>;
             mod-layers = <>;
-            cancel-after-idle-ms = <2000>;
             display-name = "Tapithium Mods";
         };
     };

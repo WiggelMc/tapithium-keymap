@@ -56,7 +56,6 @@ typedef int32_t tp_optional_keymap_layer_index_t;
 
 struct behavior_tapithium_mods_config {
   zmk_keymap_layers_state_t mod_layers;
-  int32_t cancel_after_idle_ms;
 };
 
 struct tp_action_props {
@@ -377,7 +376,6 @@ static int tapithium_mods_layer_state_changed_listener(const zmk_event_t *eh) {
 #define TAPITHIUM_MODS_INST(n)                                                 \
   static struct behavior_tapithium_mods_config tapithium_mods_config_##n = {   \
       .mod_layers = TP_BUILD_LAYER_MASK(n, mod_layers),                        \
-      .cancel_after_idle_ms = DT_INST_PROP(n, cancel_after_idle_ms),           \
   };                                                                           \
                                                                                \
   BEHAVIOR_DT_INST_DEFINE(                                                     \

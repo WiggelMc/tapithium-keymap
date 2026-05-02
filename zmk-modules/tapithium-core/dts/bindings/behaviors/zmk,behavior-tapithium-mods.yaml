@@ -11,6 +11,3 @@ properties:
   mod-layers:
     type: array
     required: true
-  cancel-after-idle-ms:
-    type: int
-    required: true

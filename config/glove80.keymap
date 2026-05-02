@@ -35,13 +35,11 @@
 #define L_MOERGO_MAGIC 12
 #define L_FACTORY_TEST 13
 
-// keys
+// defines
 #define HYPER LC(LS(LG(LALT)))
-
-// params
 #define MAGIC L_MOERGO_MAGIC 0
 
-//config
+// config
 &uc {
   default-mode = <UC_MODE_LINUX>;
   minimum-length = <0>;
@@ -53,7 +51,6 @@
 
 &tp {
     mod-layers = <L_MODS_L L_MODS_R>;
-    cancel-after-idle-ms = <2000>;
 };
 
 &sl {
