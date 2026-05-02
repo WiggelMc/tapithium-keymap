@@ -176,16 +176,43 @@ tp_raise_position_event_from_behaviour(struct zmk_behavior_binding_event event,
 static int tp_handle_on(enum tp_mode mode,
                         const struct behavior_tapithium_mods_config *config) {
   // TODO
+  const struct behavior_tapithium_mods_config *old_cfg = tp_data.config;
+  const enum tp_stage old_stage = tp_data.stage;
+  tp_data.config = config;
+  tp_data.mode = mode;
+  tp_data.stage = TP_STAGE_MODS_SELECT;
+
+  if (config != old_cfg) {
+    // Turn off old cfg layers
+  }
+
+  if (old_stage == TP_STAGE_IDLE) {
+    // Clean up scheduled keys
+  }
+
+  // Turn on config layers
+
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
 static int tp_handle_cancel() {
   // TODO
+  tp_data.stage = TP_STAGE_IDLE;
+
+  // Turn off config layers
+  // Clean up scheduled keys
+
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
 static int tp_handle_reset() {
   // TODO
+  tp_data.stage = TP_STAGE_IDLE;
+
+  // Turn off config layers
+  // Clean up scheduled keys
+  // Clean up and Disable active keys
+
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
@@ -196,11 +223,36 @@ static int tp_handle_mpress() {
 
 static int tp_handle_none() {
   // TODO
+
+  if (tp_data.stage == TP_STAGE_MODS_SELECT) {
+    tp_data.stage = TP_STAGE_MODS_ON;
+    // Turn off all other config layers
+  }
+
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
 static int tp_handle_next() {
   // TODO
+  const enum tp_stage old_stage = tp_data.stage;
+
+  if (old_stage != TP_STAGE_IDLE) {
+    // Release Current Position
+
+    switch (old_stage) {
+    case TP_STAGE_MODS_SELECT:
+      // Turn off current layer
+      break;
+    case TP_STAGE_MODS_ON:
+      tp_data.stage = TP_STAGE_IDLE;
+      // Turn off all config layers
+      // TODO: Apply all scheduled keys
+      break;
+    }
+
+    // Press Current Position
+  }
+
   // Test Mod Injection
   // const int raise_status =
   //     tp_raise_position_event_from_behaviour(event, false);
@@ -216,16 +268,42 @@ static int tp_handle_next() {
 static int tp_handle_mod(zmk_key_t keycode) {
   const zmk_mod_flags_t mods = tp_extract_mods(keycode);
   // TODO
+  const enum tp_stage old_stage = tp_data.stage;
+
+  if (tp_data.stage == TP_STAGE_MODS_SELECT) {
+    tp_data.stage = TP_STAGE_MODS_ON;
+    // Turn off all other config layers
+  }
+
+  if (old_stage != TP_STAGE_IDLE) {
+    // Add Mod to scheduled of current mode
+  }
+
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
 static int tp_handle_lay(zmk_keymap_layer_index_t layer_index) {
   // TODO
+  const enum tp_stage old_stage = tp_data.stage;
+
+  if (tp_data.stage == TP_STAGE_MODS_SELECT) {
+    tp_data.stage = TP_STAGE_MODS_ON;
+    // Turn off all other config layers
+  }
+
+  if (old_stage != TP_STAGE_IDLE) {
+    // Set Lay to scheduled of current mode
+  }
+
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
 static int tp_handle_release_sticky() {
   // TODO
+
+  tp_data.is_sticky_pressed = false;
+  // Clean up and Disable active sticky keys
+
   return ZMK_EV_EVENT_BUBBLE;
 }
 
