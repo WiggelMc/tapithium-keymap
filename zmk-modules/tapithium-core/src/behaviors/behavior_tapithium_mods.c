@@ -180,6 +180,20 @@ static int tp_raise_position_event_from_behaviour(
   return ZMK_EVENT_RAISE_AFTER(ev, behavior_tapithium_mods);
 }
 
+static int tp_set_layer_state(const zmk_keymap_layer_index_t layer_index,
+                              const bool state) {
+  if (layer_index < ZMK_KEYMAP_LAYERS_LEN) {
+    const zmk_keymap_layer_id_t id = zmk_keymap_layer_index_to_id(layer_index);
+    if (state) {
+      zmk_keymap_layer_activate(id);
+    } else {
+      zmk_keymap_layer_deactivate(id);
+    }
+  }
+
+  return 0;
+}
+
 static int tp_set_all_layer_states(const zmk_keymap_layers_state_t layers,
                                    const bool state) {
   zmk_keymap_layers_state_t bits = layers;
@@ -257,28 +271,34 @@ static int tp_handle_on(const enum tp_mode mode,
   // TODO
   const struct behavior_tapithium_mods_config *old_cfg = tp_data.config;
   const enum tp_stage old_stage = tp_data.stage;
-  tp_data.config = config;
-  tp_data.mode = mode;
-  tp_data.stage = TP_STAGE_MODS_SELECT;
 
-  if (config != old_cfg) {
-    // Turn off old cfg layers
+  if (config != NULL) {
+    tp_data.config = config;
+    tp_data.mode = mode;
+    tp_data.stage = TP_STAGE_MODS_SELECT;
+
+    if (config != old_cfg && old_cfg != NULL) {
+      tp_set_all_layer_states(old_cfg->mod_layers, false);
+    }
+
+    if (old_stage == TP_STAGE_IDLE) {
+      // Clean up scheduled keys
+    }
+
+    tp_set_all_layer_states(config->mod_layers, true);
   }
-
-  if (old_stage == TP_STAGE_IDLE) {
-    // Clean up scheduled keys
-  }
-
-  // Turn on config layers
 
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
 static int tp_handle_cancel() {
   // TODO
+  const struct behavior_tapithium_mods_config *cfg = tp_data.config;
   tp_data.stage = TP_STAGE_IDLE;
 
-  // Turn off config layers
+  if (cfg != NULL) {
+    tp_set_all_layer_states(cfg->mod_layers, false);
+  }
   // Clean up scheduled keys
 
   return ZMK_BEHAVIOR_OPAQUE;
@@ -286,9 +306,12 @@ static int tp_handle_cancel() {
 
 static int tp_handle_reset() {
   // TODO
+  const struct behavior_tapithium_mods_config *cfg = tp_data.config;
   tp_data.stage = TP_STAGE_IDLE;
 
-  // Turn off config layers
+  if (cfg != NULL) {
+    tp_set_all_layer_states(cfg->mod_layers, false);
+  }
   // Clean up scheduled keys
   // Clean up and Disable active keys
 
@@ -312,31 +335,27 @@ static int tp_handle_next(const zmk_keymap_layer_index_t mod_layer_index,
   const enum tp_stage old_stage = tp_data.stage;
 
   if (old_stage != TP_STAGE_IDLE) {
-    // Release Current Position
+    tp_raise_position_event_from_behaviour(event, false);
 
     switch (old_stage) {
     case TP_STAGE_MODS_SELECT:
-      // Turn off current layer
+      tp_set_layer_state(mod_layer_index, false);
       break;
-    case TP_STAGE_MODS_ON:
+    case TP_STAGE_MODS_ON: {
       tp_data.stage = TP_STAGE_IDLE;
-      // Turn off all config layers
+      const struct behavior_tapithium_mods_config *cfg = tp_data.config;
+      if (cfg != NULL) {
+        tp_set_all_layer_states(cfg->mod_layers, false);
+      }
       // Apply all scheduled keys
-      break;
     }
 
-    // Press Current Position
+    break;
+    }
+
+    tp_raise_position_event_from_behaviour(event, true);
   }
 
-  // Test Mod Injection
-  // const int raise_status =
-  //     tp_raise_position_event_from_behaviour(event, false);
-  // if (raise_status < 0) {
-  //   return raise_status;
-  // }
-  // zmk_keymap_layer_deactivate(event.layer);
-  // return tp_raise_position_event_from_behaviour(event, true);
-  //
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
@@ -376,6 +395,10 @@ static int tp_handle_release_sticky() {
 
   tp_data.is_sticky_pressed = false;
   // Clean up and Disable active sticky keys
+  // // This might need to be split, as it should appear after release, but
+  // // before press
+  // // It would also need to set the event to handled via return value,
+  // // if it was raised manually (release case).
 
   return ZMK_EV_EVENT_BUBBLE;
 }

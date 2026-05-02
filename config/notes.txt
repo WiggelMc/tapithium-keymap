@@ -36,3 +36,9 @@ zmk_keymap_layer_activate
 
 
 zmk_keymap_layer_index_to_id
+
+
+// Clean up scheduled keys
+// Clean up and Disable active keys (sticky and enable)
+// Apply all scheduled keys
+// Clean up and Disable active sticky keys
