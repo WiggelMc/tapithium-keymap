@@ -153,7 +153,9 @@ static int tp_raise_keycode_event(const zmk_key_t keycode, const bool pressed) {
 static int
 tp_reraise_position_event(const struct zmk_position_state_changed *ev) {
   struct zmk_position_state_changed_event dupe_ev =
-      copy_raised_zmk_position_state_changed(ev);
+      copy_raised_zmk_position_state_changed(
+          ev); // TODO: Do an actual manual copy for this instead, using a new
+               // timestamp
   return ZMK_EVENT_RAISE_AFTER(dupe_ev, behavior_tapithium_mods);
 }
 
@@ -188,9 +190,11 @@ static int tp_set_all_layer_states(const zmk_keymap_layers_state_t layers,
       }
     }
 
-    bits << 1U;
+    bits >>= 1U;
     index++;
   }
+
+  return 0;
 }
 
 static int
@@ -202,7 +206,7 @@ tpe_select_mod_layer(const zmk_keymap_layer_index_t mod_layer_index,
         tp_layers_without(config->mod_layers, mod_layer_index), false);
   }
 
-  return ZMK_BEHAVIOR_OPAQUE;
+  return 0;
 }
 
 static int tpe_schedule_mods(const zmk_mod_flags_t mods,
@@ -215,7 +219,7 @@ static int tpe_schedule_mods(const zmk_mod_flags_t mods,
     tp_data.sticky.scheduled.mods |= mods;
     break;
   }
-  return ZMK_BEHAVIOR_OPAQUE;
+  return 0;
 }
 
 static int tpe_schedule_layer(const zmk_keymap_layer_index_t layer,
@@ -237,7 +241,7 @@ static int tpe_schedule_layer(const zmk_keymap_layer_index_t layer,
     }
   }
 
-  return ZMK_BEHAVIOR_OPAQUE;
+  return 0;
 }
 
 //
@@ -342,7 +346,7 @@ static int tp_handle_mod(const zmk_key_t keycode,
 
   if (old_stage != TP_STAGE_IDLE) {
     const zmk_mod_flags_t mods = tp_extract_mods(keycode);
-    tpe_schedule_layer(mods, tp_data.mode);
+    tpe_schedule_mods(mods, tp_data.mode);
   }
 
   return ZMK_BEHAVIOR_OPAQUE;
@@ -390,7 +394,7 @@ tapithium_mods_position_state_changed_listener(const zmk_event_t *eh) {
   const bool is_press = ev->state;
 
 #if !IS_ENABLED(CONFIG_ZMK_SPLIT)
-  tp_data.source = ev->source;
+  tp_data.last_source = ev->source;
 #endif
 
   if (tp_data.is_sticky_pressed) {
