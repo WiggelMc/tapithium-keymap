@@ -152,10 +152,14 @@ static int tp_raise_keycode_event(const zmk_key_t keycode, const bool pressed) {
 
 static int
 tp_reraise_position_event(const struct zmk_position_state_changed *ev) {
-  struct zmk_position_state_changed_event dupe_ev =
-      copy_raised_zmk_position_state_changed(
-          ev); // TODO: Do an actual manual copy for this instead, using a new
-               // timestamp
+  struct zmk_position_state_changed data = {
+      .source = ev->source,
+      .position = ev->position,
+      .state = ev->state,
+      .timestamp = k_uptime_get(),
+  };
+  struct zmk_position_state_changed_event dupe_ev = {
+      .data = data, .header = {.event = &zmk_event_zmk_position_state_changed}};
   return ZMK_EVENT_RAISE_AFTER(dupe_ev, behavior_tapithium_mods);
 }
 
