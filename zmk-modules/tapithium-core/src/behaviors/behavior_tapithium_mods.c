@@ -26,34 +26,20 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 #if DT_HAS_COMPAT_STATUS_OKAY(DT_DRV_COMPAT)
 
-static zmk_mod_flags_t tp_to_mod_flag(const zmk_key_t keycode) {
-  switch (keycode) {
-  case LCTRL:
-    return MOD_LCTL;
-  case LSHIFT:
-    return MOD_LSFT;
-  case LALT:
-    return MOD_LALT;
-  case LGUI:
-    return MOD_LGUI;
-  case RCTRL:
-    return MOD_RCTL;
-  case RSHIFT:
-    return MOD_RSFT;
-  case RALT:
-    return MOD_RALT;
-  case RGUI:
-    return MOD_RGUI;
-  default:
-    return 0;
-  }
-}
+//
+// Register Listener
+//
 
-static zmk_mod_flags_t tp_extract_mods(const zmk_key_t keycode) {
-  const zmk_mod_flags_t mods = SELECT_MODS(keycode);
-  const zmk_mod_flags_t key_mod = tp_to_mod_flag(STRIP_MODS(keycode));
-  return mods | key_mod;
-}
+static int
+tapithium_mods_position_state_changed_listener(const zmk_event_t *eh);
+
+ZMK_LISTENER(behavior_tapithium_mods,
+             tapithium_mods_position_state_changed_listener);
+ZMK_SUBSCRIPTION(behavior_tapithium_mods, zmk_position_state_changed);
+
+//
+// Types
+//
 
 enum tp_stage {
   TP_STAGE_IDLE,
@@ -103,17 +89,10 @@ struct behavior_tapithium_mods_engine_data {
   struct tp_action_data sticky;
   bool is_sticky_pressed;
   uint32_t sticky_position;
-  int64_t last_input_timestamp;
-  struct k_work_delayable idle_timer;
+  uint8_t last_source;
 };
 
-void behavior_tapithium_mods_idle_timer_handler(struct k_work *item) {
-  LOG_DBG("TP Idle Handler called");
-}
-
-static uint32_t test_data = 0;
-
-static struct behavior_tapithium_mods_engine_data tapithium_mods_engine_data = {
+static struct behavior_tapithium_mods_engine_data tp_data = {
     .stage = TP_STAGE_IDLE,
     .mode = TP_MODE_ENABLE,
     .config = NULL,
@@ -121,29 +100,63 @@ static struct behavior_tapithium_mods_engine_data tapithium_mods_engine_data = {
     .sticky = DEFAULT_TP_ACTION_DATA,
     .is_sticky_pressed = false,
     .sticky_position = 0,
-    .last_input_timestamp = 0,
+    .last_source = 0,
 };
 
-// TODO:
-// TP Key Press => [Actions + Keypress] (Used for selection with TP_NEXT and for
-//   exit with TP_NEXT and for disable of sticky before press)
-// TP Key Release => [Keypress + Actions] (Used for disable
-//   of sticky after release)
+//
+// Helpers
+//
 
-static int tapithium_mods_init(const struct device *dev) {
-  k_work_init_delayable(&tapithium_mods_engine_data.idle_timer,
-                        behavior_tapithium_mods_idle_timer_handler);
+static zmk_mod_flags_t tp_to_mod_flag(const zmk_key_t keycode) {
+  switch (keycode) {
+  case LCTRL:
+    return MOD_LCTL;
+  case LSHIFT:
+    return MOD_LSFT;
+  case LALT:
+    return MOD_LALT;
+  case LGUI:
+    return MOD_LGUI;
+  case RCTRL:
+    return MOD_RCTL;
+  case RSHIFT:
+    return MOD_RSFT;
+  case RALT:
+    return MOD_RALT;
+  case RGUI:
+    return MOD_RGUI;
+  default:
+    return 0;
+  }
+}
 
-  LOG_DBG("TP Initialized");
-  return 0;
-};
+static zmk_mod_flags_t tp_extract_mods(const zmk_key_t keycode) {
+  const zmk_mod_flags_t mods = SELECT_MODS(keycode);
+  const zmk_mod_flags_t key_mod = tp_to_mod_flag(STRIP_MODS(keycode));
+  return mods | key_mod;
+}
+
+static int tp_raise_keycode_event(zmk_key_t keycode, bool pressed) {
+  struct zmk_keycode_state_changed data =
+      zmk_keycode_state_changed_from_encoded(keycode, pressed, k_uptime_get());
+
+  struct zmk_keycode_state_changed_event ev = {
+      .data = data, .header = {.event = &zmk_event_zmk_keycode_state_changed}};
+  return ZMK_EVENT_RAISE(ev);
+}
+
+static int
+tp_reraise_position_event(const struct zmk_position_state_changed *ev) {
+  struct zmk_position_state_changed_event dupe_ev =
+      copy_raised_zmk_position_state_changed(ev);
+  return ZMK_EVENT_RAISE_AFTER(dupe_ev, behavior_tapithium_mods);
+}
 
 static int
 tp_raise_position_event_from_behaviour(struct zmk_behavior_binding_event event,
                                        bool pressed) {
   struct zmk_position_state_changed data = {
-      .source = 0, // TODO: Use stored last_source in engine data. Store on
-                   // every call to position handler
+      .source = tp_data.last_source,
       .position = event.position,
       .state = pressed,
       .timestamp = k_uptime_get(),
@@ -154,12 +167,112 @@ tp_raise_position_event_from_behaviour(struct zmk_behavior_binding_event event,
 
   struct zmk_position_state_changed_event ev = {
       .data = data, .header = {.event = &zmk_event_zmk_position_state_changed}};
-  return ZMK_EVENT_RAISE(ev);
+  return ZMK_EVENT_RAISE_AFTER(ev, behavior_tapithium_mods);
 }
+
+//
+// Engine Handlers
+//
+
+static int tp_handle_on(enum tp_mode mode,
+                        const struct behavior_tapithium_mods_config *config) {
+  // TODO
+  return ZMK_BEHAVIOR_OPAQUE;
+}
+
+static int tp_handle_cancel() {
+  // TODO
+  return ZMK_BEHAVIOR_OPAQUE;
+}
+
+static int tp_handle_reset() {
+  // TODO
+  return ZMK_BEHAVIOR_OPAQUE;
+}
+
+static int tp_handle_mpress() {
+  // Do nothing
+  return ZMK_BEHAVIOR_OPAQUE;
+}
+
+static int tp_handle_none() {
+  // TODO
+  return ZMK_BEHAVIOR_OPAQUE;
+}
+
+static int tp_handle_next() {
+  // TODO
+  // Test Mod Injection
+  // const int raise_status =
+  //     tp_raise_position_event_from_behaviour(event, false);
+  // if (raise_status < 0) {
+  //   return raise_status;
+  // }
+  // zmk_keymap_layer_deactivate(event.layer);
+  // return tp_raise_position_event_from_behaviour(event, true);
+  //
+  return ZMK_BEHAVIOR_OPAQUE;
+}
+
+static int tp_handle_mod(zmk_key_t keycode) {
+  const zmk_mod_flags_t mods = tp_extract_mods(keycode);
+  // TODO
+  return ZMK_BEHAVIOR_OPAQUE;
+}
+
+static int tp_handle_lay(zmk_keymap_layer_index_t layer_index) {
+  // TODO
+  return ZMK_BEHAVIOR_OPAQUE;
+}
+
+static int tp_handle_release_sticky() {
+  // TODO
+  return ZMK_EV_EVENT_BUBBLE;
+}
+
+//
+// Zmk Handlers
+//
+
+static int
+tapithium_mods_position_state_changed_listener(const zmk_event_t *eh) {
+  const struct zmk_position_state_changed *ev =
+      as_zmk_position_state_changed(eh);
+  if (ev == NULL) {
+    return ZMK_EV_EVENT_BUBBLE;
+  }
+
+  LOG_DBG("TP Position State changed: position: %d, source: %d", ev->position,
+          ev->source);
+
+  const bool is_press = ev->state;
+
+#if !IS_ENABLED(CONFIG_ZMK_SPLIT)
+  tp_data.source = ev->source;
+#endif
+
+  if (tp_data.is_sticky_pressed) {
+    const bool is_sticky_key = ev->position == tp_data.sticky_position;
+
+    if ((!is_press && is_sticky_key) || (is_press && !is_sticky_key)) {
+      return tp_handle_release_sticky();
+    }
+  }
+
+  return ZMK_EV_EVENT_BUBBLE;
+}
+
+static int tapithium_mods_init(const struct device *dev) {
+  LOG_DBG("TP Initialized");
+  return 0;
+};
 
 static int
 on_tapithium_mods_binding_pressed(struct zmk_behavior_binding *binding,
                                   struct zmk_behavior_binding_event event) {
+
+  const struct device *dev = zmk_behavior_get_binding(binding->behavior_dev);
+  const struct behavior_tapithium_mods_config *cfg = dev->config;
 
   LOG_DBG("TP Binding pressed: param1=%d, param2=%d, layer=%d, position=%d",
           binding->param1, binding->param2, event.layer, event.position);
@@ -169,64 +282,30 @@ on_tapithium_mods_binding_pressed(struct zmk_behavior_binding *binding,
 
   switch (command) {
   case TP_ENABLE_CMD:
-    // TODO (Enable with Enable Mode)
-    test_data = 0;
-    k_work_schedule(&tapithium_mods_engine_data.idle_timer, K_MSEC(1500));
-    break;
+    return tp_handle_on(TP_MODE_ENABLE, cfg);
   case TP_STICKY_CMD:
-    // TODO (Enable with Sticky Mode)
-    test_data = 3;
-    break;
+    return tp_handle_on(TP_MODE_STICKY, cfg);
   case TP_CANCEL_CMD:
-    // TODO (Cancel)
-    test_data = 2;
-    break;
+    return tp_handle_cancel();
   case TP_RESET_CMD:
-    // TODO (Reset)
-    test_data = 1;
-    break;
+    return tp_handle_reset();
   case TP_MPRESS_CMD:
-    // Do nothing
-    break;
+    return tp_handle_mpress();
   case TP_NONE_CMD:
-    // TODO (Capture)
-    break;
+    return tp_handle_none();
   case TP_NEXT_CMD:
-    // TODO (Fall through, Exit)
-    // Test Mod Injection
-    const int raise_status =
-        tp_raise_position_event_from_behaviour(event, false);
-    if (raise_status < 0) {
-      return raise_status;
-    }
-    zmk_keymap_layer_deactivate(event.layer);
-    return tp_raise_position_event_from_behaviour(event, true);
-    //
-    break;
+    return tp_handle_next();
   case TP_MOD_CMD:
-    // zmk_key_t (type is already the same)
-    // TODO (Capture, add Mod)
-    break;
+    return tp_handle_mod(param);
   case TP_LAY_CMD:
-    // zmk_keymap_layer_index_t (downcast?? u32 -> u8)
-    // TODO (Capture, set Layer)
-    break;
+    if (param < ZMK_KEYMAP_LAYERS_LEN) {
+      return tp_handle_lay((zmk_keymap_layer_index_t)param);
+    } else {
+      return ZMK_BEHAVIOR_OPAQUE;
+    }
+  default:
+    return ZMK_BEHAVIOR_OPAQUE;
   }
-
-  return ZMK_BEHAVIOR_OPAQUE;
-}
-
-static void tp_cancel_idle() {
-  // TODO
-}
-
-static void tp_reset_idle() {
-  // TODO
-}
-
-static void
-tp_reset_idle_with_config(struct behavior_tapithium_mods_config *config) {
-  // TODO
 }
 
 static int
@@ -235,30 +314,6 @@ on_tapithium_mods_binding_released(struct zmk_behavior_binding *binding,
   LOG_DBG("TP Binding released: param1=%d, param2=%d, layer=%d, position=%d",
           binding->param1, binding->param2, event.layer, event.position);
 
-  const uint32_t command = binding->param1;
-
-  switch (command) {
-  case TP_ENABLE_CMD:
-  case TP_STICKY_CMD:
-    tp_reset_idle();
-    break;
-  case TP_CANCEL_CMD:
-  case TP_RESET_CMD:
-  case TP_MPRESS_CMD:
-    // Do nothing
-    break;
-  case TP_NONE_CMD:
-    tp_reset_idle();
-    break;
-  case TP_NEXT_CMD:
-    // Do nothing
-    break;
-  case TP_MOD_CMD:
-  case TP_LAY_CMD:
-    tp_reset_idle();
-    break;
-  }
-
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
@@ -266,6 +321,10 @@ static const struct behavior_driver_api tapithium_mods_driver_api = {
     .binding_pressed = on_tapithium_mods_binding_pressed,
     .binding_released = on_tapithium_mods_binding_released,
 };
+
+//
+// Logging
+//
 
 static int tapithium_mods_keycode_state_changed_listener(const zmk_event_t *eh);
 
@@ -287,82 +346,6 @@ tapithium_mods_keycode_state_changed_listener(const zmk_event_t *eh) {
   return ZMK_EV_EVENT_BUBBLE;
 }
 
-static int
-tapithium_mods_position_state_changed_listener(const zmk_event_t *eh);
-
-ZMK_LISTENER(behavior_tapithium_mods_position_state_changed,
-             tapithium_mods_position_state_changed_listener);
-ZMK_SUBSCRIPTION(behavior_tapithium_mods_position_state_changed,
-                 zmk_position_state_changed);
-
-static int tp_raise_keycode_event(zmk_key_t keycode, bool pressed) {
-  struct zmk_keycode_state_changed data =
-      zmk_keycode_state_changed_from_encoded(keycode, pressed, k_uptime_get());
-
-  struct zmk_keycode_state_changed_event ev = {
-      .data = data, .header = {.event = &zmk_event_zmk_keycode_state_changed}};
-  return ZMK_EVENT_RAISE(ev);
-}
-
-static int
-tp_reraise_position_event(const struct zmk_position_state_changed *ev) {
-  struct zmk_position_state_changed_event dupe_ev =
-      copy_raised_zmk_position_state_changed(ev);
-  return ZMK_EVENT_RAISE_AFTER(dupe_ev,
-                               behavior_tapithium_mods_position_state_changed);
-}
-
-static int
-tapithium_mods_position_state_changed_listener(const zmk_event_t *eh) {
-  const struct zmk_position_state_changed *ev =
-      as_zmk_position_state_changed(eh);
-  if (ev == NULL) {
-    return ZMK_EV_EVENT_BUBBLE;
-  }
-
-  LOG_DBG("TP Position State changed: position: %d, source: %d", ev->position,
-          ev->source);
-
-  if (ev->state) {
-    k_work_cancel_delayable(&tapithium_mods_engine_data.idle_timer);
-    // Cancel on keypress
-  }
-
-  switch (test_data) {
-  case 1:
-    if (ev->state) {
-      test_data = 0;
-      tp_raise_keycode_event(LSHIFT, true);
-      return ZMK_EV_EVENT_BUBBLE;
-      // inject press shift before press
-    }
-    break;
-  case 2:
-    if (!(ev->state)) {
-      test_data = 20;
-    }
-    break;
-  case 20:
-    if (!(ev->state)) {
-      test_data = 0;
-      tp_reraise_position_event(ev);
-      tp_raise_keycode_event(LSHIFT, false);
-      return ZMK_EV_EVENT_HANDLED;
-      // Inject Release shift after release
-    }
-    break;
-  case 3:
-    if (ev->state) {
-      test_data = 0;
-      zmk_keymap_layer_activate(1);
-      // Inject moving to layer 1 before press
-    }
-    break;
-  }
-
-  return ZMK_EV_EVENT_BUBBLE;
-}
-
 static int tapithium_mods_layer_state_changed_listener(const zmk_event_t *eh);
 
 ZMK_LISTENER(behavior_tapithium_mods_layer_state_changed,
@@ -380,6 +363,10 @@ static int tapithium_mods_layer_state_changed_listener(const zmk_event_t *eh) {
 
   return ZMK_EV_EVENT_BUBBLE;
 }
+
+//
+// Define Behavior
+//
 
 #define TP_LAYER_BIT(node_id, prop, idx)                                       \
   (1U << DT_PROP_BY_IDX(node_id, prop, idx)) |
