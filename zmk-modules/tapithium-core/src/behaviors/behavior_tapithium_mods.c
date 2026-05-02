@@ -221,7 +221,7 @@ static int tp_handle_mpress() {
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
-static int tp_handle_none() {
+static int tp_handle_none() { // TODO: Param (mod_layer_index)
   // TODO
 
   if (tp_data.stage == TP_STAGE_MODS_SELECT) {
@@ -232,7 +232,7 @@ static int tp_handle_none() {
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
-static int tp_handle_next() {
+static int tp_handle_next() { // TODO: Param (mod_layer_index)
   // TODO
   const enum tp_stage old_stage = tp_data.stage;
 
@@ -265,7 +265,7 @@ static int tp_handle_next() {
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
-static int tp_handle_mod(zmk_key_t keycode) {
+static int tp_handle_mod(zmk_key_t keycode) { // TODO: Param (mod_layer_index)
   const zmk_mod_flags_t mods = tp_extract_mods(keycode);
   // TODO
   const enum tp_stage old_stage = tp_data.stage;
@@ -282,7 +282,8 @@ static int tp_handle_mod(zmk_key_t keycode) {
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
-static int tp_handle_lay(zmk_keymap_layer_index_t layer_index) {
+static int tp_handle_lay(
+    zmk_keymap_layer_index_t layer_index) { // TODO: Param (mod_layer_index)
   // TODO
   const enum tp_stage old_stage = tp_data.stage;
 
