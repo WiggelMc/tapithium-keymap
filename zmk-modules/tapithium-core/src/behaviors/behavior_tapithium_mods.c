@@ -93,16 +93,26 @@ static struct behavior_tapithium_mods_engine_data tp_data = {
 // Helpers
 //
 
-static zmk_keymap_layer_index_t tp_layer_index_from_int(const int layer_int) {
-  // TODO: Fix this when actual type of int is known
-  if (layer_int < ZMK_KEYMAP_LAYERS_LEN) {
+static inline zmk_keymap_layer_index_t
+tp_layer_index_from_int(const int layer_int) {
+  if (layer_int >= 0 && layer_int < ZMK_KEYMAP_LAYERS_LEN) {
     return (zmk_keymap_layer_index_t)layer_int;
   } else {
     return ZMK_KEYMAP_LAYER_ID_INVAL;
   }
 }
 
-static zmk_mod_flags_t tp_to_mod_flag(const zmk_key_t keycode) {
+static inline zmk_keymap_layers_state_t
+tp_layers_without(const zmk_keymap_layers_state_t layers,
+                  const zmk_keymap_layer_index_t excluded_layer) {
+  if (excluded_layer < ZMK_KEYMAP_LAYERS_LEN) {
+    return layers & ~(((zmk_keymap_layers_state_t)1U) << excluded_layer);
+  } else {
+    return layers;
+  }
+}
+
+static inline zmk_mod_flags_t tp_to_mod_flag(const zmk_key_t keycode) {
   switch (keycode) {
   case LCTRL:
     return MOD_LCTL;
@@ -125,7 +135,7 @@ static zmk_mod_flags_t tp_to_mod_flag(const zmk_key_t keycode) {
   }
 }
 
-static zmk_mod_flags_t tp_extract_mods(const zmk_key_t keycode) {
+static inline zmk_mod_flags_t tp_extract_mods(const zmk_key_t keycode) {
   const zmk_mod_flags_t mods = SELECT_MODS(keycode);
   const zmk_mod_flags_t key_mod = tp_to_mod_flag(STRIP_MODS(keycode));
   return mods | key_mod;
@@ -162,6 +172,72 @@ static int tp_raise_position_event_from_behaviour(
   struct zmk_position_state_changed_event ev = {
       .data = data, .header = {.event = &zmk_event_zmk_position_state_changed}};
   return ZMK_EVENT_RAISE_AFTER(ev, behavior_tapithium_mods);
+}
+
+static int tp_set_all_layer_states(const zmk_keymap_layers_state_t layers,
+                                   const bool state) {
+  zmk_keymap_layers_state_t bits = layers;
+  zmk_keymap_layer_index_t index = 0;
+  while (bits != 0) {
+    if (bits & ((zmk_keymap_layers_state_t)1U)) {
+      const zmk_keymap_layer_id_t id = zmk_keymap_layer_index_to_id(index);
+      if (state) {
+        zmk_keymap_layer_activate(id);
+      } else {
+        zmk_keymap_layer_deactivate(id);
+      }
+    }
+
+    bits << 1U;
+    index++;
+  }
+}
+
+static int
+tpe_select_mod_layer(const zmk_keymap_layer_index_t mod_layer_index,
+                     const struct behavior_tapithium_mods_config *config) {
+  tp_data.stage = TP_STAGE_MODS_ON;
+  if (config != NULL) {
+    tp_set_all_layer_states(
+        tp_layers_without(config->mod_layers, mod_layer_index), false);
+  }
+
+  return ZMK_BEHAVIOR_OPAQUE;
+}
+
+static int tpe_schedule_mods(const zmk_mod_flags_t mods,
+                             const enum tp_mode mode) {
+  switch (mode) {
+  case TP_MODE_ENABLE:
+    tp_data.enabled.scheduled.mods |= mods;
+    break;
+  case TP_MODE_STICKY:
+    tp_data.sticky.scheduled.mods |= mods;
+    break;
+  }
+  return ZMK_BEHAVIOR_OPAQUE;
+}
+
+static int tpe_schedule_layer(const zmk_keymap_layer_index_t layer,
+                              const enum tp_mode mode) {
+  if (layer < ZMK_KEYMAP_LAYERS_LEN) {
+    switch (mode) {
+    case TP_MODE_ENABLE: {
+      struct tp_action_props *s = &tp_data.enabled.scheduled;
+      s->layer = layer;
+      s->has_layer = true;
+      break;
+    }
+    case TP_MODE_STICKY: {
+      struct tp_action_props *s = &tp_data.sticky.scheduled;
+      s->layer = layer;
+      s->has_layer = true;
+      break;
+    }
+    }
+  }
+
+  return ZMK_BEHAVIOR_OPAQUE;
 }
 
 //
@@ -211,17 +287,12 @@ static int tp_handle_reset() {
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
-static int tp_handle_mpress() {
-  // Do nothing
-  return ZMK_BEHAVIOR_OPAQUE;
-}
+static int tp_handle_mpress() { return ZMK_BEHAVIOR_OPAQUE; }
 
 static int tp_handle_none(const zmk_keymap_layer_index_t mod_layer_index) {
-  // TODO
 
   if (tp_data.stage == TP_STAGE_MODS_SELECT) {
-    tp_data.stage = TP_STAGE_MODS_ON;
-    // Turn off all other config layers
+    tpe_select_mod_layer(mod_layer_index, tp_data.config);
   }
 
   return ZMK_BEHAVIOR_OPAQUE;
@@ -242,7 +313,7 @@ static int tp_handle_next(const zmk_keymap_layer_index_t mod_layer_index,
     case TP_STAGE_MODS_ON:
       tp_data.stage = TP_STAGE_IDLE;
       // Turn off all config layers
-      // TODO: Apply all scheduled keys
+      // Apply all scheduled keys
       break;
     }
 
@@ -263,17 +334,15 @@ static int tp_handle_next(const zmk_keymap_layer_index_t mod_layer_index,
 
 static int tp_handle_mod(const zmk_key_t keycode,
                          const zmk_keymap_layer_index_t mod_layer_index) {
-  const zmk_mod_flags_t mods = tp_extract_mods(keycode);
-  // TODO
   const enum tp_stage old_stage = tp_data.stage;
 
   if (tp_data.stage == TP_STAGE_MODS_SELECT) {
-    tp_data.stage = TP_STAGE_MODS_ON;
-    // Turn off all other config layers
+    tpe_select_mod_layer(mod_layer_index, tp_data.config);
   }
 
   if (old_stage != TP_STAGE_IDLE) {
-    // Add Mod to scheduled of current mode
+    const zmk_mod_flags_t mods = tp_extract_mods(keycode);
+    tpe_schedule_layer(mods, tp_data.mode);
   }
 
   return ZMK_BEHAVIOR_OPAQUE;
@@ -281,16 +350,14 @@ static int tp_handle_mod(const zmk_key_t keycode,
 
 static int tp_handle_lay(const zmk_keymap_layer_index_t layer_index,
                          const zmk_keymap_layer_index_t mod_layer_index) {
-  // TODO
   const enum tp_stage old_stage = tp_data.stage;
 
   if (tp_data.stage == TP_STAGE_MODS_SELECT) {
-    tp_data.stage = TP_STAGE_MODS_ON;
-    // Turn off all other config layers
+    tpe_select_mod_layer(mod_layer_index, tp_data.config);
   }
 
   if (old_stage != TP_STAGE_IDLE) {
-    // Set Lay to scheduled of current mode
+    tpe_schedule_layer(layer_index, tp_data.mode);
   }
 
   return ZMK_BEHAVIOR_OPAQUE;

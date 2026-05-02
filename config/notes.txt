@@ -31,3 +31,8 @@ const struct zmk_position_state_changed data = {
 zmk_keycode_state_changed_from_encoded
 zmk_keycode_state_changed_from_encoded(uint32_t encoded, bool pressed, int64_t timestamp)
 
+zmk_keymap_layer_deactivate
+zmk_keymap_layer_activate
+
+
+zmk_keymap_layer_index_to_id
