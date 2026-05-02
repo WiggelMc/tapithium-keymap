@@ -22,8 +22,8 @@
 #define L_NUMBER 2
 #define L_COMMAND 3
 #define L_FUNCTION 4
-#define L_NAV 5
-#define L_MAGIC 6
+#define L_MAGIC 5
+#define L_NAV 6
 
 #define L_MODS_L 7
 #define L_MODS_R 8
@@ -165,18 +165,6 @@
             >;
         };
 
-        nav_layer {
-            // format: glove80
-            bindings = <
-                &none   &none  &none  &none         &none                                                                                &none  &none  &none  &none  &none
-                &none   &none  &none  &none         &none          &none                                                          &none  &none  &none  &none  &none  &none
-                &none   &none  &none  &none         &none          &none                                                          &none  &none  &none  &none  &none  &none
-                &none   &none  &none  &rto L_MOUSE  &rto L_GAMING  &none                                                          &none  &none  &none  &none  &none  &none
-                &none   &none  &none  &none         &none          &none    &trans  &trans  &trans      &trans  &trans  &trans    &none  &none  &none  &none  &none  &none
-                &trans  &none  &none  &none         &none                   &trans  &trans  &trans      &trans  &trans  &none            &none  &none  &none  &none  &trans
-            >;
-        };
-
         magic_layer {
             // format: glove80
             bindings = <
@@ -186,6 +174,18 @@
                 &bootloader  &rgb_ug RGB_SPI  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &rgb_ug RGB_BRD  &rgb_ug RGB_EFF                                                               &none  &bt_sel 0         &bt_sel 1               &out OUT_USB      &none                 &bootloader
                 &sys_reset   &rgb_ug RGB_SPD  &none            &none            &none            &none              &trans       &trans  &trans      &trans  &trans  &trans    &none  &uc UC_SET_LINUX  &uc UC_SET_WIN_COMPOSE  &uc UC_SET_MACOS  &uc UC_SET_LINUX_ALT  &sys_reset
                 &none        &none            &none            &none            &none                               &rgb_status  &trans  &trans      &trans  &trans  &none            &uc UC_SET_EMACS  &uc UC_SET_WIN_ALT      &none             &none                 &none
+            >;
+        };
+
+        nav_layer {
+            // format: glove80
+            bindings = <
+                &none   &none  &none  &none         &none                                                                                &none  &none  &none  &none  &none
+                &none   &none  &none  &none         &none          &none                                                          &none  &none  &none  &none  &none  &none
+                &none   &none  &none  &none         &none          &none                                                          &none  &none  &none  &none  &none  &none
+                &none   &none  &none  &rto L_MOUSE  &rto L_GAMING  &none                                                          &none  &none  &none  &none  &none  &none
+                &none   &none  &none  &none         &none          &none    &trans  &trans  &trans      &trans  &trans  &trans    &none  &none  &none  &none  &none  &none
+                &trans  &none  &none  &none         &none                   &trans  &trans  &trans      &trans  &trans  &none            &none  &none  &none  &none  &trans
             >;
         };
 

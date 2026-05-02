@@ -11,7 +11,7 @@ The keyboard firmware can be built locally using `nix`, which is also used for [
 - Implement Tapithium Mods
 - Tweak Symbol Layer
 - Add Mouse Layer
-- Add Descriptions and Documentation to README 
+- Add Descriptions and Documentation to README
 
 ## Layers
 
@@ -27,14 +27,14 @@ The keyboard firmware can be built locally using `nix`, which is also used for [
 ![Number](img/glove80_number.svg)
 ![Command](img/glove80_command.svg)
 ![Function](img/glove80_function.svg)
-![Nav](img/glove80_nav.svg)
 ![Magic](img/glove80_magic.svg)
 
 ### Functional Layers
 
+![Nav](img/glove80_nav.svg)
 ![Gaming](img/glove80_gaming.svg)
 ![Mouse](img/glove80_mouse.svg)
-![Mouse](img/glove80_exit.svg)
+![Exit](img/glove80_exit.svg)
 
 ### Moergo Layers
 
