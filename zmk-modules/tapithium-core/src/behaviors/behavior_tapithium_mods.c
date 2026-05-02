@@ -93,8 +93,16 @@ static struct behavior_tapithium_mods_engine_data tp_data = {
 // Helpers
 //
 
+static void tp_clear_action_props(struct tp_action_props *props) {
+
+  props->layer = 0;
+  props->has_layer = false;
+  props->mods = 0;
+}
+
 static inline zmk_keymap_layer_index_t
 tp_layer_index_from_int(const int layer_int) {
+
   if (layer_int >= 0 && layer_int < ZMK_KEYMAP_LAYERS_LEN) {
     return (zmk_keymap_layer_index_t)layer_int;
   } else {
@@ -105,6 +113,7 @@ tp_layer_index_from_int(const int layer_int) {
 static inline zmk_keymap_layers_state_t
 tp_layers_without(const zmk_keymap_layers_state_t layers,
                   const zmk_keymap_layer_index_t excluded_layer) {
+
   if (excluded_layer < ZMK_KEYMAP_LAYERS_LEN) {
     return layers & ~(((zmk_keymap_layers_state_t)1U) << excluded_layer);
   } else {
@@ -113,6 +122,7 @@ tp_layers_without(const zmk_keymap_layers_state_t layers,
 }
 
 static inline zmk_mod_flags_t tp_to_mod_flag(const zmk_key_t keycode) {
+
   switch (keycode) {
   case LCTRL:
     return MOD_LCTL;
@@ -136,12 +146,14 @@ static inline zmk_mod_flags_t tp_to_mod_flag(const zmk_key_t keycode) {
 }
 
 static inline zmk_mod_flags_t tp_extract_mods(const zmk_key_t keycode) {
+
   const zmk_mod_flags_t mods = SELECT_MODS(keycode);
   const zmk_mod_flags_t key_mod = tp_to_mod_flag(STRIP_MODS(keycode));
   return mods | key_mod;
 }
 
 static int tp_raise_keycode_event(const zmk_key_t keycode, const bool pressed) {
+
   struct zmk_keycode_state_changed data =
       zmk_keycode_state_changed_from_encoded(keycode, pressed, k_uptime_get());
 
@@ -152,12 +164,14 @@ static int tp_raise_keycode_event(const zmk_key_t keycode, const bool pressed) {
 
 static int
 tp_reraise_position_event(const struct zmk_position_state_changed *ev) {
+
   struct zmk_position_state_changed data = {
       .source = ev->source,
       .position = ev->position,
       .state = ev->state,
       .timestamp = k_uptime_get(),
   };
+
   struct zmk_position_state_changed_event dupe_ev = {
       .data = data, .header = {.event = &zmk_event_zmk_position_state_changed}};
   return ZMK_EVENT_RAISE_AFTER(dupe_ev, behavior_tapithium_mods);
@@ -165,6 +179,7 @@ tp_reraise_position_event(const struct zmk_position_state_changed *ev) {
 
 static int tp_raise_position_event_from_behaviour(
     const struct zmk_behavior_binding_event event, const bool pressed) {
+
   struct zmk_position_state_changed data = {
       .source = tp_data.last_source,
       .position = event.position,
@@ -182,6 +197,7 @@ static int tp_raise_position_event_from_behaviour(
 
 static int tp_set_layer_state(const zmk_keymap_layer_index_t layer_index,
                               const bool state) {
+
   if (layer_index < ZMK_KEYMAP_LAYERS_LEN) {
     const zmk_keymap_layer_id_t id = zmk_keymap_layer_index_to_id(layer_index);
     if (state) {
@@ -196,8 +212,10 @@ static int tp_set_layer_state(const zmk_keymap_layer_index_t layer_index,
 
 static int tp_set_all_layer_states(const zmk_keymap_layers_state_t layers,
                                    const bool state) {
+
   zmk_keymap_layers_state_t bits = layers;
   zmk_keymap_layer_index_t index = 0;
+
   while (bits != 0) {
     if (bits & ((zmk_keymap_layers_state_t)1U)) {
       const zmk_keymap_layer_id_t id = zmk_keymap_layer_index_to_id(index);
@@ -218,7 +236,9 @@ static int tp_set_all_layer_states(const zmk_keymap_layers_state_t layers,
 static int
 tpe_select_mod_layer(const zmk_keymap_layer_index_t mod_layer_index,
                      const struct behavior_tapithium_mods_config *config) {
+
   tp_data.stage = TP_STAGE_MODS_ON;
+
   if (config != NULL) {
     tp_set_all_layer_states(
         tp_layers_without(config->mod_layers, mod_layer_index), false);
@@ -229,6 +249,7 @@ tpe_select_mod_layer(const zmk_keymap_layer_index_t mod_layer_index,
 
 static int tpe_schedule_mods(const zmk_mod_flags_t mods,
                              const enum tp_mode mode) {
+
   switch (mode) {
   case TP_MODE_ENABLE:
     tp_data.enabled.scheduled.mods |= mods;
@@ -242,6 +263,7 @@ static int tpe_schedule_mods(const zmk_mod_flags_t mods,
 
 static int tpe_schedule_layer(const zmk_keymap_layer_index_t layer,
                               const enum tp_mode mode) {
+
   if (layer < ZMK_KEYMAP_LAYERS_LEN) {
     switch (mode) {
     case TP_MODE_ENABLE: {
@@ -262,13 +284,46 @@ static int tpe_schedule_layer(const zmk_keymap_layer_index_t layer,
   return 0;
 }
 
+static int tpe_clear_scheduled() {
+
+  tp_clear_action_props(&tp_data.enabled.scheduled);
+  tp_clear_action_props(&tp_data.sticky.scheduled);
+  return 0;
+}
+
+static int tpe_apply_scheduled() {
+
+  // TODO
+  return 0;
+}
+
+static int tpe_deactivate_sticky() {
+
+  tp_data.is_sticky_pressed = false;
+  // TODO
+  return 0;
+}
+
+static int tpe_deactivate_enabled() {
+
+  // TODO
+  return 0;
+}
+
+static int tpe_deactivate_all() {
+
+  tpe_deactivate_enabled();
+  tpe_deactivate_sticky();
+  return 0;
+}
+
 //
 // Engine Handlers
 //
 
 static int tp_handle_on(const enum tp_mode mode,
                         const struct behavior_tapithium_mods_config *config) {
-  // TODO
+
   const struct behavior_tapithium_mods_config *old_cfg = tp_data.config;
   const enum tp_stage old_stage = tp_data.stage;
 
@@ -282,7 +337,7 @@ static int tp_handle_on(const enum tp_mode mode,
     }
 
     if (old_stage == TP_STAGE_IDLE) {
-      // Clean up scheduled keys
+      tpe_clear_scheduled();
     }
 
     tp_set_all_layer_states(config->mod_layers, true);
@@ -292,28 +347,28 @@ static int tp_handle_on(const enum tp_mode mode,
 }
 
 static int tp_handle_cancel() {
-  // TODO
+
   const struct behavior_tapithium_mods_config *cfg = tp_data.config;
   tp_data.stage = TP_STAGE_IDLE;
 
   if (cfg != NULL) {
     tp_set_all_layer_states(cfg->mod_layers, false);
   }
-  // Clean up scheduled keys
+  tpe_clear_scheduled();
 
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
 static int tp_handle_reset() {
-  // TODO
+
   const struct behavior_tapithium_mods_config *cfg = tp_data.config;
   tp_data.stage = TP_STAGE_IDLE;
 
   if (cfg != NULL) {
     tp_set_all_layer_states(cfg->mod_layers, false);
   }
-  // Clean up scheduled keys
-  // Clean up and Disable active keys
+  tpe_clear_scheduled();
+  tpe_deactivate_all();
 
   return ZMK_BEHAVIOR_OPAQUE;
 }
@@ -331,7 +386,7 @@ static int tp_handle_none(const zmk_keymap_layer_index_t mod_layer_index) {
 
 static int tp_handle_next(const zmk_keymap_layer_index_t mod_layer_index,
                           const struct zmk_behavior_binding_event event) {
-  // TODO
+
   const enum tp_stage old_stage = tp_data.stage;
 
   if (old_stage != TP_STAGE_IDLE) {
@@ -347,7 +402,7 @@ static int tp_handle_next(const zmk_keymap_layer_index_t mod_layer_index,
       if (cfg != NULL) {
         tp_set_all_layer_states(cfg->mod_layers, false);
       }
-      // Apply all scheduled keys
+      tpe_apply_scheduled();
     }
 
     break;
@@ -361,6 +416,7 @@ static int tp_handle_next(const zmk_keymap_layer_index_t mod_layer_index,
 
 static int tp_handle_mod(const zmk_key_t keycode,
                          const zmk_keymap_layer_index_t mod_layer_index) {
+
   const enum tp_stage old_stage = tp_data.stage;
 
   if (tp_data.stage == TP_STAGE_MODS_SELECT) {
@@ -377,6 +433,7 @@ static int tp_handle_mod(const zmk_key_t keycode,
 
 static int tp_handle_lay(const zmk_keymap_layer_index_t layer_index,
                          const zmk_keymap_layer_index_t mod_layer_index) {
+
   const enum tp_stage old_stage = tp_data.stage;
 
   if (tp_data.stage == TP_STAGE_MODS_SELECT) {
@@ -390,17 +447,23 @@ static int tp_handle_lay(const zmk_keymap_layer_index_t layer_index,
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
-static int tp_handle_release_sticky() {
-  // TODO
+static int tp_handle_sticky_intercept() {
 
   tp_data.is_sticky_pressed = false;
-  // Clean up and Disable active sticky keys
-  // // This might need to be split, as it should appear after release, but
-  // // before press
-  // // It would also need to set the event to handled via return value,
-  // // if it was raised manually (release case).
+  tpe_deactivate_sticky();
 
   return ZMK_EV_EVENT_BUBBLE;
+}
+
+static int
+tp_handle_sticky_release(const struct zmk_position_state_changed *ev) {
+
+  tp_data.is_sticky_pressed = false;
+
+  tp_reraise_position_event(ev);
+  tpe_deactivate_sticky();
+
+  return ZMK_EV_EVENT_HANDLED;
 }
 
 //
@@ -409,6 +472,7 @@ static int tp_handle_release_sticky() {
 
 static int
 tapithium_mods_position_state_changed_listener(const zmk_event_t *eh) {
+
   const struct zmk_position_state_changed *ev =
       as_zmk_position_state_changed(eh);
   if (ev == NULL) {
@@ -427,8 +491,10 @@ tapithium_mods_position_state_changed_listener(const zmk_event_t *eh) {
   if (tp_data.is_sticky_pressed) {
     const bool is_sticky_key = ev->position == tp_data.sticky_position;
 
-    if ((!is_press && is_sticky_key) || (is_press && !is_sticky_key)) {
-      return tp_handle_release_sticky();
+    if (!is_press && is_sticky_key) {
+      return tp_handle_sticky_release(ev);
+    } else if (is_press && !is_sticky_key) {
+      return tp_handle_sticky_intercept();
     }
   }
 
@@ -486,6 +552,7 @@ on_tapithium_mods_binding_pressed(struct zmk_behavior_binding *binding,
 static int
 on_tapithium_mods_binding_released(struct zmk_behavior_binding *binding,
                                    struct zmk_behavior_binding_event event) {
+
   LOG_DBG("TP Binding released: param1=%d, param2=%d, layer=%d, position=%d",
           binding->param1, binding->param2, event.layer, event.position);
 
@@ -510,6 +577,7 @@ ZMK_SUBSCRIPTION(behavior_tapithium_mods_keycode_state_changed,
 
 static int
 tapithium_mods_keycode_state_changed_listener(const zmk_event_t *eh) {
+
   const struct zmk_keycode_state_changed *ev = as_zmk_keycode_state_changed(eh);
   if (ev == NULL) {
     return ZMK_EV_EVENT_BUBBLE;
@@ -529,6 +597,7 @@ ZMK_SUBSCRIPTION(behavior_tapithium_mods_layer_state_changed,
                  zmk_layer_state_changed);
 
 static int tapithium_mods_layer_state_changed_listener(const zmk_event_t *eh) {
+
   const struct zmk_layer_state_changed *ev = as_zmk_layer_state_changed(eh);
   if (ev == NULL) {
     return ZMK_EV_EVENT_BUBBLE;
