@@ -57,7 +57,7 @@ struct behavior_tapithium_mods_config {
 };
 
 struct tp_action_props {
-  zmk_keymap_layer_index_t layer;
+  zmk_keymap_layer_id_t layer;
   bool has_layer;
   zmk_mod_flags_t mods;
 };
@@ -100,11 +100,10 @@ static void tp_clear_action_props(struct tp_action_props *props) {
   props->mods = 0;
 }
 
-static inline zmk_keymap_layer_index_t
-tp_layer_index_from_int(const int layer_int) {
+static inline zmk_keymap_layer_id_t tp_layer_id_from_int(const int layer_int) {
 
   if (layer_int >= 0 && layer_int < ZMK_KEYMAP_LAYERS_LEN) {
-    return (zmk_keymap_layer_index_t)layer_int;
+    return (zmk_keymap_layer_id_t)layer_int;
   } else {
     return ZMK_KEYMAP_LAYER_ID_INVAL;
   }
@@ -112,7 +111,7 @@ tp_layer_index_from_int(const int layer_int) {
 
 static inline zmk_keymap_layers_state_t
 tp_layers_without(const zmk_keymap_layers_state_t layers,
-                  const zmk_keymap_layer_index_t excluded_layer) {
+                  const zmk_keymap_layer_id_t excluded_layer) {
 
   if (excluded_layer < ZMK_KEYMAP_LAYERS_LEN) {
     return layers & ~(((zmk_keymap_layers_state_t)1U) << excluded_layer);
@@ -195,15 +194,14 @@ static int tp_raise_position_event_from_behaviour(
   return ZMK_EVENT_RAISE_AFTER(ev, behavior_tapithium_mods);
 }
 
-static int tp_set_layer_state(const zmk_keymap_layer_index_t layer_index,
+static int tp_set_layer_state(const zmk_keymap_layer_id_t layer,
                               const bool state) {
 
-  if (layer_index < ZMK_KEYMAP_LAYERS_LEN) {
-    const zmk_keymap_layer_id_t id = zmk_keymap_layer_index_to_id(layer_index);
+  if (layer < ZMK_KEYMAP_LAYERS_LEN) {
     if (state) {
-      zmk_keymap_layer_activate(id);
+      zmk_keymap_layer_activate(layer);
     } else {
-      zmk_keymap_layer_deactivate(id);
+      zmk_keymap_layer_deactivate(layer);
     }
   }
 
@@ -214,11 +212,10 @@ static int tp_set_all_layer_states(const zmk_keymap_layers_state_t layers,
                                    const bool state) {
 
   zmk_keymap_layers_state_t bits = layers;
-  zmk_keymap_layer_index_t index = 0;
+  zmk_keymap_layer_id_t id = 0;
 
   while (bits != 0) {
     if (bits & ((zmk_keymap_layers_state_t)1U)) {
-      const zmk_keymap_layer_id_t id = zmk_keymap_layer_index_to_id(index);
       if (state) {
         zmk_keymap_layer_activate(id);
       } else {
@@ -227,21 +224,21 @@ static int tp_set_all_layer_states(const zmk_keymap_layers_state_t layers,
     }
 
     bits >>= 1U;
-    index++;
+    id++;
   }
 
   return 0;
 }
 
 static int
-tpe_select_mod_layer(const zmk_keymap_layer_index_t mod_layer_index,
+tpe_select_mod_layer(const zmk_keymap_layer_id_t mod_layer_id,
                      const struct behavior_tapithium_mods_config *config) {
 
   tp_data.stage = TP_STAGE_MODS_ON;
 
   if (config != NULL) {
-    tp_set_all_layer_states(
-        tp_layers_without(config->mod_layers, mod_layer_index), false);
+    tp_set_all_layer_states(tp_layers_without(config->mod_layers, mod_layer_id),
+                            false);
   }
 
   return 0;
@@ -261,7 +258,7 @@ static int tpe_schedule_mods(const zmk_mod_flags_t mods,
   return 0;
 }
 
-static int tpe_schedule_layer(const zmk_keymap_layer_index_t layer,
+static int tpe_schedule_layer(const zmk_keymap_layer_id_t layer,
                               const enum tp_mode mode) {
 
   if (layer < ZMK_KEYMAP_LAYERS_LEN) {
@@ -375,16 +372,16 @@ static int tp_handle_reset() {
 
 static int tp_handle_mpress() { return ZMK_BEHAVIOR_OPAQUE; }
 
-static int tp_handle_none(const zmk_keymap_layer_index_t mod_layer_index) {
+static int tp_handle_none(const zmk_keymap_layer_id_t mod_layer_id) {
 
   if (tp_data.stage == TP_STAGE_MODS_SELECT) {
-    tpe_select_mod_layer(mod_layer_index, tp_data.config);
+    tpe_select_mod_layer(mod_layer_id, tp_data.config);
   }
 
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
-static int tp_handle_next(const zmk_keymap_layer_index_t mod_layer_index,
+static int tp_handle_next(const zmk_keymap_layer_id_t mod_layer_id,
                           const struct zmk_behavior_binding_event event) {
 
   const enum tp_stage old_stage = tp_data.stage;
@@ -394,7 +391,7 @@ static int tp_handle_next(const zmk_keymap_layer_index_t mod_layer_index,
 
     switch (old_stage) {
     case TP_STAGE_MODS_SELECT:
-      tp_set_layer_state(mod_layer_index, false);
+      tp_set_layer_state(mod_layer_id, false);
       break;
     case TP_STAGE_MODS_ON: {
       tp_data.stage = TP_STAGE_IDLE;
@@ -415,12 +412,12 @@ static int tp_handle_next(const zmk_keymap_layer_index_t mod_layer_index,
 }
 
 static int tp_handle_mod(const zmk_key_t keycode,
-                         const zmk_keymap_layer_index_t mod_layer_index) {
+                         const zmk_keymap_layer_id_t mod_layer_id) {
 
   const enum tp_stage old_stage = tp_data.stage;
 
   if (tp_data.stage == TP_STAGE_MODS_SELECT) {
-    tpe_select_mod_layer(mod_layer_index, tp_data.config);
+    tpe_select_mod_layer(mod_layer_id, tp_data.config);
   }
 
   if (old_stage != TP_STAGE_IDLE) {
@@ -431,17 +428,17 @@ static int tp_handle_mod(const zmk_key_t keycode,
   return ZMK_BEHAVIOR_OPAQUE;
 }
 
-static int tp_handle_lay(const zmk_keymap_layer_index_t layer_index,
-                         const zmk_keymap_layer_index_t mod_layer_index) {
+static int tp_handle_lay(const zmk_keymap_layer_id_t layer_id,
+                         const zmk_keymap_layer_id_t mod_layer_id) {
 
   const enum tp_stage old_stage = tp_data.stage;
 
   if (tp_data.stage == TP_STAGE_MODS_SELECT) {
-    tpe_select_mod_layer(mod_layer_index, tp_data.config);
+    tpe_select_mod_layer(mod_layer_id, tp_data.config);
   }
 
   if (old_stage != TP_STAGE_IDLE) {
-    tpe_schedule_layer(layer_index, tp_data.mode);
+    tpe_schedule_layer(layer_id, tp_data.mode);
   }
 
   return ZMK_BEHAVIOR_OPAQUE;
@@ -518,8 +515,7 @@ on_tapithium_mods_binding_pressed(struct zmk_behavior_binding *binding,
 
   const uint32_t command = binding->param1;
   const uint32_t param = binding->param2;
-  const zmk_keymap_layer_index_t mod_layer_index =
-      tp_layer_index_from_int(event.layer);
+  const zmk_keymap_layer_id_t mod_layer_id = tp_layer_id_from_int(event.layer);
 
   switch (command) {
   case TP_ENABLE_CMD:
@@ -533,14 +529,14 @@ on_tapithium_mods_binding_pressed(struct zmk_behavior_binding *binding,
   case TP_MPRESS_CMD:
     return tp_handle_mpress();
   case TP_NONE_CMD:
-    return tp_handle_none(mod_layer_index);
+    return tp_handle_none(mod_layer_id);
   case TP_NEXT_CMD:
-    return tp_handle_next(mod_layer_index, event);
+    return tp_handle_next(mod_layer_id, event);
   case TP_MOD_CMD:
-    return tp_handle_mod(param, mod_layer_index);
+    return tp_handle_mod(param, mod_layer_id);
   case TP_LAY_CMD:
     if (param < ZMK_KEYMAP_LAYERS_LEN) {
-      return tp_handle_lay((zmk_keymap_layer_index_t)param, mod_layer_index);
+      return tp_handle_lay((zmk_keymap_layer_id_t)param, mod_layer_id);
     } else {
       return ZMK_BEHAVIOR_OPAQUE;
     }
