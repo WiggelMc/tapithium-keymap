@@ -1,0 +1,22 @@
+# Copyright (c) 2026 WiggelMc
+# SPDX-License-Identifier: MIT
+
+description: Position Repeat
+
+compatible: "zmk,behavior-position-repeat"
+
+include: zero_param.yaml
+
+properties:
+  use-whitelist:
+    type: boolean
+  whitelist-handles:
+    type: phandles
+  whitelist-bindings:
+    type: phandle-array
+    specifier-space: binding
+  transparent-handles:
+    type: phandles
+  transparent-bindings:
+    type: phandle-array
+    specifier-space: binding

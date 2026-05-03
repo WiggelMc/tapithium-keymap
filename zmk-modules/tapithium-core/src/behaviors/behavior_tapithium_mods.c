@@ -13,7 +13,6 @@
 #include <zmk/behavior.h>
 #include <zmk/event_manager.h>
 #include <zmk/events/keycode_state_changed.h>
-#include <zmk/events/layer_state_changed.h>
 #include <zmk/events/position_state_changed.h>
 #include <zmk/hid.h>
 #include <zmk/keymap.h>
@@ -70,7 +69,7 @@ struct tp_action_data {
 struct behavior_tapithium_mods_engine_data {
   enum tp_stage stage;
   enum tp_mode mode;
-  struct behavior_tapithium_mods_config *config;
+  const struct behavior_tapithium_mods_config *config;
   struct tp_action_data enabled;
   struct tp_action_data sticky;
   bool is_sticky_pressed;
@@ -577,6 +576,9 @@ static int tp_handle_next(const zmk_keymap_layer_id_t mod_layer_id,
     tp_raise_position_event_from_behaviour(event, false);
 
     switch (old_stage) {
+    case TP_STAGE_IDLE:
+      // Unreachable
+      break;
     case TP_STAGE_MODS_SELECT: {
       tp_set_layer_state(mod_layer_id, false);
       const struct behavior_tapithium_mods_config *cfg = tp_data.config;

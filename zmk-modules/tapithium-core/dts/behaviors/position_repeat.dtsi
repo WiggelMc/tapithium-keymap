@@ -1,0 +1,25 @@
+/*
+ * Copyright (c) 2026 WiggelMc
+ *
+ * SPDX-License-Identifier: MIT
+ */
+
+#include <dt-bindings/zmk/behaviors.h>
+
+/ {
+    behaviors {
+#if ZMK_BEHAVIOR_OMIT(TP)
+        /omit-if-no-ref/
+#endif
+        pos_repeat: position_repeat {
+            compatible = "zmk,behavior-position-repeat";
+            #binding-cells = <0>;
+            use-whitelist;
+            whitelist-handles = <&kp>;
+            // whitelist-bindings = <>;
+            transparent-handles = <&trans>;
+            // transparent-bindings = <>;
+            display-name = "Position Repeat";
+        };
+    };
+};
