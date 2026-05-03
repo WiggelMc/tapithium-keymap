@@ -144,6 +144,34 @@ static inline zmk_mod_flags_t tp_to_mod_flag(const zmk_key_t keycode) {
   }
 }
 
+static inline zmk_key_t tp_mod_index_to_keycode(const uint8_t mod_index) {
+
+  if (mod_index >= 8) {
+    return 0;
+  }
+
+  switch (1U << mod_index) {
+  case MOD_LCTL:
+    return LCTRL;
+  case MOD_LSFT:
+    return LSHIFT;
+  case MOD_LALT:
+    return LALT;
+  case MOD_LGUI:
+    return LGUI;
+  case MOD_RCTL:
+    return RCTRL;
+  case MOD_RSFT:
+    return RSHIFT;
+  case MOD_RALT:
+    return RALT;
+  case MOD_RGUI:
+    return RGUI;
+  default:
+    return 0;
+  }
+}
+
 static inline zmk_mod_flags_t tp_extract_mods(const zmk_key_t keycode) {
 
   const zmk_mod_flags_t mods = SELECT_MODS(keycode);
@@ -159,6 +187,26 @@ static int tp_raise_keycode_event(const zmk_key_t keycode, const bool pressed) {
   struct zmk_keycode_state_changed_event ev = {
       .data = data, .header = {.event = &zmk_event_zmk_keycode_state_changed}};
   return ZMK_EVENT_RAISE(ev);
+}
+
+static int tp_raise_keycode_events_from_mods(const zmk_mod_flags_t mods,
+                                             const bool pressed) {
+
+  zmk_mod_flags_t bits = mods;
+  uint8_t mod_index = 0;
+
+  while (bits != 0) {
+    if (bits & ((zmk_mod_flags_t)1U)) {
+      const zmk_key_t keycode = tp_mod_index_to_keycode(mod_index);
+      if (keycode != 0) {
+        tp_raise_keycode_event(keycode, pressed);
+      }
+    }
+
+    bits >>= 1U;
+    mod_index++;
+  }
+  return 0;
 }
 
 static int
@@ -281,15 +329,19 @@ static int tpe_schedule_layer(const zmk_keymap_layer_id_t layer,
   if (layer < ZMK_KEYMAP_LAYERS_LEN) {
     switch (mode) {
     case TP_MODE_ENABLE: {
-      struct tp_action_props *s = &tp_data.enabled.scheduled;
-      s->layer = layer;
-      s->has_layer = true;
+      struct tp_action_props *enabled_props = &tp_data.enabled.scheduled;
+      enabled_props->layer = layer;
+      enabled_props->has_layer = true;
+
+      struct tp_action_props *sticky_props = &tp_data.sticky.scheduled;
+      sticky_props->layer = 0;
+      sticky_props->has_layer = false;
       break;
     }
     case TP_MODE_STICKY: {
-      struct tp_action_props *s = &tp_data.sticky.scheduled;
-      s->layer = layer;
-      s->has_layer = true;
+      struct tp_action_props *sticky_props = &tp_data.sticky.scheduled;
+      sticky_props->layer = layer;
+      sticky_props->has_layer = true;
       break;
     }
     }
@@ -306,7 +358,7 @@ static int tpe_release_mods(const zmk_mod_flags_t mods) {
   tp_data.enabled.active.mods &= ~release_mods;
   tp_data.sticky.active.mods &= ~release_mods;
 
-  // TODO: Release release_mods
+  tp_raise_keycode_events_from_mods(release_mods, false);
 
   return 0;
 }
@@ -327,7 +379,7 @@ static int tpe_press_mods(const zmk_mod_flags_t mods, const enum tp_mode mode) {
     return -1;
   }
 
-  // TODO: Press press_mods
+  tp_raise_keycode_events_from_mods(press_mods, true);
 
   return 0;
 }
@@ -338,8 +390,8 @@ static int tpe_apply_scheduled_mods() {
   const zmk_mod_flags_t sticky_active_mods = tp_data.sticky.active.mods;
   const zmk_mod_flags_t active_mods = enabled_active_mods | sticky_active_mods;
 
-  const zmk_mod_flags_t enabled_scheduled_mods = tp_data.enabled.active.mods;
-  const zmk_mod_flags_t sticky_scheduled_mods = tp_data.sticky.active.mods;
+  const zmk_mod_flags_t enabled_scheduled_mods = tp_data.enabled.scheduled.mods;
+  const zmk_mod_flags_t sticky_scheduled_mods = tp_data.sticky.scheduled.mods;
   const zmk_mod_flags_t scheduled_mods =
       enabled_scheduled_mods | sticky_scheduled_mods;
 
@@ -358,17 +410,26 @@ static int tpe_apply_scheduled_mods() {
 
 static int tpe_apply_scheduled_layers() {
 
-  // const tp_action_props *enabled_active_props = &tp_data.enabled.active;
-  // const tp_action_props *sticky_active_props = &tp_data.sticky.active;
+  // struct tp_action_props *enabled_active_props = &tp_data.enabled.active;
+  // struct tp_action_props *sticky_active_props = &tp_data.sticky.active;
 
-  // const tp_action_props *enabled_scheduled_props = &tp_data.enabled.scheduled;
-  // const tp_action_props *sticky_scheduled_props = &tp_data.sticky.scheduled;
+  // struct tp_action_props *enabled_scheduled_props =
+  // &tp_data.enabled.scheduled; struct tp_action_props *sticky_scheduled_props
+  // = &tp_data.sticky.scheduled;
+
+  // if (sticky_scheduled_props->has_layer) {
+
+  // } else if (enabled_scheduled_props->has_layer) {
+  // }
 
   // TODO
   return 0;
 }
 
-static int tpe_apply_scheduled() {
+static int tpe_apply_scheduled(const uint32_t position) {
+
+  tp_data.is_sticky_pressed = true;
+  tp_data.sticky_position = position;
 
   tpe_apply_scheduled_mods();
   tpe_apply_scheduled_layers();
@@ -379,11 +440,18 @@ static int tpe_apply_scheduled() {
 static int tpe_deactivate_sticky() {
 
   tp_data.is_sticky_pressed = false;
+
+  tpe_release_mods(tp_data.sticky.active.mods);
+  // Release Layers
+
   // TODO
   return 0;
 }
 
 static int tpe_deactivate_enabled() {
+
+  tpe_release_mods(tp_data.enabled.active.mods);
+  // Release Layers
 
   // TODO
   return 0;
@@ -488,7 +556,7 @@ static int tp_handle_next(const zmk_keymap_layer_id_t mod_layer_id,
       if (cfg != NULL) {
         tp_set_all_layer_states(cfg->mod_layers, false);
       }
-      tpe_apply_scheduled();
+      tpe_apply_scheduled(event.position);
     }
 
     break;
@@ -622,7 +690,7 @@ on_tapithium_mods_binding_pressed(struct zmk_behavior_binding *binding,
   case TP_NEXT_CMD:
     return tp_handle_next(mod_layer_id, event);
   case TP_MOD_CMD:
-    return tp_handle_mod(param, mod_layer_id);
+    return tp_handle_mod((zmk_key_t)param, mod_layer_id);
   case TP_LAY_CMD:
     if (param < ZMK_KEYMAP_LAYERS_LEN) {
       return tp_handle_lay((zmk_keymap_layer_id_t)param, mod_layer_id);
