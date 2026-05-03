@@ -107,7 +107,7 @@
         base_layer {
             // format: glove80
             bindings = <
-                &none         &none         &kp LSHIFT    &none         &none                                                                                                                        &none  &none  &none  &none  &none
+                &none         &none         &none         &none         &none                                                                                                                        &none  &none  &none  &none  &none
                 &none         &none         &none         &kp Q         &none         &none                                                                                                   &none  &none  &kp Z  &none  &none  &none
                 &none         &none         &kp Y         &kp O         &kp U         &none                                                                                                   &kp X  &kp L  &kp D  &kp P  &none  &none
                 &kp B         &kp C         &kp I         &kp A         &kp E         &tp TP_MP                                                                                               &kp K  &kp H  &kp T  &kp N  &kp S  &kp W
