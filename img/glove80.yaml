@@ -53,12 +53,12 @@ layers:
   - Ö
   - Ü
   - ''
-  - Repeat
+  - '&pos_repeat'
   - $$mdi:backspace-reverse-outline$$
   - ''
   - ''
   - $$mdi:backspace$$
-  - Repeat
+  - '&pos_repeat'
   - ''
   - M
   - G
