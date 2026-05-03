@@ -194,6 +194,11 @@ static int tp_raise_position_event_from_behaviour(
   return ZMK_EVENT_RAISE_AFTER(ev, behavior_tapithium_mods);
 }
 
+static bool tp_is_any_layer_active(const zmk_keymap_layers_state_t layers) {
+  const zmk_keymap_layers_state_t state = zmk_keymap_layer_state();
+  return (state & layers) != 0;
+}
+
 static int tp_set_layer_state(const zmk_keymap_layer_id_t layer,
                               const bool state) {
 
@@ -230,6 +235,13 @@ static int tp_set_all_layer_states(const zmk_keymap_layers_state_t layers,
   return 0;
 }
 
+static int tpe_clear_scheduled() {
+
+  tp_clear_action_props(&tp_data.enabled.scheduled);
+  tp_clear_action_props(&tp_data.sticky.scheduled);
+  return 0;
+}
+
 static int
 tpe_select_mod_layer(const zmk_keymap_layer_id_t mod_layer_id,
                      const struct behavior_tapithium_mods_config *config) {
@@ -239,6 +251,11 @@ tpe_select_mod_layer(const zmk_keymap_layer_id_t mod_layer_id,
   if (config != NULL) {
     tp_set_all_layer_states(tp_layers_without(config->mod_layers, mod_layer_id),
                             false);
+
+    if (!tp_is_any_layer_active(config->mod_layers)) {
+      tp_data.stage = TP_STAGE_IDLE;
+      tpe_clear_scheduled();
+    }
   }
 
   return 0;
@@ -281,16 +298,81 @@ static int tpe_schedule_layer(const zmk_keymap_layer_id_t layer,
   return 0;
 }
 
-static int tpe_clear_scheduled() {
+static int tpe_release_mods(const zmk_mod_flags_t mods) {
+  const zmk_mod_flags_t active_mods =
+      tp_data.enabled.active.mods | tp_data.sticky.active.mods;
+  const zmk_mod_flags_t release_mods = mods & active_mods;
 
-  tp_clear_action_props(&tp_data.enabled.scheduled);
-  tp_clear_action_props(&tp_data.sticky.scheduled);
+  tp_data.enabled.active.mods &= ~release_mods;
+  tp_data.sticky.active.mods &= ~release_mods;
+
+  // TODO: Release release_mods
+
+  return 0;
+}
+
+static int tpe_press_mods(const zmk_mod_flags_t mods, const enum tp_mode mode) {
+  const zmk_mod_flags_t active_mods =
+      tp_data.enabled.active.mods | tp_data.sticky.active.mods;
+  const zmk_mod_flags_t press_mods = mods & ~active_mods;
+
+  switch (mode) {
+  case TP_MODE_ENABLE:
+    tp_data.enabled.active.mods |= press_mods;
+    break;
+  case TP_MODE_STICKY:
+    tp_data.sticky.active.mods |= press_mods;
+    break;
+  default:
+    return -1;
+  }
+
+  // TODO: Press press_mods
+
+  return 0;
+}
+
+static int tpe_apply_scheduled_mods() {
+
+  const zmk_mod_flags_t enabled_active_mods = tp_data.enabled.active.mods;
+  const zmk_mod_flags_t sticky_active_mods = tp_data.sticky.active.mods;
+  const zmk_mod_flags_t active_mods = enabled_active_mods | sticky_active_mods;
+
+  const zmk_mod_flags_t enabled_scheduled_mods = tp_data.enabled.active.mods;
+  const zmk_mod_flags_t sticky_scheduled_mods = tp_data.sticky.active.mods;
+  const zmk_mod_flags_t scheduled_mods =
+      enabled_scheduled_mods | sticky_scheduled_mods;
+
+  const zmk_mod_flags_t retrigger_mods = active_mods & scheduled_mods;
+  const zmk_mod_flags_t trigger_enabled_mods =
+      enabled_scheduled_mods | (retrigger_mods & enabled_active_mods);
+  const zmk_mod_flags_t trigger_sticky_mods =
+      sticky_scheduled_mods & ~trigger_enabled_mods;
+
+  tpe_release_mods(retrigger_mods);
+  tpe_press_mods(trigger_enabled_mods, TP_MODE_ENABLE);
+  tpe_press_mods(trigger_sticky_mods, TP_MODE_STICKY);
+
+  return 0;
+}
+
+static int tpe_apply_scheduled_layers() {
+
+  // const tp_action_props *enabled_active_props = &tp_data.enabled.active;
+  // const tp_action_props *sticky_active_props = &tp_data.sticky.active;
+
+  // const tp_action_props *enabled_scheduled_props = &tp_data.enabled.scheduled;
+  // const tp_action_props *sticky_scheduled_props = &tp_data.sticky.scheduled;
+
+  // TODO
   return 0;
 }
 
 static int tpe_apply_scheduled() {
 
-  // TODO
+  tpe_apply_scheduled_mods();
+  tpe_apply_scheduled_layers();
+
   return 0;
 }
 
@@ -390,9 +472,16 @@ static int tp_handle_next(const zmk_keymap_layer_id_t mod_layer_id,
     tp_raise_position_event_from_behaviour(event, false);
 
     switch (old_stage) {
-    case TP_STAGE_MODS_SELECT:
+    case TP_STAGE_MODS_SELECT: {
       tp_set_layer_state(mod_layer_id, false);
+      const struct behavior_tapithium_mods_config *cfg = tp_data.config;
+
+      if (cfg != NULL && !tp_is_any_layer_active(cfg->mod_layers)) {
+        tp_data.stage = TP_STAGE_IDLE;
+        tpe_clear_scheduled();
+      }
       break;
+    }
     case TP_STAGE_MODS_ON: {
       tp_data.stage = TP_STAGE_IDLE;
       const struct behavior_tapithium_mods_config *cfg = tp_data.config;
