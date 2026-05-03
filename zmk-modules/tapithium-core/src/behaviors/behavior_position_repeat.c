@@ -47,7 +47,7 @@ struct behavior_position_repeat_engine_data {};
 static struct behavior_position_repeat_engine_data pr_data = {
 
 };
-static int pr_fields[PR_HOLD_QUEUE_SIZE] = {};
+
 //
 // Zmk Handlers
 //

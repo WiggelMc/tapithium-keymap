@@ -15,9 +15,7 @@ config ZMK_BEHAVIOR_POSITION_REPEAT
 if ZMK_BEHAVIOR_POSITION_REPEAT
 
 config ZMK_BEHAVIOR_POSITION_REPEAT_MAX_BINDINGS_HELD
-    int
-    help "Number of instances of the binding key that can be held, without the binding being ignored."
+    int "Number of instances of the binding key that can be held, without the binding being ignored."
     default 10
-
 
 endif #ZMK_BEHAVIOR_POSITION_REPEAT
