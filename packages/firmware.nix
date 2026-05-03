@@ -13,7 +13,7 @@ let
     zmk-mod-unicode
   ];
   snippets = [
-    "zmk-usb-logging"
+    # "zmk-usb-logging"
   ];
 
   left = firmware.zmk.override {

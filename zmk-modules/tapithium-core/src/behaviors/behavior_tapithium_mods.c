@@ -410,19 +410,37 @@ static int tpe_apply_scheduled_mods() {
 
 static int tpe_apply_scheduled_layers() {
 
-  // struct tp_action_props *enabled_active_props = &tp_data.enabled.active;
-  // struct tp_action_props *sticky_active_props = &tp_data.sticky.active;
+  struct tp_action_props *enabled_active_props = &tp_data.enabled.active;
+  struct tp_action_props *sticky_active_props = &tp_data.sticky.active;
 
-  // struct tp_action_props *enabled_scheduled_props =
-  // &tp_data.enabled.scheduled; struct tp_action_props *sticky_scheduled_props
-  // = &tp_data.sticky.scheduled;
+  struct tp_action_props *enabled_scheduled_props = &tp_data.enabled.scheduled;
+  struct tp_action_props *sticky_scheduled_props = &tp_data.sticky.scheduled;
 
-  // if (sticky_scheduled_props->has_layer) {
+  if (!sticky_scheduled_props->has_layer &&
+      !enabled_scheduled_props->has_layer) {
+    return 0;
+  }
 
-  // } else if (enabled_scheduled_props->has_layer) {
-  // }
+  if (sticky_active_props->has_layer) {
+    tp_set_layer_state(sticky_active_props->layer, false);
+  }
+  if (enabled_active_props->has_layer) {
+    tp_set_layer_state(enabled_active_props->layer, false);
+  }
 
-  // TODO
+  if (sticky_scheduled_props->has_layer) {
+    tp_set_layer_state(sticky_scheduled_props->layer, true);
+    sticky_active_props->layer = sticky_scheduled_props->layer;
+    sticky_active_props->has_layer = true;
+  } else if (enabled_scheduled_props->has_layer) {
+    tp_set_layer_state(enabled_scheduled_props->layer, true);
+  }
+
+  if (enabled_scheduled_props->has_layer) {
+    enabled_active_props->layer = enabled_scheduled_props->layer;
+    enabled_active_props->has_layer = true;
+  }
+
   return 0;
 }
 
@@ -434,6 +452,8 @@ static int tpe_apply_scheduled(const uint32_t position) {
   tpe_apply_scheduled_mods();
   tpe_apply_scheduled_layers();
 
+  tpe_clear_scheduled();
+
   return 0;
 }
 
@@ -442,18 +462,35 @@ static int tpe_deactivate_sticky() {
   tp_data.is_sticky_pressed = false;
 
   tpe_release_mods(tp_data.sticky.active.mods);
-  // Release Layers
 
-  // TODO
+  struct tp_action_props *enabled_active_props = &tp_data.enabled.active;
+  struct tp_action_props *sticky_active_props = &tp_data.sticky.active;
+
+  if (sticky_active_props->has_layer) {
+    tp_set_layer_state(sticky_active_props->layer, false);
+    sticky_active_props->layer = 0;
+    sticky_active_props->has_layer = false;
+
+    if (enabled_active_props->has_layer) {
+      tp_set_layer_state(enabled_active_props->layer, true);
+    }
+  }
+
   return 0;
 }
 
 static int tpe_deactivate_enabled() {
 
   tpe_release_mods(tp_data.enabled.active.mods);
-  // Release Layers
 
-  // TODO
+  struct tp_action_props *enabled_active_props = &tp_data.enabled.active;
+
+  if (enabled_active_props->has_layer) {
+    tp_set_layer_state(enabled_active_props->layer, false);
+    enabled_active_props->layer = 0;
+    enabled_active_props->has_layer = false;
+  }
+
   return 0;
 }
 
@@ -716,50 +753,6 @@ static const struct behavior_driver_api tapithium_mods_driver_api = {
     .binding_pressed = on_tapithium_mods_binding_pressed,
     .binding_released = on_tapithium_mods_binding_released,
 };
-
-//
-// Logging
-//
-
-static int tapithium_mods_keycode_state_changed_listener(const zmk_event_t *eh);
-
-ZMK_LISTENER(behavior_tapithium_mods_keycode_state_changed,
-             tapithium_mods_keycode_state_changed_listener);
-ZMK_SUBSCRIPTION(behavior_tapithium_mods_keycode_state_changed,
-                 zmk_keycode_state_changed);
-
-static int
-tapithium_mods_keycode_state_changed_listener(const zmk_event_t *eh) {
-
-  const struct zmk_keycode_state_changed *ev = as_zmk_keycode_state_changed(eh);
-  if (ev == NULL) {
-    return ZMK_EV_EVENT_BUBBLE;
-  }
-
-  LOG_DBG("TP Keycode State changed: keycode: %d, state: %d", ev->keycode,
-          ev->state);
-
-  return ZMK_EV_EVENT_BUBBLE;
-}
-
-static int tapithium_mods_layer_state_changed_listener(const zmk_event_t *eh);
-
-ZMK_LISTENER(behavior_tapithium_mods_layer_state_changed,
-             tapithium_mods_layer_state_changed_listener);
-ZMK_SUBSCRIPTION(behavior_tapithium_mods_layer_state_changed,
-                 zmk_layer_state_changed);
-
-static int tapithium_mods_layer_state_changed_listener(const zmk_event_t *eh) {
-
-  const struct zmk_layer_state_changed *ev = as_zmk_layer_state_changed(eh);
-  if (ev == NULL) {
-    return ZMK_EV_EVENT_BUBBLE;
-  }
-
-  LOG_DBG("TP Layer State changed");
-
-  return ZMK_EV_EVENT_BUBBLE;
-}
 
 //
 // Define Behavior
