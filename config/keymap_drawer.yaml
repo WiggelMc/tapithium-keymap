@@ -145,7 +145,8 @@ parse_config:
 
   raw_binding_map:
     # Custom behavior
-    "&key_repeat": "Repeat"
+    "&key_repeat": "KC Repeat"
+    "&pos_repeat": "Repeat"
     "&uc UC_DE_AE": "Ä"
     "&uc UC_DE_OE": "Ö"
     "&uc UC_DE_UE": "Ü"
