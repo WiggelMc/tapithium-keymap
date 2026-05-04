@@ -60,7 +60,7 @@
     whitelist-handles = <>;
     whitelist-bindings = <&kp E &kp A &uc UC_DE_AE>;
     transparent-handles = <&trans>;
-    // transparent-bindings = <>;
+    transparent-bindings = <&none>;
 };
 
 &sl {

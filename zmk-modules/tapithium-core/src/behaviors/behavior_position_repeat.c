@@ -38,9 +38,25 @@ ZMK_SUBSCRIPTION(behavior_position_repeat, zmk_position_state_changed);
 // Types
 //
 
-#define PR_HOLD_QUEUE_SIZE CONFIG_ZMK_BEHAVIOR_POSITION_REPEAT_MAX_BINDINGS_HELD
+#define PR_HOLD_LIST_SIZE CONFIG_ZMK_BEHAVIOR_POSITION_REPEAT_MAX_BINDINGS_HELD
+#define PR_POS_BUFFER_SIZE                                                     \
+  CONFIG_ZMK_BEHAVIOR_POSITION_REPEAT_POSITION_BUFFER_SIZE
 
-struct behavior_position_repeat_config {};
+struct pr_bindings_filter {
+  int count;
+  struct zmk_behavior_binding items[];
+};
+
+struct pr_filter {
+  int handles;
+  struct pr_bindings_filter *bindings;
+};
+
+struct behavior_position_repeat_config {
+  bool use_whitelist;
+  struct pr_filter whitelist;
+  struct pr_filter transparent;
+};
 
 struct behavior_position_repeat_engine_data {};
 
@@ -104,9 +120,49 @@ static const struct behavior_driver_api position_repeat_driver_api = {
 // Define Behavior
 //
 
+#define PR_EXTRACT_BINDING(idx, drv_inst, prop)                                \
+  {                                                                            \
+      .behavior_dev = DEVICE_DT_NAME(DT_PHANDLE_BY_IDX(drv_inst, prop, idx)),  \
+      .param1 =                                                                \
+          COND_CODE_0(DT_PHA_HAS_CELL_AT_IDX(drv_inst, prop, idx, param1),     \
+                      (0), (DT_PHA_BY_IDX(drv_inst, prop, idx, param1))),      \
+      .param2 =                                                                \
+          COND_CODE_0(DT_PHA_HAS_CELL_AT_IDX(drv_inst, prop, idx, param2),     \
+                      (0), (DT_PHA_BY_IDX(drv_inst, prop, idx, param2))),      \
+  }
+
+#define PR_EXTRACT_BINDINGS(n, prop)                                           \
+  {LISTIFY(DT_INST_PROP_LEN_OR(n, prop, 0), PR_EXTRACT_BINDING, (, ),          \
+           DT_DRV_INST(n), prop)}
+
+#define PR_EXTRACT_BINDINGS_LEN(n, prop) DT_INST_PROP_LEN_OR(n, prop, 0)
+
 #define POSITION_REPEAT_INST(n)                                                \
-  static struct behavior_position_repeat_config position_repeat_config_##n =   \
-      {};                                                                      \
+  static struct pr_bindings_filter                                             \
+      position_repeat_config_bindings_whitelist_##n = {                        \
+          .count = PR_EXTRACT_BINDINGS_LEN(n, whitelist_bindings),             \
+          .items = PR_EXTRACT_BINDINGS(n, whitelist_bindings),                 \
+  };                                                                           \
+                                                                               \
+  static struct pr_bindings_filter                                             \
+      position_repeat_config_bindings_transparent_##n = {                      \
+          .count = PR_EXTRACT_BINDINGS_LEN(n, transparent_bindings),           \
+          .items = PR_EXTRACT_BINDINGS(n, transparent_bindings),               \
+  };                                                                           \
+                                                                               \
+  static struct behavior_position_repeat_config position_repeat_config_##n = { \
+      .use_whitelist = true,                                                   \
+      .whitelist =                                                             \
+          {                                                                    \
+              .handles = 0,                                                    \
+              .bindings = &position_repeat_config_bindings_whitelist_##n,      \
+          },                                                                   \
+      .transparent =                                                           \
+          {                                                                    \
+              .handles = 0,                                                    \
+              .bindings = &position_repeat_config_bindings_transparent_##n,    \
+          },                                                                   \
+  };                                                                           \
                                                                                \
   BEHAVIOR_DT_INST_DEFINE(                                                     \
       n, /* Instance Number (Automatically populated by macro) */              \
