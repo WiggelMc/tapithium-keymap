@@ -15,9 +15,9 @@
             compatible = "zmk,behavior-position-repeat";
             #binding-cells = <0>;
             use-whitelist;
-            whitelist-handles = <&kp>;
+            whitelist-phandles = <&kp>;
             // whitelist-bindings = <>;
-            transparent-handles = <&trans>;
+            transparent-phandles = <&trans>;
             // transparent-bindings = <>;
             display-name = "Position Repeat";
         };

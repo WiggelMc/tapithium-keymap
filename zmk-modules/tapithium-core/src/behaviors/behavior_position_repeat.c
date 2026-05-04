@@ -42,13 +42,28 @@ ZMK_SUBSCRIPTION(behavior_position_repeat, zmk_position_state_changed);
 #define PR_POS_BUFFER_SIZE                                                     \
   CONFIG_ZMK_BEHAVIOR_POSITION_REPEAT_POSITION_BUFFER_SIZE
 
+struct pr_phandles_filter_item {
+  const struct device *dev;
+  const char *behavior_dev;
+};
+
+struct pr_phandles_filter {
+  int count;
+  struct pr_phandles_filter_item items[];
+};
+
+struct pr_bindings_filter_item {
+  const struct device *dev;
+  struct zmk_behavior_binding binding;
+};
+
 struct pr_bindings_filter {
   int count;
-  struct zmk_behavior_binding items[];
+  struct pr_bindings_filter_item items[];
 };
 
 struct pr_filter {
-  int handles;
+  struct pr_phandles_filter *handles;
   struct pr_bindings_filter *bindings;
 };
 
@@ -84,6 +99,9 @@ position_repeat_position_state_changed_listener(const zmk_event_t *eh) {
 }
 
 static int position_repeat_init(const struct device *dev) {
+
+  
+
   LOG_DBG("PR Initialized");
   return 0;
 };
@@ -120,7 +138,23 @@ static const struct behavior_driver_api position_repeat_driver_api = {
 // Define Behavior
 //
 
-#define PR_EXTRACT_BINDING(idx, drv_inst, prop)                                \
+#define PR_EXTRACT_PHANDLE(idx, drv_inst, prop)                                \
+  {                                                                            \
+      .dev = NULL,                                                             \
+      .behavior_dev = DEVICE_DT_NAME(DT_PHANDLE_BY_IDX(drv_inst, prop, idx)),  \
+  }
+
+#define PR_EXTRACT_PHANDLE_ARR(n, prop)                                        \
+  {LISTIFY(DT_INST_PROP_LEN_OR(n, prop, 0), PR_EXTRACT_PHANDLE, (, ),          \
+           DT_DRV_INST(n), prop)}
+
+#define PR_EXTRACT_PHANDLES(n, prop)                                           \
+  {                                                                            \
+      .count = DT_INST_PROP_LEN_OR(n, prop, 0),                                \
+      .items = PR_EXTRACT_PHANDLE_ARR(n, prop),                                \
+  }
+
+#define PR_EXTRACT_ZMK_BINDING(idx, drv_inst, prop)                            \
   {                                                                            \
       .behavior_dev = DEVICE_DT_NAME(DT_PHANDLE_BY_IDX(drv_inst, prop, idx)),  \
       .param1 =                                                                \
@@ -131,20 +165,34 @@ static const struct behavior_driver_api position_repeat_driver_api = {
                       (0), (DT_PHA_BY_IDX(drv_inst, prop, idx, param2))),      \
   }
 
-#define PR_EXTRACT_BINDINGS_ARR(n, prop)                                       \
+#define PR_EXTRACT_BINDING(idx, drv_inst, prop)                                \
+  {                                                                            \
+      .dev = NULL,                                                             \
+      .binding = PR_EXTRACT_ZMK_BINDING(idx, drv_inst, prop),                  \
+  }
+
+#define PR_EXTRACT_BINDING_ARR(n, prop)                                        \
   {LISTIFY(DT_INST_PROP_LEN_OR(n, prop, 0), PR_EXTRACT_BINDING, (, ),          \
            DT_DRV_INST(n), prop)}
 
 #define PR_EXTRACT_BINDINGS(n, prop)                                           \
   {                                                                            \
       .count = DT_INST_PROP_LEN_OR(n, prop, 0),                                \
-      .items = PR_EXTRACT_BINDINGS_ARR(n, prop),                               \
+      .items = PR_EXTRACT_BINDING_ARR(n, prop),                                \
   }
 
 #define POSITION_REPEAT_INST(n)                                                \
+  static struct pr_phandles_filter                                             \
+      position_repeat_config_phandles_whitelist_##n =                          \
+          PR_EXTRACT_PHANDLES(n, whitelist_phandles);                          \
+                                                                               \
   static struct pr_bindings_filter                                             \
       position_repeat_config_bindings_whitelist_##n =                          \
           PR_EXTRACT_BINDINGS(n, whitelist_bindings);                          \
+                                                                               \
+  static struct pr_phandles_filter                                             \
+      position_repeat_config_phandles_transparent_##n =                        \
+          PR_EXTRACT_PHANDLES(n, transparent_phandles);                        \
                                                                                \
   static struct pr_bindings_filter                                             \
       position_repeat_config_bindings_transparent_##n =                        \
@@ -154,12 +202,12 @@ static const struct behavior_driver_api position_repeat_driver_api = {
       .use_whitelist = true,                                                   \
       .whitelist =                                                             \
           {                                                                    \
-              .handles = 0,                                                    \
+              .handles = &position_repeat_config_phandles_whitelist_##n,       \
               .bindings = &position_repeat_config_bindings_whitelist_##n,      \
           },                                                                   \
       .transparent =                                                           \
           {                                                                    \
-              .handles = 0,                                                    \
+              .handles = &position_repeat_config_phandles_transparent_##n,     \
               .bindings = &position_repeat_config_bindings_transparent_##n,    \
           },                                                                   \
   };                                                                           \
