@@ -14,12 +14,12 @@ config ZMK_BEHAVIOR_POSITION_REPEAT
 
 if ZMK_BEHAVIOR_POSITION_REPEAT
 
-config ZMK_BEHAVIOR_POSITION_REPEAT_MAX_BINDINGS_HELD
-    int "Number of instances of the binding key that can be held, without the binding being ignored."
-    default 10
-
 config ZMK_BEHAVIOR_POSITION_REPEAT_POSITION_BUFFER_SIZE
     int "Number of positions held in the buffer. Only the latest non-repeat key position is relevant."
+    default 10
+
+config ZMK_BEHAVIOR_POSITION_REPEAT_MAX_BINDINGS_HELD
+    int "Number of instances of the binding key that can be held, without the binding being ignored."
     default 10
 
 endif #ZMK_BEHAVIOR_POSITION_REPEAT

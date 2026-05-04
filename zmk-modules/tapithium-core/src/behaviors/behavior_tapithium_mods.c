@@ -223,7 +223,7 @@ tp_reraise_position_event(const struct zmk_position_state_changed *ev) {
   return ZMK_EVENT_RAISE_AFTER(dupe_ev, behavior_tapithium_mods);
 }
 
-static int tp_raise_position_event_from_behaviour(
+static int tp_raise_position_event_from_behavior(
     const struct zmk_behavior_binding_event event, const bool pressed) {
 
   struct zmk_position_state_changed data = {
@@ -573,7 +573,7 @@ static int tp_handle_next(const zmk_keymap_layer_id_t mod_layer_id,
   const enum tp_stage old_stage = tp_data.stage;
 
   if (old_stage != TP_STAGE_IDLE) {
-    tp_raise_position_event_from_behaviour(event, false);
+    tp_raise_position_event_from_behavior(event, false);
 
     switch (old_stage) {
     case TP_STAGE_IDLE:
@@ -601,7 +601,7 @@ static int tp_handle_next(const zmk_keymap_layer_id_t mod_layer_id,
     break;
     }
 
-    tp_raise_position_event_from_behaviour(event, true);
+    tp_raise_position_event_from_behavior(event, true);
   }
 
   return ZMK_BEHAVIOR_OPAQUE;

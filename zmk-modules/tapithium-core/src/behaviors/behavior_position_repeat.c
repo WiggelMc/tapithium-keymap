@@ -38,9 +38,25 @@ ZMK_SUBSCRIPTION(behavior_position_repeat, zmk_position_state_changed);
 // Types
 //
 
-#define PR_HOLD_LIST_SIZE CONFIG_ZMK_BEHAVIOR_POSITION_REPEAT_MAX_BINDINGS_HELD
 #define PR_POS_BUFFER_SIZE                                                     \
   CONFIG_ZMK_BEHAVIOR_POSITION_REPEAT_POSITION_BUFFER_SIZE
+#define PR_HOLD_LIST_SIZE CONFIG_ZMK_BEHAVIOR_POSITION_REPEAT_MAX_BINDINGS_HELD
+
+struct pr_position_buffer {
+  size_t count;
+  size_t last_index;
+  uint32_t items[PR_POS_BUFFER_SIZE];
+};
+
+struct pr_hold_list_item {
+  uint32_t position;
+  struct zmk_behavior_binding binding;
+};
+
+struct pr_hold_list {
+  int count;
+  struct pr_hold_list_item items[PR_HOLD_LIST_SIZE];
+};
 
 struct pr_phandles_filter_item {
   const struct device *dev;
@@ -78,17 +94,77 @@ struct behavior_position_repeat_data {
 };
 
 struct behavior_position_repeat_engine_data {
-  int position_buffer; // TODO
-  int hold_list;       // TODO
+  struct pr_position_buffer position_buffer;
+  struct pr_hold_list hold_list;
 };
 
 static struct behavior_position_repeat_engine_data pr_data = {
-
+    .position_buffer = {0},
+    .hold_list = {0},
 };
 
 //
 // Helpers
 //
+
+static void pr_pos_buffer_push(struct pr_position_buffer *buffer,
+                               const uint32_t position) {
+
+  const size_t next_index = (buffer->last_index + 1) % PR_POS_BUFFER_SIZE;
+  const size_t new_count = buffer->count + 1;
+
+  buffer->items[next_index] = position;
+  buffer->last_index = next_index;
+
+  if (new_count <= PR_POS_BUFFER_SIZE) {
+    buffer->count = new_count;
+  }
+}
+
+static void pr_pos_buffer_remove_trailing(struct pr_position_buffer *buffer,
+                                          const uint32_t position) {
+
+  while (buffer->count != 0) {
+    const uint32_t last = buffer->items[buffer->last_index];
+
+    if (last != position) {
+      return;
+    }
+
+    const size_t new_count = buffer->count - 1;
+    const size_t new_index =
+        (buffer->last_index + PR_POS_BUFFER_SIZE - 1) % PR_POS_BUFFER_SIZE;
+
+    buffer->count = new_count;
+    buffer->last_index = new_index;
+  }
+}
+
+static bool pr_pos_buffer_get_last(const struct pr_position_buffer *buffer,
+                                   uint32_t *out_position) {
+
+  if (buffer->count == 0) {
+    return false;
+  }
+
+  *out_position = buffer->items[buffer->last_index];
+  return true;
+}
+
+static bool pr_hold_list_push(struct pr_hold_list *list,
+                              const uint32_t position,
+                              const struct zmk_behavior_binding binding) {
+
+  // TODO
+  return false;
+}
+static bool pr_hold_list_pop_from(struct pr_hold_list *list,
+                                  const uint32_t position,
+                                  struct zmk_behavior_binding *out_binding) {
+
+  // TODO
+  return false;
+}
 
 static bool pr_match_filter(const struct zmk_behavior_binding *binding,
                             const struct pr_filter *filter) {
@@ -119,34 +195,7 @@ static bool pr_match_filter(const struct zmk_behavior_binding *binding,
   return false;
 }
 
-static const struct zmk_behavior_binding *
-pre_get_binding(const uint32_t position,
-                const struct pr_filter *transparent_filter) {
-
-  // TODO
-  return NULL;
-}
-
-//
-// Zmk Handlers
-//
-
-static int
-position_repeat_position_state_changed_listener(const zmk_event_t *eh) {
-
-  const struct zmk_position_state_changed *ev =
-      as_zmk_position_state_changed(eh);
-  if (ev == NULL) {
-    return ZMK_EV_EVENT_BUBBLE;
-  }
-
-  LOG_DBG("PR Position State changed: position: %d, source: %d", ev->position,
-          ev->source);
-
-  return ZMK_EV_EVENT_BUBBLE;
-}
-
-static void pr_init_filter(struct pr_filter *filter) {
+static void pre_init_filter(struct pr_filter *filter) {
 
   struct pr_phandles_filter *phandles_filter = filter->phandles;
   for (size_t i = 0; i < phandles_filter->count; i++) {
@@ -167,13 +216,75 @@ static void pr_init_filter(struct pr_filter *filter) {
   }
 }
 
+static bool pre_get_binding(const uint32_t position,
+                            const struct pr_filter *transparent_filter,
+                            struct zmk_behavior_binding *out_binding) {
+
+  // TODO
+  return false;
+}
+
+static bool pre_press_binding(const uint32_t position,
+                              const struct zmk_behavior_binding binding) {
+
+  const bool can_press =
+      pr_hold_list_push(&pr_data.hold_list, position, binding);
+
+  if (!can_press) {
+    return false;
+  }
+
+  // TODO: Raise Binding press event
+
+  return true;
+}
+
+static bool pre_release_binding(const uint32_t position) {
+
+  struct zmk_behavior_binding binding;
+
+  const bool has_binding =
+      pr_hold_list_pop_from(&pr_data.hold_list, position, &binding);
+
+  if (!has_binding) {
+    return false;
+  }
+
+  // TODO: Raise Binding release event
+
+  return true;
+}
+
+//
+// Zmk Handlers
+//
+
+static int
+position_repeat_position_state_changed_listener(const zmk_event_t *eh) {
+
+  const struct zmk_position_state_changed *ev =
+      as_zmk_position_state_changed(eh);
+  if (ev == NULL) {
+    return ZMK_EV_EVENT_BUBBLE;
+  }
+
+  LOG_DBG("PR Position State changed: position: %d, source: %d", ev->position,
+          ev->source);
+
+  if (ev->state) {
+    pr_pos_buffer_push(&pr_data.position_buffer, ev->position);
+  }
+
+  return ZMK_EV_EVENT_BUBBLE;
+}
+
 static int position_repeat_init(const struct device *dev) {
 
   struct behavior_position_repeat_data *data = dev->data;
   struct pr_filter_settings *filter_settings = data->filter_settings;
 
-  pr_init_filter(&filter_settings->whitelist);
-  pr_init_filter(&filter_settings->transparent);
+  pre_init_filter(&filter_settings->whitelist);
+  pre_init_filter(&filter_settings->transparent);
 
   LOG_DBG("PR Initialized");
   return 0;
@@ -184,10 +295,37 @@ on_position_repeat_binding_pressed(struct zmk_behavior_binding *binding,
                                    struct zmk_behavior_binding_event event) {
 
   const struct device *dev = zmk_behavior_get_binding(binding->behavior_dev);
-  const struct behavior_position_repeat_config *cfg = dev->config;
+  const struct behavior_position_repeat_data *data = dev->data;
+  const struct pr_filter_settings *filter_settings = data->filter_settings;
 
   LOG_DBG("PR Binding pressed: param1=%d, param2=%d, layer=%d, position=%d",
           binding->param1, binding->param2, event.layer, event.position);
+
+  const uint32_t position = event.position;
+
+  pr_pos_buffer_remove_trailing(&pr_data.position_buffer, position);
+
+  uint32_t repeat_position;
+  const bool has_repeat_position =
+      pr_pos_buffer_get_last(&pr_data.position_buffer, &repeat_position);
+
+  if (!has_repeat_position) {
+    return ZMK_BEHAVIOR_OPAQUE;
+  }
+
+  struct zmk_behavior_binding repeat_binding;
+  const bool has_repeat_binding = pre_get_binding(
+      repeat_position, &filter_settings->transparent, &repeat_binding);
+
+  if (!has_repeat_binding) {
+    return ZMK_BEHAVIOR_OPAQUE;
+  }
+
+  if (zmk_behavior_get_binding(repeat_binding.behavior_dev) == dev) {
+    return ZMK_BEHAVIOR_OPAQUE;
+  }
+
+  pre_press_binding(position, repeat_binding);
 
   return ZMK_BEHAVIOR_OPAQUE;
 }
@@ -198,6 +336,10 @@ on_position_repeat_binding_released(struct zmk_behavior_binding *binding,
 
   LOG_DBG("PR Binding released: param1=%d, param2=%d, layer=%d, position=%d",
           binding->param1, binding->param2, event.layer, event.position);
+
+  const uint32_t position = event.position;
+
+  pre_release_binding(position);
 
   return ZMK_BEHAVIOR_OPAQUE;
 }
