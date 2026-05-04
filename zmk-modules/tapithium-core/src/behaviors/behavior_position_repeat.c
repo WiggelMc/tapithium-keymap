@@ -325,6 +325,14 @@ on_position_repeat_binding_pressed(struct zmk_behavior_binding *binding,
     return ZMK_BEHAVIOR_OPAQUE;
   }
 
+  if (filter_settings->use_whitelist) {
+    const bool is_whitelisted =
+        pr_match_filter(&repeat_binding, &filter_settings->whitelist);
+    if (!is_whitelisted) {
+      return ZMK_BEHAVIOR_OPAQUE;
+    }
+  }
+
   pre_press_binding(position, repeat_binding);
 
   return ZMK_BEHAVIOR_OPAQUE;
