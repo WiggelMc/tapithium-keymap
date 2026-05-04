@@ -54,7 +54,7 @@ struct pr_hold_list_item {
 };
 
 struct pr_hold_list {
-  int count;
+  size_t count;
   struct pr_hold_list_item items[PR_HOLD_LIST_SIZE];
 };
 
@@ -64,7 +64,7 @@ struct pr_phandles_filter_item {
 };
 
 struct pr_phandles_filter {
-  int count;
+  size_t count;
   struct pr_phandles_filter_item items[];
 };
 
@@ -155,14 +155,38 @@ static bool pr_hold_list_push(struct pr_hold_list *list,
                               const uint32_t position,
                               const struct zmk_behavior_binding binding) {
 
-  // TODO
-  return false;
+  if (list->count >= PR_HOLD_LIST_SIZE) {
+    return false;
+  }
+
+  const struct pr_hold_list_item item = {
+      .position = position,
+      .binding = binding,
+  };
+
+  list->items[list->count] = item;
+  list->count++;
+
+  return true;
 }
+
 static bool pr_hold_list_pop_from(struct pr_hold_list *list,
                                   const uint32_t position,
                                   struct zmk_behavior_binding *out_binding) {
 
-  // TODO
+  for (size_t i = 0; i < list->count; i++) {
+    const struct pr_hold_list_item *item = &list->items[i];
+    if (item->position == position) {
+      *out_binding = item->binding;
+
+      for (size_t i2 = i; i2 < list->count - 1; i2++) {
+        list->items[i2] = list->items[i2 + 1];
+      }
+      list->count--;
+
+      return true;
+    }
+  }
   return false;
 }
 
@@ -195,6 +219,14 @@ static bool pr_match_filter(const struct zmk_behavior_binding *binding,
   return false;
 }
 
+static bool pr_get_binding(const uint32_t position,
+                           const struct pr_filter *transparent_filter,
+                           struct zmk_behavior_binding *out_binding) {
+
+  // TODO
+  return false;
+}
+
 static void pre_init_filter(struct pr_filter *filter) {
 
   struct pr_phandles_filter *phandles_filter = filter->phandles;
@@ -216,16 +248,9 @@ static void pre_init_filter(struct pr_filter *filter) {
   }
 }
 
-static bool pre_get_binding(const uint32_t position,
-                            const struct pr_filter *transparent_filter,
-                            struct zmk_behavior_binding *out_binding) {
-
-  // TODO
-  return false;
-}
-
 static bool pre_press_binding(const uint32_t position,
-                              const struct zmk_behavior_binding binding) {
+                              const struct zmk_behavior_binding binding,
+                              struct zmk_behavior_binding_event event) {
 
   const bool can_press =
       pr_hold_list_push(&pr_data.hold_list, position, binding);
@@ -234,12 +259,13 @@ static bool pre_press_binding(const uint32_t position,
     return false;
   }
 
-  // TODO: Raise Binding press event
+  zmk_behavior_invoke_binding(&binding, event, true);
 
   return true;
 }
 
-static bool pre_release_binding(const uint32_t position) {
+static bool pre_release_binding(const uint32_t position,
+                                struct zmk_behavior_binding_event event) {
 
   struct zmk_behavior_binding binding;
 
@@ -250,7 +276,7 @@ static bool pre_release_binding(const uint32_t position) {
     return false;
   }
 
-  // TODO: Raise Binding release event
+  zmk_behavior_invoke_binding(&binding, event, false);
 
   return true;
 }
@@ -314,7 +340,7 @@ on_position_repeat_binding_pressed(struct zmk_behavior_binding *binding,
   }
 
   struct zmk_behavior_binding repeat_binding;
-  const bool has_repeat_binding = pre_get_binding(
+  const bool has_repeat_binding = pr_get_binding(
       repeat_position, &filter_settings->transparent, &repeat_binding);
 
   if (!has_repeat_binding) {
@@ -333,7 +359,7 @@ on_position_repeat_binding_pressed(struct zmk_behavior_binding *binding,
     }
   }
 
-  pre_press_binding(position, repeat_binding);
+  pre_press_binding(position, repeat_binding, event);
 
   return ZMK_BEHAVIOR_OPAQUE;
 }
@@ -347,7 +373,7 @@ on_position_repeat_binding_released(struct zmk_behavior_binding *binding,
 
   const uint32_t position = event.position;
 
-  pre_release_binding(position);
+  pre_release_binding(position, event);
 
   return ZMK_BEHAVIOR_OPAQUE;
 }
