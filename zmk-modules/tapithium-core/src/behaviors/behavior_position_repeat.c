@@ -63,17 +63,24 @@ struct pr_bindings_filter {
 };
 
 struct pr_filter {
-  struct pr_phandles_filter *handles;
+  struct pr_phandles_filter *phandles;
   struct pr_bindings_filter *bindings;
 };
 
-struct behavior_position_repeat_config {
+struct pr_filter_settings {
   bool use_whitelist;
   struct pr_filter whitelist;
   struct pr_filter transparent;
 };
 
-struct behavior_position_repeat_engine_data {};
+struct behavior_position_repeat_data {
+  struct pr_filter_settings *filter_settings;
+};
+
+struct behavior_position_repeat_engine_data {
+  int position_buffer; // TODO
+  int hold_list;       // TODO
+};
 
 static struct behavior_position_repeat_engine_data pr_data = {
 
@@ -98,9 +105,28 @@ position_repeat_position_state_changed_listener(const zmk_event_t *eh) {
   return ZMK_EV_EVENT_BUBBLE;
 }
 
+static void pr_init_filter(struct pr_filter *filter) {
+
+  struct pr_phandles_filter *phandles_filter = filter->phandles;
+  for (size_t i = 0; i < phandles_filter->count; i++) {
+    struct pr_phandles_filter_item *item = &phandles_filter->items[i];
+    item->dev = zmk_behavior_get_binding(item->behavior_dev);
+  }
+
+  struct pr_bindings_filter *bindings_filter = filter->bindings;
+  for (size_t i = 0; i < bindings_filter->count; i++) {
+    struct pr_bindings_filter_item *item = &bindings_filter->items[i];
+    item->dev = zmk_behavior_get_binding(item->binding.behavior_dev);
+  }
+}
+
 static int position_repeat_init(const struct device *dev) {
 
-  
+  struct behavior_position_repeat_data *data = dev->data;
+  struct pr_filter_settings *filter_settings = data->filter_settings;
+
+  pr_init_filter(&filter_settings->whitelist);
+  pr_init_filter(&filter_settings->transparent);
 
   LOG_DBG("PR Initialized");
   return 0;
@@ -198,27 +224,31 @@ static const struct behavior_driver_api position_repeat_driver_api = {
       position_repeat_config_bindings_transparent_##n =                        \
           PR_EXTRACT_BINDINGS(n, transparent_bindings);                        \
                                                                                \
-  static struct behavior_position_repeat_config position_repeat_config_##n = { \
+  static struct pr_filter_settings position_repeat_filter_settings_##n = {     \
       .use_whitelist = true,                                                   \
       .whitelist =                                                             \
           {                                                                    \
-              .handles = &position_repeat_config_phandles_whitelist_##n,       \
+              .phandles = &position_repeat_config_phandles_whitelist_##n,      \
               .bindings = &position_repeat_config_bindings_whitelist_##n,      \
           },                                                                   \
       .transparent =                                                           \
           {                                                                    \
-              .handles = &position_repeat_config_phandles_transparent_##n,     \
+              .phandles = &position_repeat_config_phandles_transparent_##n,    \
               .bindings = &position_repeat_config_bindings_transparent_##n,    \
           },                                                                   \
   };                                                                           \
                                                                                \
+  static struct behavior_position_repeat_data position_repeat_data_##n = {     \
+      .filter_settings = &position_repeat_filter_settings_##n,                 \
+  };                                                                           \
+                                                                               \
   BEHAVIOR_DT_INST_DEFINE(                                                     \
       n, /* Instance Number (Automatically populated by macro) */              \
-      position_repeat_init,        /* Initialization Function */               \
-      NULL,                        /* Power Management Device Pointer */       \
-      NULL,                        /* Behavior Data Pointer */                 \
-      &position_repeat_config_##n, /* Behavior Configuration Pointer */        \
-      POST_KERNEL,                 /* Initialization Level */                  \
+      position_repeat_init,      /* Initialization Function */                 \
+      NULL,                      /* Power Management Device Pointer */         \
+      &position_repeat_data_##n, /* Behavior Data Pointer */                   \
+      NULL,                      /* Behavior Configuration Pointer */          \
+      POST_KERNEL,               /* Initialization Level */                    \
       CONFIG_KERNEL_INIT_PRIORITY_DEFAULT, /* Device Priority */               \
       &position_repeat_driver_api);        /* API struct */
 
