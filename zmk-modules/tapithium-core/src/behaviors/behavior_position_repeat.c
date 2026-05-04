@@ -87,6 +87,39 @@ static struct behavior_position_repeat_engine_data pr_data = {
 };
 
 //
+// Helpers
+//
+
+static bool pr_match_filter(const struct zmk_behavior_binding *binding,
+                            const struct pr_filter *filter) {
+
+  if (binding == NULL || filter == NULL) {
+    return false;
+  }
+
+  const struct device *dev = zmk_behavior_get_binding(binding->behavior_dev);
+
+  const struct pr_phandles_filter *phandles_filter = filter->phandles;
+  for (size_t i = 0; i < phandles_filter->count; i++) {
+    const struct pr_phandles_filter_item *item = &phandles_filter->items[i];
+    if (item->dev == dev) {
+      return true;
+    }
+  }
+
+  const struct pr_bindings_filter *bindings_filter = filter->bindings;
+  for (size_t i = 0; i < bindings_filter->count; i++) {
+    const struct pr_bindings_filter_item *item = &bindings_filter->items[i];
+    if (item->dev == dev && item->binding.param1 == binding->param1 &&
+        item->binding.param2 == binding->param2) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+//
 // Zmk Handlers
 //
 
@@ -110,13 +143,19 @@ static void pr_init_filter(struct pr_filter *filter) {
   struct pr_phandles_filter *phandles_filter = filter->phandles;
   for (size_t i = 0; i < phandles_filter->count; i++) {
     struct pr_phandles_filter_item *item = &phandles_filter->items[i];
-    item->dev = zmk_behavior_get_binding(item->behavior_dev);
+    const char *behavior_dev = item->behavior_dev;
+    if (behavior_dev != NULL) {
+      item->dev = zmk_behavior_get_binding(behavior_dev);
+    }
   }
 
   struct pr_bindings_filter *bindings_filter = filter->bindings;
   for (size_t i = 0; i < bindings_filter->count; i++) {
     struct pr_bindings_filter_item *item = &bindings_filter->items[i];
-    item->dev = zmk_behavior_get_binding(item->binding.behavior_dev);
+    const char *behavior_dev = item->binding.behavior_dev;
+    if (behavior_dev != NULL) {
+      item->dev = zmk_behavior_get_binding(behavior_dev);
+    }
   }
 }
 
