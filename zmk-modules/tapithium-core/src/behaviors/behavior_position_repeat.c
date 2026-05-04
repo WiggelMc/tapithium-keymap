@@ -119,6 +119,14 @@ static bool pr_match_filter(const struct zmk_behavior_binding *binding,
   return false;
 }
 
+static const struct zmk_behavior_binding *
+pre_get_binding(const uint32_t position,
+                const struct pr_filter *transparent_filter) {
+
+  // TODO
+  return NULL;
+}
+
 //
 // Zmk Handlers
 //
