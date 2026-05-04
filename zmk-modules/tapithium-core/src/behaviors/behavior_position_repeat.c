@@ -131,24 +131,24 @@ static const struct behavior_driver_api position_repeat_driver_api = {
                       (0), (DT_PHA_BY_IDX(drv_inst, prop, idx, param2))),      \
   }
 
-#define PR_EXTRACT_BINDINGS(n, prop)                                           \
+#define PR_EXTRACT_BINDINGS_ARR(n, prop)                                       \
   {LISTIFY(DT_INST_PROP_LEN_OR(n, prop, 0), PR_EXTRACT_BINDING, (, ),          \
            DT_DRV_INST(n), prop)}
 
-#define PR_EXTRACT_BINDINGS_LEN(n, prop) DT_INST_PROP_LEN_OR(n, prop, 0)
+#define PR_EXTRACT_BINDINGS(n, prop)                                           \
+  {                                                                            \
+      .count = DT_INST_PROP_LEN_OR(n, prop, 0),                                \
+      .items = PR_EXTRACT_BINDINGS_ARR(n, prop),                               \
+  }
 
 #define POSITION_REPEAT_INST(n)                                                \
   static struct pr_bindings_filter                                             \
-      position_repeat_config_bindings_whitelist_##n = {                        \
-          .count = PR_EXTRACT_BINDINGS_LEN(n, whitelist_bindings),             \
-          .items = PR_EXTRACT_BINDINGS(n, whitelist_bindings),                 \
-  };                                                                           \
+      position_repeat_config_bindings_whitelist_##n =                          \
+          PR_EXTRACT_BINDINGS(n, whitelist_bindings);                          \
                                                                                \
   static struct pr_bindings_filter                                             \
-      position_repeat_config_bindings_transparent_##n = {                      \
-          .count = PR_EXTRACT_BINDINGS_LEN(n, transparent_bindings),           \
-          .items = PR_EXTRACT_BINDINGS(n, transparent_bindings),               \
-  };                                                                           \
+      position_repeat_config_bindings_transparent_##n =                        \
+          PR_EXTRACT_BINDINGS(n, transparent_bindings);                        \
                                                                                \
   static struct behavior_position_repeat_config position_repeat_config_##n = { \
       .use_whitelist = true,                                                   \
