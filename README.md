@@ -8,7 +8,7 @@ The keyboard firmware can be built locally using `nix`, which is also used for [
 
 ## Work in Progress
 
-- Implement Tapithium Mods
+- Test Behaviors
 - Tweak Symbol Layer
 - Add Mouse Layer
 - Add Descriptions and Documentation to README

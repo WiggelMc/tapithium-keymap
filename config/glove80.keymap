@@ -56,11 +56,10 @@
 
 &pos_repeat {
     use-whitelist;
-    // whitelist-handles = <&kp &uc>;
-    whitelist-phandles = <>;
-    whitelist-bindings = <&kp E &kp A &uc UC_DE_AE>;
+    whitelist-phandles = <&kp &uc &rgb_ug &rgb_status>;
+    whitelist-bindings = <&tp TP_MP>;
     transparent-phandles = <&trans>;
-    transparent-bindings = <&none>;
+    // transparent-bindings = <>;
 };
 
 &sl {

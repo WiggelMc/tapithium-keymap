@@ -223,7 +223,21 @@ static bool pr_get_binding(const uint32_t position,
                            const struct pr_filter *transparent_filter,
                            struct zmk_behavior_binding *out_binding) {
 
-  // TODO
+  for (zmk_keymap_layer_index_t index = ZMK_KEYMAP_LAYERS_LEN; index-- > 0;) {
+    const zmk_keymap_layer_id_t id = zmk_keymap_layer_index_to_id(index);
+    const bool is_layer_active = zmk_keymap_layer_active(id);
+
+    if (is_layer_active) {
+      const struct zmk_behavior_binding *binding =
+          zmk_keymap_get_layer_binding_at_idx(id, position);
+      const bool is_transparent = pr_match_filter(binding, transparent_filter);
+
+      if (!is_transparent) {
+        *out_binding = *binding;
+        return true;
+      }
+    }
+  }
   return false;
 }
 
@@ -448,7 +462,7 @@ static const struct behavior_driver_api position_repeat_driver_api = {
           PR_EXTRACT_BINDINGS(n, transparent_bindings);                        \
                                                                                \
   static struct pr_filter_settings position_repeat_filter_settings_##n = {     \
-      .use_whitelist = true,                                                   \
+      .use_whitelist = DT_INST_PROP_OR(n, use_whitelist, false),               \
       .whitelist =                                                             \
           {                                                                    \
               .phandles = &position_repeat_config_phandles_whitelist_##n,      \
