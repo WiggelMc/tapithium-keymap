@@ -620,9 +620,9 @@ layers:
   - Function Layer
   - Command Layer
   - ''
-  - ''
-  - ''
-  - ''
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
@@ -637,7 +637,7 @@ layers:
   - Right Alt
   - Right Ctrl
   - Right Shift
-  - ''
+  - {h: '$$mdi:triangle$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
@@ -704,9 +704,9 @@ layers:
   - {h: '$$mdi:triangle$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
-  - ''
-  - ''
-  - ''
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
   - ''
   - Command Layer
   - Function Layer
@@ -723,7 +723,7 @@ layers:
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
-  - ''
+  - {h: '$$mdi:triangle$$', type: trans}
   - Right Shift
   - Right Ctrl
   - Right Alt

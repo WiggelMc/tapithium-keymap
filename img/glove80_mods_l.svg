@@ -541,14 +541,17 @@ text.hold {
 <g transform="translate(308, 252)" class="key keypos-51">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 </g>
-<g transform="translate(371, 312) rotate(30.0)" class="key keypos-52">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
+<g transform="translate(371, 312) rotate(30.0)" class="key trans keypos-52">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
-<g transform="translate(420, 350) rotate(45.0)" class="key keypos-53">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
+<g transform="translate(420, 350) rotate(45.0)" class="key trans keypos-53">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
-<g transform="translate(458, 399) rotate(60.0)" class="key keypos-54">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
+<g transform="translate(458, 399) rotate(60.0)" class="key trans keypos-54">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(550, 399) rotate(-60.0)" class="key trans keypos-55">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
@@ -613,8 +616,9 @@ text.hold {
 <tspan x="0" dy="-0.6em">Right</tspan><tspan x="0" dy="1.2em">Shift</tspan>
 </text>
 </g>
-<g transform="translate(314, 347) rotate(20.0)" class="key keypos-69">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
+<g transform="translate(314, 347) rotate(20.0)" class="key trans keypos-69">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
+<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
 <g transform="translate(369, 379) rotate(40.0)" class="key trans keypos-70">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
