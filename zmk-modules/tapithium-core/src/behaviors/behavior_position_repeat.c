@@ -230,6 +230,11 @@ static bool pr_get_binding(const uint32_t position,
     if (is_layer_active) {
       const struct zmk_behavior_binding *binding =
           zmk_keymap_get_layer_binding_at_idx(id, position);
+
+      if (binding == NULL) {
+        return false;
+      }
+
       const bool is_transparent = pr_match_filter(binding, transparent_filter);
 
       if (!is_transparent) {
