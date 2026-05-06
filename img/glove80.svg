@@ -531,9 +531,15 @@ text.hold {
 </g>
 <g transform="translate(458, 399) rotate(60.0)" class="key keypos-54">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
+<text x="0" y="0" class="key tap">
+<tspan x="0" dy="-0.6em">TP</tspan><tspan x="0" dy="1.2em">Reset</tspan>
+</text>
 </g>
 <g transform="translate(550, 399) rotate(-60.0)" class="key keypos-55">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
+<text x="0" y="0" class="key tap">
+<tspan x="0" dy="-0.6em">TP</tspan><tspan x="0" dy="1.2em">Reset</tspan>
+</text>
 </g>
 <g transform="translate(588, 350) rotate(-45.0)" class="key keypos-56">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -589,19 +595,19 @@ text.hold {
 <g transform="translate(369, 379) rotate(40.0)" class="key keypos-70">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">
-<tspan x="0" dy="-0.6em" style="font-size: 83%">TP</tspan><tspan x="0" dy="1.2em" style="font-size: 83%">Enable</tspan>
+<tspan x="0" dy="-0.6em" style="font-size: 83%">TP</tspan><tspan x="0" dy="1.2em" style="font-size: 83%">Sticky</tspan>
 </text>
 </g>
 <g transform="translate(410, 427) rotate(60.0)" class="key keypos-71">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">
-<tspan x="0" dy="-0.6em">TP</tspan><tspan x="0" dy="1.2em">Reset</tspan>
+<tspan x="0" dy="-0.6em" style="font-size: 83%">TP</tspan><tspan x="0" dy="1.2em" style="font-size: 83%">Enable</tspan>
 </text>
 </g>
 <g transform="translate(598, 427) rotate(-60.0)" class="key keypos-72">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">
-<tspan x="0" dy="-0.6em" style="font-size: 83%">TP</tspan><tspan x="0" dy="1.2em" style="font-size: 83%">Cancel</tspan>
+<tspan x="0" dy="-0.6em" style="font-size: 83%">TP</tspan><tspan x="0" dy="1.2em" style="font-size: 83%">Enable</tspan>
 </text>
 </g>
 <g transform="translate(639, 379) rotate(-40.0)" class="key keypos-73">
@@ -2559,9 +2565,11 @@ text.hold {
 <g transform="translate(308, 252)" class="key keypos-51">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 </g>
-<g transform="translate(371, 312) rotate(30.0)" class="key trans keypos-52">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
+<g transform="translate(371, 312) rotate(30.0)" class="key keypos-52">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
+<text x="0" y="0" class="key tap">
+<tspan x="0" dy="-0.6em" style="font-size: 83%">TP</tspan><tspan x="0" dy="1.2em" style="font-size: 83%">Cancel</tspan>
+</text>
 </g>
 <g transform="translate(420, 350) rotate(45.0)" class="key trans keypos-53">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
@@ -2569,19 +2577,21 @@ text.hold {
 </g>
 <g transform="translate(458, 399) rotate(60.0)" class="key trans keypos-54">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
+<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
 </g>
 <g transform="translate(550, 399) rotate(-60.0)" class="key trans keypos-55">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
+<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
 </g>
 <g transform="translate(588, 350) rotate(-45.0)" class="key trans keypos-56">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
 <use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
-<g transform="translate(637, 312) rotate(-30.0)" class="key trans keypos-57">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
+<g transform="translate(637, 312) rotate(-30.0)" class="key keypos-57">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
+<text x="0" y="0" class="key tap">
+<tspan x="0" dy="-0.6em" style="font-size: 83%">TP</tspan><tspan x="0" dy="1.2em" style="font-size: 83%">Cancel</tspan>
+</text>
 </g>
 <g transform="translate(700, 252)" class="key trans keypos-58">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
@@ -2882,9 +2892,11 @@ text.hold {
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
 <use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
-<g transform="translate(371, 312) rotate(30.0)" class="key trans keypos-52">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
+<g transform="translate(371, 312) rotate(30.0)" class="key keypos-52">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
+<text x="0" y="0" class="key tap">
+<tspan x="0" dy="-0.6em" style="font-size: 83%">TP</tspan><tspan x="0" dy="1.2em" style="font-size: 83%">Cancel</tspan>
+</text>
 </g>
 <g transform="translate(420, 350) rotate(45.0)" class="key trans keypos-53">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
@@ -2892,19 +2904,21 @@ text.hold {
 </g>
 <g transform="translate(458, 399) rotate(60.0)" class="key trans keypos-54">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
+<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
 </g>
 <g transform="translate(550, 399) rotate(-60.0)" class="key trans keypos-55">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
+<use href="#mdi:chevron-down" xlink:href="#mdi:chevron-down" x="-7" y="-7" height="14" width="14.0" class="key trans tap glyph mdi:chevron-down"/>
 </g>
 <g transform="translate(588, 350) rotate(-45.0)" class="key trans keypos-56">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
 <use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
 </g>
-<g transform="translate(637, 312) rotate(-30.0)" class="key trans keypos-57">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key trans"/>
-<use href="#mdi:triangle" xlink:href="#mdi:triangle" x="-6" y="12" height="12" width="12.0" class="key trans hold glyph mdi:triangle"/>
+<g transform="translate(637, 312) rotate(-30.0)" class="key keypos-57">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
+<text x="0" y="0" class="key tap">
+<tspan x="0" dy="-0.6em" style="font-size: 83%">TP</tspan><tspan x="0" dy="1.2em" style="font-size: 83%">Cancel</tspan>
+</text>
 </g>
 <g transform="translate(700, 252)" class="key keypos-58">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>

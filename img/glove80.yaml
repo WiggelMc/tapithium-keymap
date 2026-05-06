@@ -55,8 +55,8 @@ layers:
   - ''
   - Repeat
   - $$mdi:backspace-reverse-outline$$
-  - ''
-  - ''
+  - TP Reset
+  - TP Reset
   - $$mdi:backspace$$
   - Repeat
   - ''
@@ -71,9 +71,9 @@ layers:
   - ''
   - ''
   - $$mdi:keyboard-space$$
+  - TP Sticky
   - TP Enable
-  - TP Reset
-  - TP Cancel
+  - TP Enable
   - TP Sticky
   - R
   - J
@@ -620,12 +620,12 @@ layers:
   - Function Layer
   - Command Layer
   - ''
+  - TP Cancel
   - {h: '$$mdi:triangle$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
-  - {h: '$$mdi:triangle$$', type: trans}
-  - {h: '$$mdi:triangle$$', type: trans}
-  - {h: '$$mdi:triangle$$', type: trans}
-  - {h: '$$mdi:triangle$$', type: trans}
+  - TP Cancel
   - {h: '$$mdi:triangle$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
@@ -701,12 +701,12 @@ layers:
   - {h: '$$mdi:triangle$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
+  - TP Cancel
   - {h: '$$mdi:triangle$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
-  - {h: '$$mdi:triangle$$', type: trans}
-  - {h: '$$mdi:triangle$$', type: trans}
-  - {h: '$$mdi:triangle$$', type: trans}
-  - {h: '$$mdi:triangle$$', type: trans}
+  - TP Cancel
   - ''
   - Command Layer
   - Function Layer

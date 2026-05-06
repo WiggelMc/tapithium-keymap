@@ -531,9 +531,15 @@ text.hold {
 </g>
 <g transform="translate(458, 399) rotate(60.0)" class="key keypos-54">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
+<text x="0" y="0" class="key tap">
+<tspan x="0" dy="-0.6em">TP</tspan><tspan x="0" dy="1.2em">Reset</tspan>
+</text>
 </g>
 <g transform="translate(550, 399) rotate(-60.0)" class="key keypos-55">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
+<text x="0" y="0" class="key tap">
+<tspan x="0" dy="-0.6em">TP</tspan><tspan x="0" dy="1.2em">Reset</tspan>
+</text>
 </g>
 <g transform="translate(588, 350) rotate(-45.0)" class="key keypos-56">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -589,19 +595,19 @@ text.hold {
 <g transform="translate(369, 379) rotate(40.0)" class="key keypos-70">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">
-<tspan x="0" dy="-0.6em" style="font-size: 83%">TP</tspan><tspan x="0" dy="1.2em" style="font-size: 83%">Enable</tspan>
+<tspan x="0" dy="-0.6em" style="font-size: 83%">TP</tspan><tspan x="0" dy="1.2em" style="font-size: 83%">Sticky</tspan>
 </text>
 </g>
 <g transform="translate(410, 427) rotate(60.0)" class="key keypos-71">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">
-<tspan x="0" dy="-0.6em">TP</tspan><tspan x="0" dy="1.2em">Reset</tspan>
+<tspan x="0" dy="-0.6em" style="font-size: 83%">TP</tspan><tspan x="0" dy="1.2em" style="font-size: 83%">Enable</tspan>
 </text>
 </g>
 <g transform="translate(598, 427) rotate(-60.0)" class="key keypos-72">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">
-<tspan x="0" dy="-0.6em" style="font-size: 83%">TP</tspan><tspan x="0" dy="1.2em" style="font-size: 83%">Cancel</tspan>
+<tspan x="0" dy="-0.6em" style="font-size: 83%">TP</tspan><tspan x="0" dy="1.2em" style="font-size: 83%">Enable</tspan>
 </text>
 </g>
 <g transform="translate(639, 379) rotate(-40.0)" class="key keypos-73">
