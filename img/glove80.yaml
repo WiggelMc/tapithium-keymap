@@ -71,10 +71,10 @@ layers:
   - ''
   - ''
   - $$mdi:keyboard-space$$
-  - TP Sticky
-  - TP Enable
-  - TP Enable
-  - TP Sticky
+  - TP Sticky (L)
+  - TP Enable (L)
+  - TP Enable (R)
+  - TP Sticky (R)
   - R
   - J
   - ''

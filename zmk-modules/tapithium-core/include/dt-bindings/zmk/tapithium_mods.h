@@ -7,14 +7,16 @@
 #pragma once
 
 #define TP_ENABLE_CMD 0
-#define TP_STICKY_CMD 1
-#define TP_CANCEL_CMD 2
-#define TP_RESET_CMD 3
-#define TP_MPRESS_CMD 4
-#define TP_NONE_CMD 5
-#define TP_NEXT_CMD 6
-#define TP_MOD_CMD 7
-#define TP_LAY_CMD 8
+#define TP_ENABLE_S_CMD 1
+#define TP_STICKY_CMD 2
+#define TP_STICKY_S_CMD 3
+#define TP_CANCEL_CMD 4
+#define TP_RESET_CMD 5
+#define TP_MPRESS_CMD 6
+#define TP_NONE_CMD 7
+#define TP_NEXT_CMD 8
+#define TP_MOD_CMD 9
+#define TP_LAY_CMD 10
 
 /*
 Note: Some future commands will include additional parameters, so we
@@ -22,7 +24,9 @@ defines these aliases up front.
 */
 
 #define TP_ENABLE TP_ENABLE_CMD 0
+#define TP_ENABLE_S TP_ENABLE_S_CMD
 #define TP_STICKY TP_STICKY_CMD 0
+#define TP_STICKY_S TP_STICKY_S_CMD
 #define TP_CANCEL TP_CANCEL_CMD 0
 #define TP_RESET TP_RESET_CMD 0
 #define TP_MPRESS TP_MPRESS_CMD 0

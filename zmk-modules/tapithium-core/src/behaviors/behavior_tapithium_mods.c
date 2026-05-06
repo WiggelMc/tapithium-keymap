@@ -119,6 +119,16 @@ tp_layers_without(const zmk_keymap_layers_state_t layers,
   }
 }
 
+static inline bool tp_is_layer_set(const zmk_keymap_layers_state_t layers,
+                                   const zmk_keymap_layer_id_t test_layer) {
+
+  if (test_layer < ZMK_KEYMAP_LAYERS_LEN) {
+    return (layers & (((zmk_keymap_layers_state_t)1U) << test_layer)) != 0;
+  } else {
+    return false;
+  }
+}
+
 static inline zmk_mod_flags_t tp_to_mod_flag(const zmk_key_t keycode) {
 
   switch (keycode) {
@@ -505,6 +515,7 @@ static int tpe_deactivate_all() {
 //
 
 static int tp_handle_on(const enum tp_mode mode,
+                        const zmk_keymap_layer_id_t *opt_select_layer,
                         const struct behavior_tapithium_mods_config *config) {
 
   const struct behavior_tapithium_mods_config *old_cfg = tp_data.config;
@@ -523,7 +534,15 @@ static int tp_handle_on(const enum tp_mode mode,
       tpe_clear_scheduled();
     }
 
-    tp_set_all_layer_states(config->mod_layers, true);
+    if (opt_select_layer != NULL &&
+        tp_is_layer_set(config->mod_layers, *opt_select_layer)) {
+
+      tp_set_layer_state(*opt_select_layer, true);
+      tpe_select_mod_layer(*opt_select_layer, config);
+
+    } else {
+      tp_set_all_layer_states(config->mod_layers, true);
+    }
   }
 
   return ZMK_BEHAVIOR_OPAQUE;
@@ -715,9 +734,25 @@ on_tapithium_mods_binding_pressed(struct zmk_behavior_binding *binding,
 
   switch (command) {
   case TP_ENABLE_CMD:
-    return tp_handle_on(TP_MODE_ENABLE, cfg);
+    return tp_handle_on(TP_MODE_ENABLE, NULL, cfg);
+  case TP_ENABLE_S_CMD: {
+    if (param < ZMK_KEYMAP_LAYERS_LEN) {
+      const zmk_keymap_layer_id_t select_layer = param;
+      return tp_handle_on(TP_MODE_ENABLE, &select_layer, cfg);
+    } else {
+      return ZMK_BEHAVIOR_OPAQUE;
+    }
+  }
   case TP_STICKY_CMD:
-    return tp_handle_on(TP_MODE_STICKY, cfg);
+    return tp_handle_on(TP_MODE_STICKY, NULL, cfg);
+  case TP_STICKY_S_CMD: {
+    if (param < ZMK_KEYMAP_LAYERS_LEN) {
+      const zmk_keymap_layer_id_t select_layer = param;
+      return tp_handle_on(TP_MODE_STICKY, &select_layer, cfg);
+    } else {
+      return ZMK_BEHAVIOR_OPAQUE;
+    }
+  }
   case TP_CANCEL_CMD:
     return tp_handle_cancel();
   case TP_RESET_CMD:

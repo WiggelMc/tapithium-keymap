@@ -158,7 +158,11 @@ parse_config:
     "&uc UC_SECTION_SIGN": "§"
 
     "&tp TP_ENABLE": "TP Enable"
+    "&tp TP_ENABLE_SR": "TP Enable (R)"
+    "&tp TP_ENABLE_SL": "TP Enable (L)"
     "&tp TP_STICKY": "TP Sticky"
+    "&tp TP_STICKY_SR": "TP Sticky (R)"
+    "&tp TP_STICKY_SL": "TP Sticky (L)"
     "&tp TP_CANCEL": "TP Cancel"
     "&tp TP_RESET": "TP Reset"
     "&tp TP_MPRESS": &tp_mpress "TP Mod"

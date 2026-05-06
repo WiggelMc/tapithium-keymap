@@ -39,6 +39,10 @@
 // defines
 #define HYPER LC(LS(LG(LALT)))
 #define MAGIC L_MOERGO_MAGIC 0
+#define TP_STICKY_SL TP_STICKY_S L_MODS_L
+#define TP_STICKY_SR TP_STICKY_S L_MODS_R
+#define TP_ENABLE_SL TP_ENABLE_S L_MODS_L
+#define TP_ENABLE_SR TP_ENABLE_S L_MODS_R
 
 // config
 &uc {
@@ -116,12 +120,12 @@
         base_layer {
             // format: glove80
             bindings = <
-                &none         &none         &none         &none         &none                                                                                                                         &none  &none  &none  &none  &none
-                &none         &none         &none         &kp Q         &none         &none                                                                                                    &none  &none  &kp Z  &none  &none  &none
-                &none         &none         &kp Y         &kp O         &kp U         &none                                                                                                    &kp X  &kp L  &kp D  &kp P  &none  &none
-                &kp B         &kp C         &kp I         &kp A         &kp E         &tp TP_MP                                                                                                &kp K  &kp H  &kp T  &kp N  &kp S  &kp W
-                &none         &uc UC_DE_SS  &uc UC_DE_AE  &uc UC_DE_OE  &uc UC_DE_UE  &none        &pos_repeat  &kp DEL        &tp TP_RESET       &tp TP_RESET   &kp BACKSPACE  &pos_repeat    &none  &kp M  &kp G  &kp F  &kp V  &none
-                &magic MAGIC  &none         &none         &none         &none                      &kp SPACE    &tp TP_STICKY  &tp TP_ENABLE      &tp TP_ENABLE  &tp TP_STICKY  &kp R                 &kp J  &none  &none  &none  &magic MAGIC
+                &none         &none         &none         &none         &none                                                                                                                                     &none  &none  &none  &none  &none
+                &none         &none         &none         &kp Q         &none         &none                                                                                                                &none  &none  &kp Z  &none  &none  &none
+                &none         &none         &kp Y         &kp O         &kp U         &none                                                                                                                &kp X  &kp L  &kp D  &kp P  &none  &none
+                &kp B         &kp C         &kp I         &kp A         &kp E         &tp TP_MP                                                                                                            &kp K  &kp H  &kp T  &kp N  &kp S  &kp W
+                &none         &uc UC_DE_SS  &uc UC_DE_AE  &uc UC_DE_OE  &uc UC_DE_UE  &none        &pos_repeat  &kp DEL           &tp TP_RESET          &tp TP_RESET      &kp BACKSPACE     &pos_repeat    &none  &kp M  &kp G  &kp F  &kp V  &none
+                &magic MAGIC  &none         &none         &none         &none                      &kp SPACE    &tp TP_STICKY_SL  &tp TP_ENABLE_SL      &tp TP_ENABLE_SR  &tp TP_STICKY_SR  &kp R                 &kp J  &none  &none  &none  &magic MAGIC
             >;
         };
 
