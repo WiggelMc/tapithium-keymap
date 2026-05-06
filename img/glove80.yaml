@@ -59,7 +59,7 @@ layers:
   - TP Reset
   - $$mdi:backspace$$
   - Repeat
-  - ''
+  - J
   - M
   - G
   - F
@@ -76,7 +76,7 @@ layers:
   - TP Enable (R)
   - TP Sticky (R)
   - R
-  - J
+  - ''
   - ''
   - ''
   - ''

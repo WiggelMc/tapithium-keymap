@@ -85,7 +85,7 @@ draw_config:
     .keypos-13, .keypos-18,
     .keypos-24, .keypos-25, .keypos-26, .keypos-27, .keypos-28, .keypos-29, .keypos-30, .keypos-31,
     .keypos-34, .keypos-35, .keypos-36, .keypos-37, .keypos-38, .keypos-39, .keypos-40, .keypos-41, .keypos-42, .keypos-43, .keypos-44, .keypos-45,
-    .keypos-47, .keypos-48, .keypos-49, .keypos-50, .keypos-59, .keypos-60, .keypos-61, .keypos-62,
+    .keypos-47, .keypos-48, .keypos-49, .keypos-50, .keypos-51, .keypos-58, .keypos-59, .keypos-60, .keypos-61, .keypos-62,
     .keypos-67, .keypos-68, .keypos-75, .keypos-76
     {
         &amp; rect {

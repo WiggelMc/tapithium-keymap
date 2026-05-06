@@ -124,8 +124,8 @@
                 &none         &none         &none         &kp Q         &none         &none                                                                                                                &none  &none  &kp Z  &none  &none  &none
                 &none         &none         &kp Y         &kp O         &kp U         &none                                                                                                                &kp X  &kp L  &kp D  &kp P  &none  &none
                 &kp B         &kp C         &kp I         &kp A         &kp E         &tp TP_MP                                                                                                            &kp K  &kp H  &kp T  &kp N  &kp S  &kp W
-                &none         &uc UC_DE_SS  &uc UC_DE_AE  &uc UC_DE_OE  &uc UC_DE_UE  &none        &pos_repeat  &kp DEL           &tp TP_RESET          &tp TP_RESET      &kp BACKSPACE     &pos_repeat    &none  &kp M  &kp G  &kp F  &kp V  &none
-                &magic MAGIC  &none         &none         &none         &none                      &kp SPACE    &tp TP_STICKY_SL  &tp TP_ENABLE_SL      &tp TP_ENABLE_SR  &tp TP_STICKY_SR  &kp R                 &kp J  &none  &none  &none  &magic MAGIC
+                &none         &uc UC_DE_SS  &uc UC_DE_AE  &uc UC_DE_OE  &uc UC_DE_UE  &none        &pos_repeat  &kp DEL           &tp TP_RESET          &tp TP_RESET      &kp BACKSPACE     &pos_repeat    &kp J  &kp M  &kp G  &kp F  &kp V  &none
+                &magic MAGIC  &none         &none         &none         &none                      &kp SPACE    &tp TP_STICKY_SL  &tp TP_ENABLE_SL      &tp TP_ENABLE_SR  &tp TP_STICKY_SR  &kp R                 &none  &none  &none  &none  &magic MAGIC
             >;
         };
 
