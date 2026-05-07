@@ -20,6 +20,7 @@ draw_config:
           --red: #bf616a;
        --orange: #d08770;
        --yellow: #ebcb8b;
+       --yellow2: #e3d3b3;
         --green: #a3be8c;
        --purple: #b48ead;
        --purple2: #846eed;
@@ -111,6 +112,31 @@ draw_config:
         
     }
 
+    /* Layer Entry Markers: */
+    .layer-magic .keypos-34 rect,
+    .layer-magic .keypos-45 rect,
+    .layer-nav .keypos-47 rect,
+    .layer-nav .keypos-62 rect,
+    .layer-media .keypos-25 rect,
+    .layer-media .keypos-30 rect,
+    .layer-function .keypos-49 rect,
+    .layer-function .keypos-60 rect,
+    .layer-symbol .keypos-26 rect,
+    .layer-symbol .keypos-29 rect,
+    .layer-command .keypos-50 rect,
+    .layer-command .keypos-59 rect,
+    .layer-number .keypos-39 rect,
+    .layer-number .keypos-40 rect,
+    .layer-mouse .keypos-37 rect,
+    .layer-gaming .keypos-38 rect,
+    .layer-moergo_magic .keypos-64 rect,
+    .layer-moergo_magic .keypos-79 rect,
+    .layer-factory_test .keypos-79 rect,
+    .layer-matrix_test .keypos-75 rect
+    {
+      fill: var(--yellow2) !important;
+    }
+
     /* Highlight WASD */
     /*
     .layer-gaming {
@@ -200,13 +226,16 @@ parse_config:
     "&tp TP_LAY L_NUMBER": "Number Layer"
     "&tp TP_LAY L_COMMAND": "Command Layer"
     "&tp TP_LAY L_FUNCTION": "Function Layer"
+    "&tp TP_LAY L_MEDIA": "Media Layer"
     "&tp TP_LAY L_NAV": "Nav Layer"
     "&tp TP_LAY L_MAGIC": "Magic Layer"
 
     "&to_res L_MOUSE": "Mouse Layer"
     "&to_res L_GAMING": "Gaming Layer"
     "&sl L_EXIT": "Exit Layer"
+
     "&to_res L_FACTORY_TEST": "Factory Test Layer"
+    "&to_res L_MATRIX_TEST": "Matrix Test Layer"
 
     "&kp_us_minus":
       tap: "-"
@@ -286,6 +315,87 @@ parse_config:
     "&bootloader": Boot
     "&reset": Reset
     "&sys_reset": Reset
+
+    "&mxc MXC(0,0)": "00"
+    "&mxc MXC(0,1)": "01"
+    "&mxc MXC(0,2)": "02"
+    "&mxc MXC(0,3)": "03"
+    "&mxc MXC(0,4)": "04"
+    "&mxc MXC(0,5)": "05"
+    "&mxc MXC(0,6)": "06"
+    "&mxc MXC(0,7)": "07"
+    "&mxc MXC(0,8)": "08"
+    "&mxc MXC(0,9)": "09"
+    "&mxc MXC(1,0)": "10"
+    "&mxc MXC(1,1)": "11"
+    "&mxc MXC(1,2)": "12"
+    "&mxc MXC(1,3)": "13"
+    "&mxc MXC(1,4)": "14"
+    "&mxc MXC(1,5)": "15"
+    "&mxc MXC(1,6)": "16"
+    "&mxc MXC(1,7)": "17"
+    "&mxc MXC(1,8)": "18"
+    "&mxc MXC(1,9)": "19"
+    "&mxc MXC(2,0)": "20"
+    "&mxc MXC(2,1)": "21"
+    "&mxc MXC(2,2)": "22"
+    "&mxc MXC(2,3)": "23"
+    "&mxc MXC(2,4)": "24"
+    "&mxc MXC(2,5)": "25"
+    "&mxc MXC(2,6)": "26"
+    "&mxc MXC(2,7)": "27"
+    "&mxc MXC(2,8)": "28"
+    "&mxc MXC(2,9)": "29"
+    "&mxc MXC(3,0)": "30"
+    "&mxc MXC(3,1)": "31"
+    "&mxc MXC(3,2)": "32"
+    "&mxc MXC(3,3)": "33"
+    "&mxc MXC(3,4)": "34"
+    "&mxc MXC(3,5)": "35"
+    "&mxc MXC(3,6)": "36"
+    "&mxc MXC(3,7)": "37"
+    "&mxc MXC(3,8)": "38"
+    "&mxc MXC(3,9)": "39"
+    "&mxc MXC(4,0)": "40"
+    "&mxc MXC(4,1)": "41"
+    "&mxc MXC(4,2)": "42"
+    "&mxc MXC(4,3)": "43"
+    "&mxc MXC(4,4)": "44"
+    "&mxc MXC(4,5)": "45"
+    "&mxc MXC(4,6)": "46"
+    "&mxc MXC(4,7)": "47"
+    "&mxc MXC(4,8)": "48"
+    "&mxc MXC(4,9)": "49"
+    "&mxc MXC(5,0)": "50"
+    "&mxc MXC(5,1)": "51"
+    "&mxc MXC(5,2)": "52"
+    "&mxc MXC(5,3)": "53"
+    "&mxc MXC(5,4)": "54"
+    "&mxc MXC(5,5)": "55"
+    "&mxc MXC(5,6)": "56"
+    "&mxc MXC(5,7)": "57"
+    "&mxc MXC(5,8)": "58"
+    "&mxc MXC(5,9)": "59"
+    "&mxc MXC(6,0)": "60"
+    "&mxc MXC(6,1)": "61"
+    "&mxc MXC(6,2)": "62"
+    "&mxc MXC(6,3)": "63"
+    "&mxc MXC(6,4)": "64"
+    "&mxc MXC(6,5)": "65"
+    "&mxc MXC(6,6)": "66"
+    "&mxc MXC(6,7)": "67"
+    "&mxc MXC(6,8)": "68"
+    "&mxc MXC(6,9)": "69"
+    "&mxc MXC(7,0)": "70"
+    "&mxc MXC(7,1)": "71"
+    "&mxc MXC(7,2)": "72"
+    "&mxc MXC(7,3)": "73"
+    "&mxc MXC(7,4)": "74"
+    "&mxc MXC(7,5)": "75"
+    "&mxc MXC(7,6)": "76"
+    "&mxc MXC(7,7)": "77"
+    "&mxc MXC(7,8)": "78"
+    "&mxc MXC(7,9)": "79"
 
   zmk_keycode_map:
     RET: &ret Return

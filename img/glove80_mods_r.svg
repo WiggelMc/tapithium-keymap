@@ -235,6 +235,7 @@ path.combo {
       --red: #bf616a;
    --orange: #d08770;
    --yellow: #ebcb8b;
+   --yellow2: #e3d3b3;
     --green: #a3be8c;
    --purple: #b48ead;
    --purple2: #846eed;
@@ -324,6 +325,31 @@ text.hold {
 .keypos-69, .keypos-70, .keypos-71,     .keypos-72, .keypos-73, .keypos-74
 {
     
+}
+
+/* Layer Entry Markers: */
+.layer-magic .keypos-34 rect,
+.layer-magic .keypos-45 rect,
+.layer-nav .keypos-47 rect,
+.layer-nav .keypos-62 rect,
+.layer-media .keypos-25 rect,
+.layer-media .keypos-30 rect,
+.layer-function .keypos-49 rect,
+.layer-function .keypos-60 rect,
+.layer-symbol .keypos-26 rect,
+.layer-symbol .keypos-29 rect,
+.layer-command .keypos-50 rect,
+.layer-command .keypos-59 rect,
+.layer-number .keypos-39 rect,
+.layer-number .keypos-40 rect,
+.layer-mouse .keypos-37 rect,
+.layer-gaming .keypos-38 rect,
+.layer-moergo_magic .keypos-64 rect,
+.layer-moergo_magic .keypos-79 rect,
+.layer-factory_test .keypos-79 rect,
+.layer-matrix_test .keypos-75 rect
+{
+  fill: var(--yellow2) !important;
 }
 
 /* Highlight WASD */
@@ -453,6 +479,9 @@ text.hold {
 </g>
 <g transform="translate(812, 140)" class="key keypos-30">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
+<text x="0" y="0" class="key tap">
+<tspan x="0" dy="-0.6em">Media</tspan><tspan x="0" dy="1.2em">Layer</tspan>
+</text>
 </g>
 <g transform="translate(868, 140)" class="key keypos-31">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>

@@ -24,18 +24,20 @@
 #define L_NUMBER 2
 #define L_COMMAND 3
 #define L_FUNCTION 4
-#define L_MAGIC 5
-#define L_NAV 6
+#define L_MEDIA 5
+#define L_MAGIC 6
+#define L_NAV 7
 
-#define L_MODS_L 7
-#define L_MODS_R 8
+#define L_MODS_L 8
+#define L_MODS_R 9
 
-#define L_GAMING 9
-#define L_MOUSE 10
-#define L_EXIT 11
+#define L_GAMING 10
+#define L_MOUSE 11
+#define L_EXIT 12
 
-#define L_MOERGO_MAGIC 12
-#define L_FACTORY_TEST 13
+#define L_MOERGO_MAGIC 13
+#define L_FACTORY_TEST 14
+#define L_MATRIX_TEST 15
 
 // defines
 #define HYPER LC(LS(LG(LALT)))
@@ -44,6 +46,7 @@
 #define TP_STICKY_SR TP_STICKY_S L_MODS_R
 #define TP_ENABLE_SL TP_ENABLE_S L_MODS_L
 #define TP_ENABLE_SR TP_ENABLE_S L_MODS_R
+#define MXC(a,b) N##a N##b
 
 // config
 &uc {
@@ -105,6 +108,18 @@
                 = <&out OUT_BLE>,
                   <&macro_param_1to2>,
                   <&bt BT_SEL MACRO_PLACEHOLDER>;
+        };
+
+        mxc: matrix_code {
+            compatible = "zmk,behavior-macro-two-param";
+            #binding-cells = <2>;
+            wait-ms = <10>;
+            bindings
+                = <&macro_param_1to1>,
+                  <&kp MACRO_PLACEHOLDER>,
+                  <&macro_param_2to1>,
+                  <&kp MACRO_PLACEHOLDER>,
+                  <&kp SPACE>;
         };
     };
 
@@ -173,6 +188,18 @@
             >;
         };
 
+        media_layer {
+            // format: glove80
+            bindings = <
+                &none   &none   &none    &none    &none                                                                           &none             &none         &none         &none          &none
+                &none   &none   &none    &none    &none   &none                                                            &none  &none             &none         &none         &none          &none
+                &none   &none   &kp F8   &kp F11  &kp F4  &kp F15                                                          &none  &kp C_PREV        &kp C_VOL_UP  &kp C_BRI_UP  &none          &none
+                &kp F1  &kp F2  &kp F9   &kp F12  &kp F5  &kp F16                                                          &none  &kp C_PLAY_PAUSE  &kp C_MUTE    &none         &none          &kp C_BRI_MAX
+                &none   &kp F3  &kp F10  &kp F13  &kp F6  &none      &trans  &trans  &trans      &trans  &trans  &trans    &none  &kp C_NEXT        &kp C_VOL_DN  &kp C_BRI_DN  &kp C_BRI_MIN  &none
+                &trans  &none   &none    &kp F14  &kp F7             &trans  &trans  &trans      &trans  &trans  &none            &none             &none         &none         &none          &trans
+            >;
+        };
+
         magic_layer {
             // format: glove80
             bindings = <
@@ -202,7 +229,7 @@
             bindings = <
                 &tp TP_             &tp TP_           &tp TP_            &tp TP_                &tp TP_                                                                                                                           &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
                 &tp TP_             &tp TP_           &tp TP_            &tp TP_                &tp TP_               &tp TP_                                                                                          &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
-                &tp TP_             &tp TP_           &tp TP_MOD LSHIFT  &tp TP_                &tp TP_LAY L_SYMBOL   &tp TP_                                                                                          &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
+                &tp TP_             &tp TP_           &tp TP_MOD LSHIFT  &tp TP_LAY L_MEDIA     &tp TP_LAY L_SYMBOL   &tp TP_                                                                                          &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
                 &tp TP_LAY L_MAGIC  &tp TP_MOD LGUI   &tp TP_MOD LALT    &tp TP_MOD LCTRL       &tp TP_MOD LSHIFT     &tp TP_LAY L_NUMBER                                                                              &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
                 &tp TP_             &tp TP_LAY L_NAV  &tp TP_MOD LCTRL   &tp TP_LAY L_FUNCTION  &tp TP_LAY L_COMMAND  &tp TP_                &tp TP_CANCEL  &trans  &tp TP___      &tp TP___  &trans  &tp TP_CANCEL    &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
                 &tp TP_             &tp TP_MOD RGUI   &tp TP_MOD RALT    &tp TP_MOD RCTRL       &tp TP_MOD RSHIFT                            &tp TP___      &trans  &tp TP___      &tp TP___  &trans  &tp TP___                   &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
@@ -215,7 +242,7 @@
             bindings = <
                 &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                                                              &tp TP_               &tp TP_                &tp TP_            &tp TP_           &tp TP_
                 &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                              &tp TP_              &tp TP_               &tp TP_                &tp TP_            &tp TP_           &tp TP_
-                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                              &tp TP_              &tp TP_LAY L_SYMBOL   &tp TP_                &tp TP_MOD LSHIFT  &tp TP_           &tp TP_
+                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                              &tp TP_              &tp TP_LAY L_SYMBOL   &tp TP_LAY L_MEDIA     &tp TP_MOD LSHIFT  &tp TP_           &tp TP_
                 &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                              &tp TP_LAY L_NUMBER  &tp TP_MOD LSHIFT     &tp TP_MOD LCTRL       &tp TP_MOD LALT    &tp TP_MOD LGUI   &tp TP_LAY L_MAGIC
                 &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___    &tp TP_CANCEL  &trans  &tp TP___      &tp TP___  &trans  &tp TP_CANCEL    &tp TP_              &tp TP_LAY L_COMMAND  &tp TP_LAY L_FUNCTION  &tp TP_MOD LCTRL   &tp TP_LAY L_NAV  &tp TP_
                 &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___               &tp TP___      &trans  &tp TP___      &tp TP___  &trans  &tp TP___                             &tp TP_MOD RSHIFT     &tp TP_MOD RCTRL       &tp TP_MOD RALT    &tp TP_MOD RGUI   &tp TP_
@@ -263,12 +290,12 @@
         moergo_magic_layer {
             // format: glove80
             bindings = <
-                &bt BT_CLR   &none            &none            &none            &none                                                                                                     &none  &none  &none  &none  &bt BT_CLR_ALL
-                &none        &none            &none            &none            &none            &none                                                                             &none  &none  &none  &none  &none  &none
-                &none        &rgb_ug RGB_SPI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &rgb_ug RGB_BRI  &rgb_ug RGB_TOG                                                                   &none  &none  &none  &none  &none  &none
-                &bootloader  &rgb_ug RGB_SPD  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &rgb_ug RGB_BRD  &rgb_ug RGB_EFF                                                                   &none  &none  &none  &none  &none  &bootloader
-                &sys_reset   &none            &none            &none            &none            &none              &bt_sel 2  &bt_sel 3  &none             &none  &none  &none    &none  &none  &none  &none  &none  &sys_reset
-                &none        &none            &none            &none            &none                               &bt_sel 0  &bt_sel 1  &out OUT_USB      &none  &none  &none           &none  &none  &none  &none  &to_res L_FACTORY_TEST
+                &bt BT_CLR   &none            &none            &none            &none                                                                                                     &none                  &none  &none  &none  &bt BT_CLR_ALL
+                &none        &none            &none            &none            &none            &none                                                                             &none  &none                  &none  &none  &none  &none
+                &none        &rgb_ug RGB_SPI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &rgb_ug RGB_BRI  &rgb_ug RGB_TOG                                                                   &none  &none                  &none  &none  &none  &none
+                &bootloader  &rgb_ug RGB_SPD  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &rgb_ug RGB_BRD  &rgb_ug RGB_EFF                                                                   &none  &none                  &none  &none  &none  &bootloader
+                &sys_reset   &none            &none            &none            &none            &none              &bt_sel 2  &bt_sel 3  &none             &none  &none  &none    &none  &none                  &none  &none  &none  &sys_reset
+                &none        &none            &none            &none            &none                               &bt_sel 0  &bt_sel 1  &out OUT_USB      &none  &none  &none           &to_res L_MATRIX_TEST  &none  &none  &none  &to_res L_FACTORY_TEST
             >;
         };
 
@@ -285,6 +312,16 @@
             >;
         };
 
-
+        matrix_test_layer {
+            // format: glove80
+            bindings = <
+                &mxc MXC(0,0)  &mxc MXC(0,1)  &mxc MXC(0,2)  &mxc MXC(0,3)  &mxc MXC(0,4)                                                                                                                                  &mxc MXC(0,5)  &mxc MXC(0,6)  &mxc MXC(0,7)  &mxc MXC(0,8)  &mxc MXC(0,9)
+                &mxc MXC(1,0)  &mxc MXC(1,1)  &mxc MXC(1,2)  &mxc MXC(1,3)  &mxc MXC(1,4)  &mxc MXC(1,5)                                                                                                    &mxc MXC(1,6)  &mxc MXC(1,7)  &mxc MXC(1,8)  &mxc MXC(1,9)  &mxc MXC(2,0)  &mxc MXC(2,1)
+                &mxc MXC(2,2)  &mxc MXC(2,3)  &mxc MXC(2,4)  &mxc MXC(2,5)  &mxc MXC(2,6)  &mxc MXC(2,7)                                                                                                    &mxc MXC(2,8)  &mxc MXC(2,9)  &mxc MXC(3,0)  &mxc MXC(3,1)  &mxc MXC(3,2)  &mxc MXC(3,3)
+                &mxc MXC(3,4)  &mxc MXC(3,5)  &mxc MXC(3,6)  &mxc MXC(3,7)  &mxc MXC(3,8)  &mxc MXC(3,9)                                                                                                    &mxc MXC(4,0)  &mxc MXC(4,1)  &mxc MXC(4,2)  &mxc MXC(4,3)  &mxc MXC(4,4)  &mxc MXC(4,5)
+                &mxc MXC(4,6)  &mxc MXC(4,7)  &mxc MXC(4,8)  &mxc MXC(4,9)  &mxc MXC(5,0)  &mxc MXC(5,1)    &mxc MXC(5,2)  &mxc MXC(5,3)  &mxc MXC(5,4)      &mxc MXC(5,5)  &mxc MXC(5,6)  &mxc MXC(5,7)    &mxc MXC(5,8)  &mxc MXC(5,9)  &mxc MXC(6,0)  &mxc MXC(6,1)  &mxc MXC(6,2)  &mxc MXC(6,3)
+                &mxc MXC(6,4)  &mxc MXC(6,5)  &mxc MXC(6,6)  &mxc MXC(6,7)  &mxc MXC(6,8)                   &mxc MXC(6,9)  &mxc MXC(7,0)  &mxc MXC(7,1)      &mxc MXC(7,2)  &mxc MXC(7,3)  &mxc MXC(7,4)                   &mxc MXC(7,5)  &mxc MXC(7,6)  &mxc MXC(7,7)  &mxc MXC(7,8)  &mxc MXC(7,9)
+            >;
+        };
     };
 };
