@@ -86,7 +86,10 @@ draw_config:
     .keypos-24, .keypos-25, .keypos-26, .keypos-27, .keypos-28, .keypos-29, .keypos-30, .keypos-31,
     .keypos-34, .keypos-35, .keypos-36, .keypos-37, .keypos-38, .keypos-39, .keypos-40, .keypos-41, .keypos-42, .keypos-43, .keypos-44, .keypos-45,
     .keypos-47, .keypos-48, .keypos-49, .keypos-50, .keypos-51, .keypos-58, .keypos-59, .keypos-60, .keypos-61, .keypos-62,
-    .keypos-67, .keypos-68, .keypos-75, .keypos-76
+    .keypos-67, .keypos-68, .keypos-75, .keypos-76,
+    /*Thumb Alpha*/
+    .keypos-52, .keypos-53, .keypos-56, .keypos-57,
+    .keypos-69, .keypos-70, .keypos-73, .keypos-74
     {
         &amp; rect {
             fill: var(--light1);
@@ -160,9 +163,15 @@ parse_config:
     "&tp TP_ENABLE": "TP Enable"
     "&tp TP_ENABLE_SR": "TP Enable (R)"
     "&tp TP_ENABLE_SL": "TP Enable (L)"
+    "&tp_res TP_ENABLE": "TP+Res Enable"
+    "&tp_res TP_ENABLE_SR": "TP+Res Enable (R)"
+    "&tp_res TP_ENABLE_SL": "TP+Res Enable (L)"
     "&tp TP_STICKY": "TP Sticky"
     "&tp TP_STICKY_SR": "TP Sticky (R)"
     "&tp TP_STICKY_SL": "TP Sticky (L)"
+    "&tp_res TP_STICKY": "TP+Res Sticky"
+    "&tp_res TP_STICKY_SR": "TP+Res Sticky (R)"
+    "&tp_res TP_STICKY_SL": "TP+Res Sticky (L)"
     "&tp TP_CANCEL": "TP Cancel"
     "&tp TP_RESET": "TP Reset"
     "&tp TP_MPRESS": &tp_mpress "TP Mod"
@@ -194,10 +203,10 @@ parse_config:
     "&tp TP_LAY L_NAV": "Nav Layer"
     "&tp TP_LAY L_MAGIC": "Magic Layer"
 
-    "&rto L_MOUSE": "Mouse Layer"
-    "&rto L_GAMING": "Gaming Layer"
+    "&to_res L_MOUSE": "Mouse Layer"
+    "&to_res L_GAMING": "Gaming Layer"
     "&sl L_EXIT": "Exit Layer"
-    "&rto L_FACTORY_TEST": "Factory Test Layer"
+    "&to_res L_FACTORY_TEST": "Factory Test Layer"
 
     "&rgb_status": RGB Status
     "&rgb_ug RGB_TOG": &rgb

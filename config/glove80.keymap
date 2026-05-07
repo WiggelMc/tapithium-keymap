@@ -14,6 +14,7 @@
 #include <behaviors/unicode.dtsi>
 #include <zmk-unicode/keys-extra.h>
 #include <behaviors/tapithium_mods.dtsi>
+#include <tapithium_mods/reset_macros.dtsi>
 #include <behaviors/position_repeat.dtsi>
 
 // layers
@@ -75,7 +76,6 @@
     behaviors {
         magic: magic_hold_tap {
             compatible = "zmk,behavior-hold-tap";
-            label = "MAGIC_HOLD_TAP";
             #binding-cells = <2>;
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
@@ -85,7 +85,6 @@
 
     macros {
         rgb_status: rgb_ug_status_macro_0 {
-            label = "RGB_UG_STATUS";
             compatible = "zmk,behavior-macro";
             #binding-cells = <0>;
             bindings
@@ -93,23 +92,12 @@
         };
 
         bt_sel: bt_profile_select {
-            label = "BT_SEL";
             compatible = "zmk,behavior-macro-one-param";
             #binding-cells = <1>;
             bindings
                 = <&out OUT_BLE>,
                   <&macro_param_1to2>,
                   <&bt BT_SEL MACRO_PLACEHOLDER>;
-        };
-
-        rto: reset_to_layer {
-            label = "RTO";
-            compatible = "zmk,behavior-macro-one-param";
-            #binding-cells = <1>;
-            bindings
-                = <&tp TP_RESET>,
-                  <&macro_param_1to1>,
-                  <&to MACRO_PLACEHOLDER>;
         };
     };
 
@@ -120,12 +108,12 @@
         base_layer {
             // format: glove80
             bindings = <
-                &none         &none         &none         &none         &none                                                                                                                                     &none  &none  &none  &none  &none
-                &none         &none         &none         &kp Q         &none         &none                                                                                                                &none  &none  &kp Z  &none  &none  &none
-                &none         &none         &kp Y         &kp O         &kp U         &none                                                                                                                &kp X  &kp L  &kp D  &kp P  &none  &none
-                &kp B         &kp C         &kp I         &kp A         &kp E         &tp TP_MP                                                                                                            &kp K  &kp H  &kp T  &kp N  &kp S  &kp W
-                &none         &uc UC_DE_SS  &uc UC_DE_AE  &uc UC_DE_OE  &uc UC_DE_UE  &none        &pos_repeat  &kp DEL           &tp TP_RESET          &tp TP_RESET      &kp BACKSPACE     &pos_repeat    &kp J  &kp M  &kp G  &kp F  &kp V  &none
-                &magic MAGIC  &none         &none         &none         &none                      &kp SPACE    &tp TP_STICKY_SL  &tp TP_ENABLE_SL      &tp TP_ENABLE_SR  &tp TP_STICKY_SR  &kp R                 &none  &none  &none  &none  &magic MAGIC
+                &none         &none         &none         &none         &none                                                                                                                       &none  &none  &none  &none  &none
+                &none         &none         &none         &kp Q         &none         &none                                                                                                  &none  &none  &kp Z  &none  &none  &none
+                &none         &none         &kp Y         &kp O         &kp U         &none                                                                                                  &kp X  &kp L  &kp D  &kp P  &none  &none
+                &kp B         &kp C         &kp I         &kp A         &kp E         &tp TP_MP                                                                                              &kp K  &kp H  &kp T  &kp N  &kp S  &kp W
+                &none         &uc UC_DE_SS  &uc UC_DE_AE  &uc UC_DE_OE  &uc UC_DE_UE  &none        &pos_repeat  &tp_res TP_ENABLE_SL  &none      &none  &tp_res TP_ENABLE_SR  &pos_repeat    &kp J  &kp M  &kp G  &kp F  &kp V  &none
+                &magic MAGIC  &none         &none         &none         &none                      &kp SPACE    &tp TP_STICKY_SL      &none      &none  &tp TP_STICKY_SR      &kp R                 &none  &none  &none  &none  &magic MAGIC
             >;
         };
 
@@ -193,12 +181,12 @@
         nav_layer {
             // format: glove80
             bindings = <
-                &none   &none  &none  &none         &none                                                                                &none  &none  &none  &none  &none
-                &none   &none  &none  &none         &none          &none                                                          &none  &none  &none  &none  &none  &none
-                &none   &none  &none  &none         &none          &none                                                          &none  &none  &none  &none  &none  &none
-                &none   &none  &none  &rto L_MOUSE  &rto L_GAMING  &none                                                          &none  &none  &none  &none  &none  &none
-                &none   &none  &none  &none         &none          &none    &trans  &trans  &trans      &trans  &trans  &trans    &none  &none  &none  &none  &none  &none
-                &trans  &none  &none  &none         &none                   &trans  &trans  &trans      &trans  &trans  &none            &none  &none  &none  &none  &trans
+                &none   &none  &none  &none            &none                                                                                   &none  &none  &none  &none  &none
+                &none   &none  &none  &none            &none             &none                                                          &none  &none  &none  &none  &none  &none
+                &none   &none  &none  &none            &none             &none                                                          &none  &none  &none  &none  &none  &none
+                &none   &none  &none  &to_res L_MOUSE  &to_res L_GAMING  &none                                                          &none  &none  &none  &none  &none  &none
+                &none   &none  &none  &none            &none             &none    &trans  &trans  &trans      &trans  &trans  &trans    &none  &none  &none  &none  &none  &none
+                &trans  &none  &none  &none            &none                      &trans  &trans  &trans      &trans  &trans  &none            &none  &none  &none  &none  &trans
             >;
         };
 
@@ -209,8 +197,8 @@
                 &tp TP_             &tp TP_           &tp TP_            &tp TP_                &tp TP_               &tp TP_                                                                                          &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
                 &tp TP_             &tp TP_           &tp TP_MOD LSHIFT  &tp TP_                &tp TP_LAY L_SYMBOL   &tp TP_                                                                                          &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
                 &tp TP_LAY L_MAGIC  &tp TP_MOD LGUI   &tp TP_MOD LALT    &tp TP_MOD LCTRL       &tp TP_MOD LSHIFT     &tp TP_LAY L_NUMBER                                                                              &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
-                &tp TP_             &tp TP_LAY L_NAV  &tp TP_MOD LCTRL   &tp TP_LAY L_FUNCTION  &tp TP_LAY L_COMMAND  &tp TP_                &tp TP_CANCEL  &tp TP___  &trans      &trans  &tp TP___  &tp TP_CANCEL    &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
-                &tp TP_             &tp TP_MOD RGUI   &tp TP_MOD RALT    &tp TP_MOD RCTRL       &tp TP_MOD RSHIFT                            &tp TP___      &trans     &trans      &trans  &trans     &tp TP___                   &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
+                &tp TP_             &tp TP_LAY L_NAV  &tp TP_MOD LCTRL   &tp TP_LAY L_FUNCTION  &tp TP_LAY L_COMMAND  &tp TP_                &tp TP_CANCEL  &trans  &tp TP___      &tp TP___  &trans  &tp TP_CANCEL    &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
+                &tp TP_             &tp TP_MOD RGUI   &tp TP_MOD RALT    &tp TP_MOD RCTRL       &tp TP_MOD RSHIFT                            &tp TP___      &trans  &tp TP___      &tp TP___  &trans  &tp TP___                   &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
             >;
         };
 
@@ -222,8 +210,8 @@
                 &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                              &tp TP_              &tp TP_               &tp TP_                &tp TP_            &tp TP_           &tp TP_
                 &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                              &tp TP_              &tp TP_LAY L_SYMBOL   &tp TP_                &tp TP_MOD LSHIFT  &tp TP_           &tp TP_
                 &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                              &tp TP_LAY L_NUMBER  &tp TP_MOD LSHIFT     &tp TP_MOD LCTRL       &tp TP_MOD LALT    &tp TP_MOD LGUI   &tp TP_LAY L_MAGIC
-                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___    &tp TP_CANCEL  &tp TP___  &trans      &trans  &tp TP___  &tp TP_CANCEL    &tp TP_              &tp TP_LAY L_COMMAND  &tp TP_LAY L_FUNCTION  &tp TP_MOD LCTRL   &tp TP_LAY L_NAV  &tp TP_
-                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___               &tp TP___      &trans     &trans      &trans  &trans     &tp TP___                             &tp TP_MOD RSHIFT     &tp TP_MOD RCTRL       &tp TP_MOD RALT    &tp TP_MOD RGUI   &tp TP_
+                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___    &tp TP_CANCEL  &trans  &tp TP___      &tp TP___  &trans  &tp TP_CANCEL    &tp TP_              &tp TP_LAY L_COMMAND  &tp TP_LAY L_FUNCTION  &tp TP_MOD LCTRL   &tp TP_LAY L_NAV  &tp TP_
+                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___               &tp TP___      &trans  &tp TP___      &tp TP___  &trans  &tp TP___                             &tp TP_MOD RSHIFT     &tp TP_MOD RCTRL       &tp TP_MOD RALT    &tp TP_MOD RGUI   &tp TP_
             >;
         };
 
@@ -273,7 +261,7 @@
                 &none        &rgb_ug RGB_SPI  &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &rgb_ug RGB_BRI  &rgb_ug RGB_TOG                                                                   &none  &none  &none  &none  &none  &none
                 &bootloader  &rgb_ug RGB_SPD  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &rgb_ug RGB_BRD  &rgb_ug RGB_EFF                                                                   &none  &none  &none  &none  &none  &bootloader
                 &sys_reset   &none            &none            &none            &none            &none              &bt_sel 2  &bt_sel 3  &none             &none  &none  &none    &none  &none  &none  &none  &none  &sys_reset
-                &none        &none            &none            &none            &none                               &bt_sel 0  &bt_sel 1  &out OUT_USB      &none  &none  &none           &none  &none  &none  &none  &rto L_FACTORY_TEST
+                &none        &none            &none            &none            &none                               &bt_sel 0  &bt_sel 1  &out OUT_USB      &none  &none  &none           &none  &none  &none  &none  &to_res L_FACTORY_TEST
             >;
         };
 

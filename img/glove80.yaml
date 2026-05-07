@@ -54,10 +54,10 @@ layers:
   - Ü
   - ''
   - Repeat
-  - $$mdi:backspace-reverse-outline$$
-  - TP Reset
-  - TP Reset
-  - $$mdi:backspace$$
+  - TP+Res Enable (L)
+  - ''
+  - ''
+  - TP+Res Enable (R)
   - Repeat
   - J
   - M
@@ -72,8 +72,8 @@ layers:
   - ''
   - $$mdi:keyboard-space$$
   - TP Sticky (L)
-  - TP Enable (L)
-  - TP Enable (R)
+  - ''
+  - ''
   - TP Sticky (R)
   - R
   - ''
@@ -621,10 +621,10 @@ layers:
   - Command Layer
   - ''
   - TP Cancel
-  - {h: '$$mdi:triangle$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
   - TP Cancel
   - {h: '$$mdi:triangle$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
@@ -639,8 +639,8 @@ layers:
   - Right Shift
   - {h: '$$mdi:triangle$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
@@ -702,10 +702,10 @@ layers:
   - {h: '$$mdi:triangle$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
   - TP Cancel
-  - {h: '$$mdi:triangle$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
   - TP Cancel
   - ''
   - Command Layer
@@ -720,8 +720,8 @@ layers:
   - {h: '$$mdi:triangle$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
   - Right Shift
