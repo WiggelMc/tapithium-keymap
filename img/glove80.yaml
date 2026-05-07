@@ -28,7 +28,7 @@ layers:
   - Y
   - O
   - U
-  - ''
+  - Ü
   - X
   - L
   - D
@@ -48,11 +48,11 @@ layers:
   - S
   - W
   - ''
-  - ß
-  - Ä
   - Ö
-  - Ü
-  - ''
+  - Ä
+  - _
+  - $$mdi:backspace$$
+  - Tab
   - Repeat
   - TP+Res Enable (L)
   - ''
@@ -68,16 +68,16 @@ layers:
   - {t: $$moergo$$, h: Magic, type: info}
   - ''
   - ''
-  - ''
-  - ''
+  - {t: '-', h: unshift}
+  - $$mdi:backspace-reverse-outline$$
   - $$mdi:keyboard-space$$
   - TP Sticky (L)
   - ''
   - ''
   - TP Sticky (R)
   - R
-  - ''
-  - ''
+  - Esc
+  - ß
   - ''
   - ''
   - {t: $$moergo$$, h: Magic, type: info}
@@ -283,7 +283,7 @@ layers:
   - Tab
   - Esc
   - Return
-  - ''
+  - TP Mod
   - ''
   - $$mdi:arrow-left-bold$$
   - $$mdi:arrow-down-bold$$
@@ -293,8 +293,8 @@ layers:
   - ''
   - Insert
   - ''
-  - ''
-  - Pg Up
+  - $$mdi:backspace-reverse-outline$$
+  - $$mdi:backspace$$
   - ''
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
@@ -304,7 +304,7 @@ layers:
   - {t: '$$mdi:chevron-down$$', type: trans}
   - ''
   - Pg Down
-  - ''
+  - Pg Up
   - ''
   - Scroll Lock
   - ''

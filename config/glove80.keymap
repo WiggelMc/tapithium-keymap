@@ -81,6 +81,13 @@
             tapping-term-ms = <200>;
             bindings = <&mo>, <&rgb_status>;
         };
+
+        kp_us_minus: kp_unshifted_minus {
+            compatible = "zmk,behavior-mod-morph";
+            #binding-cells = <0>;
+            bindings = <&kp MINUS>, <&kp MINUS>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+        };
     };
 
     macros {
@@ -108,12 +115,12 @@
         base_layer {
             // format: glove80
             bindings = <
-                &none         &none         &none         &none         &none                                                                                                                       &none  &none  &none  &none  &none
-                &none         &none         &none         &kp Q         &none         &none                                                                                                  &none  &none  &kp Z  &none  &none  &none
-                &none         &none         &kp Y         &kp O         &kp U         &none                                                                                                  &kp X  &kp L  &kp D  &kp P  &none  &none
-                &kp B         &kp C         &kp I         &kp A         &kp E         &tp TP_MP                                                                                              &kp K  &kp H  &kp T  &kp N  &kp S  &kp W
-                &none         &uc UC_DE_SS  &uc UC_DE_AE  &uc UC_DE_OE  &uc UC_DE_UE  &none        &pos_repeat  &tp_res TP_ENABLE_SL  &none      &none  &tp_res TP_ENABLE_SR  &pos_repeat    &kp J  &kp M  &kp G  &kp F  &kp V  &none
-                &magic MAGIC  &none         &none         &none         &none                      &kp SPACE    &tp TP_STICKY_SL      &none      &none  &tp TP_STICKY_SR      &kp R                 &none  &none  &none  &none  &magic MAGIC
+                &none         &none         &none         &none           &none                                                                                                                           &none    &none         &none  &none  &none
+                &none         &none         &none         &kp Q           &none          &none                                                                                                     &none  &none    &kp Z         &none  &none  &none
+                &none         &none         &kp Y         &kp O           &kp U          &uc UC_DE_UE                                                                                              &kp X  &kp L    &kp D         &kp P  &none  &none
+                &kp B         &kp C         &kp I         &kp A           &kp E          &tp TP_MP                                                                                                 &kp K  &kp H    &kp T         &kp N  &kp S  &kp W
+                &none         &uc UC_DE_OE  &uc UC_DE_AE  &kp UNDERSCORE  &kp BACKSPACE  &kp TAB         &pos_repeat  &tp_res TP_ENABLE_SL  &none      &none  &tp_res TP_ENABLE_SR  &pos_repeat    &kp J  &kp M    &kp G         &kp F  &kp V  &none
+                &magic MAGIC  &none         &none         &kp_us_minus    &kp DEL                        &kp SPACE    &tp TP_STICKY_SL      &none      &none  &tp TP_STICKY_SR      &kp R                 &kp ESC  &uc UC_DE_SS  &none  &none  &magic MAGIC
             >;
         };
 
@@ -145,12 +152,12 @@
         command_layer {
             // format: glove80
             bindings = <
-                &none   &none       &none    &none            &none                                                                                  &none          &none     &none      &none           &none
-                &none   &none       &none    &none            &none            &none                                                          &none  &none          &none     &none      &none           &none
-                &none   &none       &none    &kp PAUSE_BREAK  &kp PRINTSCREEN  &none                                                          &none  &kp HOME       &kp UP    &kp END    &none           &none
-                &none   &none       &kp TAB  &kp ESC          &kp RETURN       &none                                                          &none  &kp LEFT       &kp DOWN  &kp RIGHT  &none           &none
-                &none   &kp INSERT  &none    &none            &kp PAGE_UP      &none    &trans  &trans  &trans      &trans  &trans  &trans    &none  &kp PAGE_DOWN  &none     &none      &kp SCROLLLOCK  &none
-                &trans  &none       &none    &none            &none                     &trans  &trans  &trans      &trans  &trans  &none            &none          &none     &none      &none           &trans
+                &none   &none       &none    &none            &none                                                                                      &none          &none        &none      &none           &none
+                &none   &none       &none    &none            &none            &none                                                              &none  &none          &none        &none      &none           &none
+                &none   &none       &none    &kp PAUSE_BREAK  &kp PRINTSCREEN  &none                                                              &none  &kp HOME       &kp UP       &kp END    &none           &none
+                &none   &none       &kp TAB  &kp ESC          &kp RETURN       &tp TP_MP                                                          &none  &kp LEFT       &kp DOWN     &kp RIGHT  &none           &none
+                &none   &kp INSERT  &none    &kp DEL          &kp BACKSPACE    &none        &trans  &trans  &trans      &trans  &trans  &trans    &none  &kp PAGE_DOWN  &kp PAGE_UP  &none      &kp SCROLLLOCK  &none
+                &trans  &none       &none    &none            &none                         &trans  &trans  &trans      &trans  &trans  &none            &none          &none        &none      &none           &trans
             >;
         };
 

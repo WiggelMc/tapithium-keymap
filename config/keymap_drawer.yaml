@@ -208,6 +208,10 @@ parse_config:
     "&sl L_EXIT": "Exit Layer"
     "&to_res L_FACTORY_TEST": "Factory Test Layer"
 
+    "&kp_us_minus":
+      tap: "-"
+      hold: "unshift"
+
     "&rgb_status": RGB Status
     "&rgb_ug RGB_TOG": &rgb
       tap: Toggle
