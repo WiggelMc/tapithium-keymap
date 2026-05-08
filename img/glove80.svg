@@ -33,6 +33,9 @@
 <svg id="mdi:keyboard-space">
 <svg xmlns="http://www.w3.org/2000/svg" id="mdi-keyboard-space" viewBox="0 0 24 24"><path d="M3 15H5V19H19V15H21V19C21 20.1 20.1 21 19 21H5C3.9 21 3 20.1 3 19V15Z" /></svg>
 </svg>
+<svg id="mdi:microphone-off">
+<svg xmlns="http://www.w3.org/2000/svg" id="mdi-microphone-off" viewBox="0 0 24 24"><path d="M19,11C19,12.19 18.66,13.3 18.1,14.28L16.87,13.05C17.14,12.43 17.3,11.74 17.3,11H19M15,11.16L9,5.18V5A3,3 0 0,1 12,2A3,3 0 0,1 15,5V11L15,11.16M4.27,3L21,19.73L19.73,21L15.54,16.81C14.77,17.27 13.91,17.58 13,17.72V21H11V17.72C7.72,17.23 5,14.41 5,11H6.7C6.7,14 9.24,16.1 12,16.1C12.81,16.1 13.6,15.91 14.31,15.58L12.65,13.92L12,14A3,3 0 0,1 9,11V10.28L3,4.27L4.27,3Z" /></svg>
+</svg>
 <svg id="mdi:minus">
 <svg xmlns="http://www.w3.org/2000/svg" id="mdi-minus" viewBox="0 0 24 24"><path d="M19,13H5V11H19V13Z" /></svg>
 </svg>
@@ -1905,9 +1908,11 @@ text.hold {
 </g>
 <g transform="translate(196, 140)" class="key keypos-25">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
+<use href="#mdi:weather-sunny" xlink:href="#mdi:weather-sunny" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:weather-sunny"/>
 </g>
 <g transform="translate(252, 140)" class="key keypos-26">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
+<use href="#mdi:weather-sunset-up" xlink:href="#mdi:weather-sunset-up" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:weather-sunset-up"/>
 </g>
 <g transform="translate(308, 140)" class="key keypos-27">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -1925,7 +1930,6 @@ text.hold {
 </g>
 <g transform="translate(868, 140)" class="key keypos-31">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<use href="#mdi:weather-sunset-up" xlink:href="#mdi:weather-sunset-up" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:weather-sunset-up"/>
 </g>
 <g transform="translate(924, 168)" class="key keypos-32">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -1944,9 +1948,11 @@ text.hold {
 </g>
 <g transform="translate(196, 196)" class="key keypos-37">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
+<use href="#mdi:weather-sunny-off" xlink:href="#mdi:weather-sunny-off" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:weather-sunny-off"/>
 </g>
 <g transform="translate(252, 196)" class="key keypos-38">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
+<use href="#mdi:weather-sunset-down" xlink:href="#mdi:weather-sunset-down" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:weather-sunset-down"/>
 </g>
 <g transform="translate(308, 196)" class="key keypos-39">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -1964,13 +1970,13 @@ text.hold {
 </g>
 <g transform="translate(868, 196)" class="key keypos-43">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
+<use href="#mdi:microphone-off" xlink:href="#mdi:microphone-off" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:microphone-off"/>
 </g>
 <g transform="translate(924, 224)" class="key keypos-44">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 </g>
 <g transform="translate(980, 224)" class="key keypos-45">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<use href="#mdi:weather-sunny" xlink:href="#mdi:weather-sunny" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:weather-sunny"/>
 </g>
 <g transform="translate(28, 280)" class="key keypos-46">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -2027,11 +2033,9 @@ text.hold {
 </g>
 <g transform="translate(868, 252)" class="key keypos-61">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<use href="#mdi:weather-sunset-down" xlink:href="#mdi:weather-sunset-down" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:weather-sunset-down"/>
 </g>
 <g transform="translate(924, 280)" class="key keypos-62">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<use href="#mdi:weather-sunny-off" xlink:href="#mdi:weather-sunny-off" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:weather-sunny-off"/>
 </g>
 <g transform="translate(980, 280)" class="key keypos-63">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>

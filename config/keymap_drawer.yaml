@@ -234,6 +234,8 @@ parse_config:
       tap: "-"
       hold: "unshift"
 
+    "&kp XF86_MIC_MUTE": $$mdi:microphone-off$$
+
     "&rgb_status": RGB Status
     "&rgb_ug RGB_TOG": &rgb
       tap: Toggle

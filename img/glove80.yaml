@@ -431,27 +431,27 @@ layers:
   - ''
   - ''
   - ''
-  - ''
-  - ''
+  - $$mdi:weather-sunny$$
+  - $$mdi:weather-sunset-up$$
   - ''
   - ''
   - $$mdi:skip-previous$$
   - $$mdi:volume-high$$
-  - $$mdi:weather-sunset-up$$
   - ''
   - ''
   - ''
   - ''
   - ''
   - ''
-  - ''
+  - $$mdi:weather-sunny-off$$
+  - $$mdi:weather-sunset-down$$
   - ''
   - ''
   - $$mdi:play-pause$$
   - $$mdi:volume-off$$
+  - $$mdi:microphone-off$$
   - ''
   - ''
-  - $$mdi:weather-sunny$$
   - ''
   - ''
   - ''
@@ -467,8 +467,8 @@ layers:
   - ''
   - $$mdi:skip-next$$
   - $$mdi:volume-low$$
-  - $$mdi:weather-sunset-down$$
-  - $$mdi:weather-sunny-off$$
+  - ''
+  - ''
   - ''
   - {t: '$$mdi:chevron-down$$', type: trans}
   - ''
