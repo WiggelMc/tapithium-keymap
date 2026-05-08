@@ -176,70 +176,70 @@ layers:
   - ''
   - ''
   - ''
+  - $
+  - ''
+  - ''
+  - ''
+  - ''
+  - €
   - ''
   - ''
   - ''
   - ''
   - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
+  - A
   - '8'
+  - ':'
   - ''
-  - ''
-  - ''
-  - ''
+  - H
+  - X
   - '9'
+  - B
   - ''
   - ''
-  - ''
-  - ''
+  - C
   - '6'
   - '4'
   - '2'
   - '0'
   - ''
-  - ''
+  - K
   - '1'
   - '3'
   - '5'
   - '7'
+  - D
   - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - ''
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - ''
-  - ''
-  - ''
+  - '-'
+  - +
+  - E
+  - '*'
   - ''
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - J
+  - '#'
+  - F
+  - ','
+  - /
+  - ''
+  - {t: '$$mdi:chevron-down$$', type: trans}
   - ''
   - ''
-  - ''
+  - '%'
+  - <
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - .
+  - '>'
+  - '='
   - ''
   - ''
   - {t: '$$mdi:chevron-down$$', type: trans}
