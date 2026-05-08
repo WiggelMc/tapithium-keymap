@@ -41,7 +41,7 @@ The keyboard firmware can be built locally using `nix`, which is also used for [
 
 ![Moergo Magic](img/glove80_moergo_magic.svg)
 ![Factory Test](img/glove80_factory_test.svg)
-![Matrix Test](img/glove80_matrix_test.svg.svg)
+![Matrix Test](img/glove80_matrix_test.svg)
 
 ## Setup
 
