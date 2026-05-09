@@ -13,7 +13,7 @@ The keyboard firmware can be built locally using `nix`, which is also used for [
 - Add Mouse Layer
 - Add Descriptions and Documentation to README
 
-[Layout PDF](img/glove80.pdf)
+[Layout PDF](https://raw.githubusercontent.com/WiggelMc/tapithium-keymap/main/img/glove80.pdf)
 
 ## Layers
 
