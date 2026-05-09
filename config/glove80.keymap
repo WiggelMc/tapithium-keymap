@@ -22,32 +22,42 @@
 
 #define L_SYMBOL 1
 #define L_NUMBER 2
-#define L_COMMAND 3
-#define L_FUNCTION 4
-#define L_MEDIA 5
-#define L_MAGIC 6
-#define L_NAV 7
+#define L_ALT_NUMBER 3
+#define L_COMMAND 4
+#define L_FUNCTION 5
+#define L_MEDIA 6
+#define L_MAGIC 7
+#define L_NAV 8
 
-#define L_MODS_L 8
-#define L_MODS_R 9
+#define L_MODS_L 9
+#define L_MODS_R 10
 
-#define L_GAMING 10
-#define L_MOUSE 11
-#define L_EXIT 12
+#define L_GAMING 11
+#define L_MOUSE 12
+#define L_EXIT 13
 
-#define L_MOERGO_MAGIC 13
-#define L_FACTORY_TEST 14
-#define L_MATRIX_TEST 15
+#define L_MOERGO_MAGIC 14
+#define L_FACTORY_TEST 15
+#define L_MATRIX_TEST 16
 
 // defines
 #define HYPER LC(LS(LG(LALT)))
 #define XF86_MIC_MUTE F20
 #define MAGIC L_MOERGO_MAGIC 0
+
 #define TP_STICKY_SL TP_STICKY_S L_MODS_L
 #define TP_STICKY_SR TP_STICKY_S L_MODS_R
 #define TP_ENABLE_SL TP_ENABLE_S L_MODS_L
 #define TP_ENABLE_SR TP_ENABLE_S L_MODS_R
+
 #define MXC(a,b) N##a N##b
+
+#define HX_A A
+#define HX_B B
+#define HX_C C
+#define HX_D D
+#define HX_E E
+#define HX_F F
 
 // config
 &uc {
@@ -156,12 +166,24 @@
         number_layer {
             // format: glove80
             bindings = <
-                &none   &none      &none     &none        &none                                                                                 &none             &none             &none      &none      &none
-                &none   &none      &none     &kp DOLLAR   &none          &none                                                           &none  &none             &uc UC_EURO_SIGN  &none      &none      &none
-                &none   &none      &kp A     &kp N8       &kp COLON      &none                                                           &kp H  &kp X             &kp N9            &kp B      &none      &none
-                &kp C   &kp N6     &kp N4    &kp N2       &kp N0         &none                                                           &kp K  &kp N1            &kp N3            &kp N5     &kp N7     &kp D
-                &none   &kp MINUS  &kp PLUS  &kp E        &kp ASTERISK   &none    &trans  &trans  &trans      &trans  &trans  &trans     &kp J  &kp HASH          &kp F             &kp COMMA  &kp SLASH  &none
-                &trans  &none      &none     &kp PERCENT  &kp LESS_THAN           &trans  &trans  &trans      &trans  &trans  &kp DOT           &kp GREATER_THAN  &kp EQUAL         &none      &none      &trans
+                &none         &none      &none         &none         &none                                                                                        &none             &none             &none         &none      &none
+                &none         &none      &none         &kp DOLLAR    &none          &none                                                                  &none  &none             &uc UC_EURO_SIGN  &none         &none      &none
+                &none         &none      &kp LS(HX_A)  &kp N8        &kp COLON      &none                                                                  &kp H  &kp X             &kp N9            &kp LS(HX_B)  &none      &none
+                &kp LS(HX_C)  &kp N6     &kp N4        &kp N2        &kp N0         &kp ASTERISK                                                           &kp K  &kp N1            &kp N3            &kp N5        &kp N7     &kp LS(HX_D)
+                &none         &kp MINUS  &kp B         &kp LS(HX_E)  &kp PLUS       &none           &trans  &trans  &trans      &trans  &trans  &trans     &kp J  &kp HASH          &kp LS(HX_F)      &kp COMMA     &kp SLASH  &none
+                &trans        &none      &none         &kp PERCENT   &kp LESS_THAN                  &trans  &trans  &trans      &trans  &trans  &kp DOT           &kp GREATER_THAN  &kp EQUAL         &none         &none      &trans
+            >;
+        };
+
+        alt_number_layer {
+            // format: glove80
+            bindings = <
+                &none     &none      &none     &none        &none                                                                                        &none             &none             &none      &none      &none
+                &none     &none      &none     &kp DOLLAR   &none          &none                                                                  &none  &none             &uc UC_EURO_SIGN  &none      &none      &none
+                &none     &none      &kp HX_A  &kp N8       &kp COLON      &none                                                                  &kp H  &kp X             &kp N9            &kp HX_B   &none      &none
+                &kp HX_C  &kp N6     &kp N4    &kp N2       &kp N0         &kp ASTERISK                                                           &kp K  &kp N1            &kp N3            &kp N5     &kp N7     &kp HX_D
+                &none     &kp MINUS  &kp B     &kp HX_E     &kp PLUS       &none           &trans  &trans  &trans      &trans  &trans  &trans     &kp J  &kp HASH          &kp HX_F          &kp COMMA  &kp SLASH  &none
+                &trans    &none      &none     &kp PERCENT  &kp LESS_THAN                  &trans  &trans  &trans      &trans  &trans  &kp DOT           &kp GREATER_THAN  &kp EQUAL         &none      &none      &trans
             >;
         };
 
@@ -204,12 +226,12 @@
         magic_layer {
             // format: glove80
             bindings = <
-                &none        &none            &none            &none            &none                                                                                                 &none             &none                   &none             &none                 &none
-                &none        &none            &none            &none            &none            &none                                                                         &none  &none             &bt BT_CLR              &bt BT_CLR_ALL    &none                 &none
-                &none        &none            &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &rgb_ug RGB_BRI  &rgb_ug RGB_TOG                                                               &none  &bt_sel 2         &bt_sel 3               &none             &none                 &none
-                &bootloader  &rgb_ug RGB_SPI  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &rgb_ug RGB_BRD  &rgb_ug RGB_EFF                                                               &none  &bt_sel 0         &bt_sel 1               &out OUT_USB      &none                 &bootloader
-                &sys_reset   &rgb_ug RGB_SPD  &none            &none            &none            &none              &trans       &trans  &trans      &trans  &trans  &trans    &none  &uc UC_SET_LINUX  &uc UC_SET_WIN_COMPOSE  &uc UC_SET_MACOS  &uc UC_SET_LINUX_ALT  &sys_reset
-                &none        &none            &none            &none            &none                               &rgb_status  &trans  &trans      &trans  &trans  &none            &uc UC_SET_EMACS  &uc UC_SET_WIN_ALT      &none             &none                 &none
+                &none        &none            &none            &none            &none                                                                                                 &none                 &none                   &none             &none             &none
+                &none        &none            &none            &none            &none            &none                                                                         &none  &none                 &bt BT_CLR              &bt BT_CLR_ALL    &none             &none
+                &none        &none            &rgb_ug RGB_SAI  &rgb_ug RGB_HUI  &rgb_ug RGB_BRI  &rgb_ug RGB_TOG                                                               &none  &bt_sel 2             &bt_sel 3               &none             &none             &none
+                &bootloader  &rgb_ug RGB_SPI  &rgb_ug RGB_SAD  &rgb_ug RGB_HUD  &rgb_ug RGB_BRD  &rgb_ug RGB_EFF                                                               &none  &bt_sel 0             &bt_sel 1               &out OUT_USB      &none             &bootloader
+                &sys_reset   &rgb_ug RGB_SPD  &none            &none            &none            &none              &trans       &trans  &trans      &trans  &trans  &trans    &none  &uc UC_SET_LINUX      &uc UC_SET_WIN_COMPOSE  &uc UC_SET_MACOS  &uc UC_SET_EMACS  &sys_reset
+                &none        &none            &none            &none            &none                               &rgb_status  &trans  &trans      &trans  &trans  &none            &uc UC_SET_LINUX_ALT  &uc UC_SET_WIN_ALT      &none             &none             &none
             >;
         };
 
@@ -228,12 +250,12 @@
         mods_l_layer {
             // format: glove80
             bindings = <
-                &tp TP_             &tp TP_           &tp TP_            &tp TP_                &tp TP_                                                                                                                           &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
-                &tp TP_             &tp TP_           &tp TP_            &tp TP_                &tp TP_               &tp TP_                                                                                          &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
-                &tp TP_             &tp TP_           &tp TP_MOD LSHIFT  &tp TP_LAY L_MEDIA     &tp TP_LAY L_SYMBOL   &tp TP_                                                                                          &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
-                &tp TP_LAY L_MAGIC  &tp TP_MOD LGUI   &tp TP_MOD LALT    &tp TP_MOD LCTRL       &tp TP_MOD LSHIFT     &tp TP_LAY L_NUMBER                                                                              &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
-                &tp TP_             &tp TP_LAY L_NAV  &tp TP_MOD LCTRL   &tp TP_LAY L_FUNCTION  &tp TP_LAY L_COMMAND  &tp TP_                &tp TP_CANCEL  &trans  &tp TP___      &tp TP___  &trans  &tp TP_CANCEL    &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
-                &tp TP_             &tp TP_MOD RGUI   &tp TP_MOD RALT    &tp TP_MOD RCTRL       &tp TP_MOD RSHIFT                            &tp TP___      &trans  &tp TP___      &tp TP___  &trans  &tp TP___                   &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
+                &tp TP_             &tp TP_           &tp TP_            &tp TP_                &tp TP_                                                                                                                               &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
+                &tp TP_             &tp TP_           &tp TP_            &tp TP_                &tp TP_               &tp TP_                                                                                              &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
+                &tp TP_             &tp TP_           &tp TP_MOD LSHIFT  &tp TP_LAY L_MEDIA     &tp TP_LAY L_SYMBOL   &tp TP_                                                                                              &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
+                &tp TP_LAY L_MAGIC  &tp TP_MOD LGUI   &tp TP_MOD LALT    &tp TP_MOD LCTRL       &tp TP_MOD LSHIFT     &tp TP_LAY L_NUMBER                                                                                  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
+                &tp TP_             &tp TP_LAY L_NAV  &tp TP_MOD LCTRL   &tp TP_LAY L_FUNCTION  &tp TP_LAY L_COMMAND  &tp TP_LAY L_ALT_NUMBER    &tp TP_CANCEL  &trans  &tp TP___      &tp TP___  &trans  &tp TP_CANCEL    &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
+                &tp TP_             &tp TP_MOD RGUI   &tp TP_MOD RALT    &tp TP_MOD RCTRL       &tp TP_MOD RSHIFT                                &tp TP___      &trans  &tp TP___      &tp TP___  &trans  &tp TP___                   &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___
             >;
         };
 
@@ -241,12 +263,12 @@
         mods_r_layer {
             // format: glove80
             bindings = <
-                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                                                              &tp TP_               &tp TP_                &tp TP_            &tp TP_           &tp TP_
-                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                              &tp TP_              &tp TP_               &tp TP_                &tp TP_            &tp TP_           &tp TP_
-                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                              &tp TP_              &tp TP_LAY L_SYMBOL   &tp TP_LAY L_MEDIA     &tp TP_MOD LSHIFT  &tp TP_           &tp TP_
-                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                              &tp TP_LAY L_NUMBER  &tp TP_MOD LSHIFT     &tp TP_MOD LCTRL       &tp TP_MOD LALT    &tp TP_MOD LGUI   &tp TP_LAY L_MAGIC
-                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___    &tp TP_CANCEL  &trans  &tp TP___      &tp TP___  &trans  &tp TP_CANCEL    &tp TP_              &tp TP_LAY L_COMMAND  &tp TP_LAY L_FUNCTION  &tp TP_MOD LCTRL   &tp TP_LAY L_NAV  &tp TP_
-                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___               &tp TP___      &trans  &tp TP___      &tp TP___  &trans  &tp TP___                             &tp TP_MOD RSHIFT     &tp TP_MOD RCTRL       &tp TP_MOD RALT    &tp TP_MOD RGUI   &tp TP_
+                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                                                                  &tp TP_               &tp TP_                &tp TP_            &tp TP_           &tp TP_
+                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                              &tp TP_                  &tp TP_               &tp TP_                &tp TP_            &tp TP_           &tp TP_
+                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                              &tp TP_                  &tp TP_LAY L_SYMBOL   &tp TP_LAY L_MEDIA     &tp TP_MOD LSHIFT  &tp TP_           &tp TP_
+                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___                                                                              &tp TP_LAY L_NUMBER      &tp TP_MOD LSHIFT     &tp TP_MOD LCTRL       &tp TP_MOD LALT    &tp TP_MOD LGUI   &tp TP_LAY L_MAGIC
+                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___    &tp TP_CANCEL  &trans  &tp TP___      &tp TP___  &trans  &tp TP_CANCEL    &tp TP_LAY L_ALT_NUMBER  &tp TP_LAY L_COMMAND  &tp TP_LAY L_FUNCTION  &tp TP_MOD LCTRL   &tp TP_LAY L_NAV  &tp TP_
+                &tp TP___  &tp TP___  &tp TP___  &tp TP___  &tp TP___               &tp TP___      &trans  &tp TP___      &tp TP___  &trans  &tp TP___                                 &tp TP_MOD RSHIFT     &tp TP_MOD RCTRL       &tp TP_MOD RALT    &tp TP_MOD RGUI   &tp TP_
             >;
         };
 

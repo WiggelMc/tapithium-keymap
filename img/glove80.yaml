@@ -187,33 +187,33 @@ layers:
   - ''
   - ''
   - ''
-  - A
+  - (A)
   - '8'
   - ':'
   - ''
   - H
   - X
   - '9'
-  - B
+  - (B)
   - ''
   - ''
-  - C
+  - (C)
   - '6'
   - '4'
   - '2'
   - '0'
-  - ''
+  - '*'
   - K
   - '1'
   - '3'
   - '5'
   - '7'
-  - D
+  - (D)
   - ''
   - '-'
+  - B
+  - (E)
   - +
-  - E
-  - '*'
   - ''
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
@@ -223,7 +223,88 @@ layers:
   - {t: '$$mdi:chevron-down$$', type: trans}
   - J
   - '#'
-  - F
+  - (F)
+  - ','
+  - /
+  - ''
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - ''
+  - ''
+  - '%'
+  - <
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - .
+  - '>'
+  - '='
+  - ''
+  - ''
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  alt_number:
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - $
+  - ''
+  - ''
+  - ''
+  - ''
+  - €
+  - ''
+  - ''
+  - ''
+  - ''
+  - ''
+  - (a)
+  - '8'
+  - ':'
+  - ''
+  - H
+  - X
+  - '9'
+  - (b)
+  - ''
+  - ''
+  - (c)
+  - '6'
+  - '4'
+  - '2'
+  - '0'
+  - '*'
+  - K
+  - '1'
+  - '3'
+  - '5'
+  - '7'
+  - (d)
+  - ''
+  - '-'
+  - B
+  - (e)
+  - +
+  - ''
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {t: '$$mdi:chevron-down$$', type: trans}
+  - J
+  - '#'
+  - (f)
   - ','
   - /
   - ''
@@ -549,7 +630,7 @@ layers:
   - UC Linux
   - UC WinComp
   - UC Macos
-  - UC LinuxAlt
+  - UC Emacs
   - Reset
   - ''
   - ''
@@ -562,7 +643,7 @@ layers:
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - ''
-  - UC Emacs
+  - UC LinuxAlt
   - UC WinAlt
   - ''
   - ''
@@ -700,7 +781,7 @@ layers:
   - Ctrl
   - Function Layer
   - Command Layer
-  - ''
+  - Alt Number Layer
   - TP Cancel
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
@@ -788,7 +869,7 @@ layers:
   - {h: '$$mdi:triangle$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - TP Cancel
-  - ''
+  - Alt Number Layer
   - Command Layer
   - Function Layer
   - Ctrl
