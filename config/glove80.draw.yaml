@@ -1,0 +1,17 @@
+layers:
+  - base
+ #- mods_l
+ #- mods_r
+ #- symbol
+ #- number
+ #- command
+ #- function
+ #- media
+ #- magic
+ #- nav
+ #- gaming
+ #- mouse
+ #- exit
+ #- moergo_magic
+ #- factory_test
+ #- matrix_test
