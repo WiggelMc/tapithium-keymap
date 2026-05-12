@@ -338,6 +338,8 @@ text.hold {
 .layer-command .keypos-59 rect,
 .layer-number .keypos-39 rect,
 .layer-number .keypos-40 rect,
+.layer-alt_number .keypos-51 rect,
+.layer-alt_number .keypos-58 rect,
 .layer-mouse .keypos-37 rect,
 .layer-gaming .keypos-38 rect,
 .layer-moergo_magic .keypos-64 rect,
@@ -577,7 +579,7 @@ text.hold {
 </g>
 <g transform="translate(420, 350) rotate(45.0)" class="key keypos-53">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap">Alt</text>
+<text x="0" y="0" class="key tap">Ctrl</text>
 </g>
 <g transform="translate(458, 399) rotate(60.0)" class="key keypos-54">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -585,17 +587,17 @@ text.hold {
 </g>
 <g transform="translate(550, 399) rotate(-60.0)" class="key keypos-55">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap">Esc</text>
-</g>
-<g transform="translate(588, 350) rotate(-45.0)" class="key keypos-56">
-<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <use href="#mdi:arrow-up-bold" xlink:href="#mdi:arrow-up-bold" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:arrow-up-bold"/>
 </g>
-<g transform="translate(637, 312) rotate(-30.0)" class="key keypos-57">
+<g transform="translate(588, 350) rotate(-45.0)" class="key keypos-56">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
 <text x="0" y="0" class="key tap">
 <tspan x="0" dy="-0.6em">Exit</tspan><tspan x="0" dy="1.2em">Layer</tspan>
 </text>
+</g>
+<g transform="translate(637, 312) rotate(-30.0)" class="key keypos-57">
+<rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
+<text x="0" y="0" class="key tap">Esc</text>
 </g>
 <g transform="translate(700, 252)" class="key keypos-58">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -647,7 +649,7 @@ text.hold {
 </g>
 <g transform="translate(369, 379) rotate(40.0)" class="key keypos-70">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<text x="0" y="0" class="key tap">Ctrl</text>
+<text x="0" y="0" class="key tap">Alt</text>
 </g>
 <g transform="translate(410, 427) rotate(60.0)" class="key keypos-71">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
@@ -655,11 +657,11 @@ text.hold {
 </g>
 <g transform="translate(598, 427) rotate(-60.0)" class="key keypos-72">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<use href="#mdi:arrow-left-bold" xlink:href="#mdi:arrow-left-bold" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:arrow-left-bold"/>
+<use href="#mdi:arrow-down-bold" xlink:href="#mdi:arrow-down-bold" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:arrow-down-bold"/>
 </g>
 <g transform="translate(639, 379) rotate(-40.0)" class="key keypos-73">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
-<use href="#mdi:arrow-down-bold" xlink:href="#mdi:arrow-down-bold" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:arrow-down-bold"/>
+<use href="#mdi:arrow-left-bold" xlink:href="#mdi:arrow-left-bold" x="-7" y="-7" height="14" width="14.0" class="key tap glyph mdi:arrow-left-bold"/>
 </g>
 <g transform="translate(694, 347) rotate(-20.0)" class="key keypos-74">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>

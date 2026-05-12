@@ -338,6 +338,8 @@ text.hold {
 .layer-command .keypos-59 rect,
 .layer-number .keypos-39 rect,
 .layer-number .keypos-40 rect,
+.layer-alt_number .keypos-51 rect,
+.layer-alt_number .keypos-58 rect,
 .layer-mouse .keypos-37 rect,
 .layer-gaming .keypos-38 rect,
 .layer-moergo_magic .keypos-64 rect,
@@ -533,6 +535,9 @@ text.hold {
 </g>
 <g transform="translate(588, 350) rotate(-45.0)" class="key keypos-56">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
+<text x="0" y="0" class="key tap">
+<tspan x="0" dy="-0.6em">Exit</tspan><tspan x="0" dy="1.2em">Layer</tspan>
+</text>
 </g>
 <g transform="translate(637, 312) rotate(-30.0)" class="key keypos-57">
 <rect rx="6" ry="6" x="-26" y="-26" width="52" height="52" class="key"/>
