@@ -8,8 +8,7 @@ The keyboard firmware can be built locally using `nix`, which is also used for [
 
 ## Work in Progress
 
-- Test Behaviors
-- Tweak Symbol Layer
+- Tweak Gaming Layer
 - Add Mouse Layer
 - Add Descriptions and Documentation to README
 

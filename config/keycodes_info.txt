@@ -49,8 +49,8 @@ GREATER_THAN /Symbol
 &uc UC_EURO_SIGN /Symbol
 &uc UC_ACUTE_ACCENT /None
 &uc UC_MICRO_SIGN /Symbol
-&uc UC_DEGREE_SIGN /None
-&uc UC_SECTION_SIGN /None
+&uc UC_DEGREE_SIGN /Symbol
+&uc UC_SECTION_SIGN /Symbol
 
 
 PRINTSCREEN /Command

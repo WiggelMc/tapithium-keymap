@@ -108,9 +108,9 @@ layers:
   - ''
   - <
   - '>'
-  - '-'
+  - '*'
+  - _
   - µ
-  - '%'
   - '{'
   - '}'
   - \
@@ -120,8 +120,8 @@ layers:
   - ^
   - '"'
   - /
-  - .
-  - '*'
+  - +
+  - '-'
   - ':'
   - (
   - )
@@ -133,14 +133,14 @@ layers:
   - '['
   - ']'
   - {t: '$$mdi:chevron-down$$', type: trans}
-  - +
+  - '%'
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
-  - ''
+  - °
   - '='
   - '`'
   - ;
@@ -156,10 +156,10 @@ layers:
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
-  - _
-  - '?'
+  - .
   - '@'
-  - ''
+  - '?'
+  - §
   - ''
   - {t: '$$mdi:chevron-down$$', type: trans}
   number:

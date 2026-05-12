@@ -150,16 +150,15 @@
             >;
         };
 
-        // TODO: Tweak Symbol Layer
         symbol_layer {
             // format: glove80
             bindings = <
-                &none     &none          &none              &none             &none                                                                                                       &none         &none             &none          &none       &none
-                &none     &none          &none              &kp SINGLE_QUOTE  &none       &none                                                                              &none        &none         &uc UC_EURO_SIGN  &none          &none       &none
-                &none     &none          &kp LESS_THAN      &kp GREATER_THAN  &kp MINUS   &uc UC_MICRO_SIGN                                                                  &kp PERCENT  &kp LBRC      &kp RBRC          &kp BACKSLASH  &none       &none
-                &kp PIPE  &kp CARET      &kp DOUBLE_QUOTES  &kp SLASH         &kp PERIOD  &kp ASTERISK                                                                       &kp COLON    &kp LPAR      &kp RPAR          &kp COMMA      &kp DOLLAR  &kp EXCLAMATION
-                &none     &kp AMPERSAND  &kp LBKT           &kp RBKT          &trans      &kp PLUS             &trans  &trans  &trans      &trans  &trans  &trans            &none        &kp EQUAL     &kp GRAVE         &kp SEMICOLON  &kp TILDE   &none
-                &trans    &none          &none              &kp HASH          &trans                           &trans  &trans  &trans      &trans  &trans  &kp UNDERSCORE                 &kp QUESTION  &kp AT_SIGN       &none          &none       &trans
+                &none     &none          &none              &none             &none                                                                                                         &none        &none             &none                &none       &none
+                &none     &none          &none              &kp SINGLE_QUOTE  &none         &none                                                                       &none               &none        &uc UC_EURO_SIGN  &none                &none       &none
+                &none     &none          &kp LESS_THAN      &kp GREATER_THAN  &kp ASTERISK  &kp UNDERSCORE                                                              &uc UC_MICRO_SIGN   &kp LBRC     &kp RBRC          &kp BACKSLASH        &none       &none
+                &kp PIPE  &kp CARET      &kp DOUBLE_QUOTES  &kp SLASH         &kp PLUS      &kp MINUS                                                                   &kp COLON           &kp LPAR     &kp RPAR          &kp COMMA            &kp DOLLAR  &kp EXCLAMATION
+                &none     &kp AMPERSAND  &kp LBKT           &kp RBKT          &trans        &kp PERCENT       &trans  &trans  &trans      &trans  &trans  &trans        &uc UC_DEGREE_SIGN  &kp EQUAL    &kp GRAVE         &kp SEMICOLON        &kp TILDE   &none
+                &trans    &none          &none              &kp HASH          &trans                          &trans  &trans  &trans      &trans  &trans  &kp PERIOD                        &kp AT_SIGN  &kp QUESTION      &uc UC_SECTION_SIGN  &none       &trans
             >;
         };
 
