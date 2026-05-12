@@ -107,6 +107,6 @@ C_NEXT /Function
 SYS_PWR /None
 SYS_SLEEP /None
 SYS_WAKE /None
-CAPSLOCK /None
-K_APP /None
+CAPSLOCK /Command
+K_APP /Command
 K_POWER /None

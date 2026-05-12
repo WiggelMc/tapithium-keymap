@@ -572,6 +572,9 @@ parse_config:
     PAUSE_BREAK: Pause
     INSERT: Insert
 
+    K_APP: App
+    CAPSLOCK: Caps Lock
+
     C_BRI_UP: $$mdi:weather-sunset-up$$
     C_BRI_DN: $$mdi:weather-sunset-down$$
     C_BRI_MIN: $$mdi:weather-sunny-off$$
