@@ -48,16 +48,16 @@ layers:
   - S
   - W
   - ''
-  - Tab
+  - ß
   - Ä
+  - {t: '-', h: unshift}
   - _
-  - $$mdi:backspace$$
   - Ö
   - Repeat
-  - TP+Res Enable (L)
+  - Return
   - ''
   - ''
-  - TP+Res Enable (R)
+  - $$mdi:backspace$$
   - Repeat
   - J
   - M
@@ -68,16 +68,16 @@ layers:
   - {t: $$moergo$$, h: Magic, type: info}
   - ''
   - ''
-  - {t: '-', h: unshift}
-  - $$mdi:backspace-reverse-outline$$
+  - ''
+  - Tab
   - $$mdi:keyboard-space$$
-  - TP Sticky (L)
+  - TP+Res Enable (L)
   - ''
   - ''
-  - TP Sticky (R)
+  - TP+Res Enable (R)
   - R
   - Esc
-  - ß
+  - ''
   - ''
   - ''
   - {t: $$moergo$$, h: Magic, type: info}
@@ -109,7 +109,7 @@ layers:
   - <
   - '>'
   - '*'
-  - _
+  - ''
   - µ
   - '{'
   - '}'
@@ -132,7 +132,7 @@ layers:
   - '&'
   - '['
   - ']'
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - _
   - '%'
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
@@ -150,7 +150,7 @@ layers:
   - ''
   - ''
   - '#'
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - ''
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
@@ -213,8 +213,8 @@ layers:
   - '-'
   - B
   - (e)
-  - {t: '$$mdi:chevron-down$$', type: trans}
   - '='
+  - '%'
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
@@ -230,8 +230,8 @@ layers:
   - {t: '$$mdi:chevron-down$$', type: trans}
   - ''
   - ''
-  - '%'
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - ''
+  - ''
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
@@ -294,8 +294,8 @@ layers:
   - '-'
   - B
   - (E)
-  - {t: '$$mdi:chevron-down$$', type: trans}
   - '='
+  - '%'
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
@@ -311,8 +311,8 @@ layers:
   - {t: '$$mdi:chevron-down$$', type: trans}
   - ''
   - ''
-  - '%'
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - ''
+  - ''
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
@@ -363,7 +363,7 @@ layers:
   - ''
   - Tab
   - Esc
-  - Return
+  - $$mdi:backspace-reverse-outline$$
   - TP Mod
   - ''
   - $$mdi:arrow-left-bold$$
@@ -374,8 +374,8 @@ layers:
   - ''
   - Insert
   - ''
-  - $$mdi:backspace-reverse-outline$$
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - ''
+  - ''
   - ''
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
@@ -393,7 +393,7 @@ layers:
   - ''
   - ''
   - ''
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - ''
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
@@ -419,7 +419,6 @@ layers:
   - ''
   - ''
   - ''
-  - F9
   - ''
   - ''
   - ''
@@ -430,10 +429,11 @@ layers:
   - ''
   - ''
   - ''
-  - F6
-  - F10
+  - ''
+  - F8
+  - F11
   - F4
-  - F14
+  - F15
   - k*
   - k7
   - k8
@@ -442,10 +442,10 @@ layers:
   - ''
   - F1
   - F2
-  - F7
-  - F11
+  - F9
+  - F12
   - F5
-  - F15
+  - F16
   - k/
   - k4
   - k5
@@ -454,10 +454,10 @@ layers:
   - Num Lock
   - ''
   - F3
-  - F8
-  - F12
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - F16
+  - F10
+  - F13
+  - F6
+  - F17
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
@@ -473,8 +473,8 @@ layers:
   - {t: '$$mdi:chevron-down$$', type: trans}
   - ''
   - ''
-  - F13
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - F14
+  - F7
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
@@ -540,10 +540,10 @@ layers:
   - ''
   - ''
   - {t: '$$mdi:chevron-down$$', type: trans}
+  - ''
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - ''
   - {t: '$$mdi:chevron-down$$', type: trans}
   - ''
   - $$mdi:skip-next$$
@@ -621,10 +621,10 @@ layers:
   - ''
   - ''
   - {t: '$$mdi:chevron-down$$', type: trans}
+  - ''
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - ''
   - {t: '$$mdi:chevron-down$$', type: trans}
   - ''
   - UC Linux
@@ -702,10 +702,10 @@ layers:
   - ''
   - ''
   - {t: '$$mdi:chevron-down$$', type: trans}
+  - ''
   - {t: '$$mdi:chevron-down$$', type: trans}
   - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - ''
   - {t: '$$mdi:chevron-down$$', type: trans}
   - ''
   - ''
@@ -783,10 +783,10 @@ layers:
   - Command Layer
   - Alt Number Layer
   - TP Cancel
-  - {t: '$$mdi:chevron-down$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
   - TP Cancel
   - {h: '$$mdi:triangle$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
@@ -864,10 +864,10 @@ layers:
   - {h: '$$mdi:triangle$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
   - TP Cancel
-  - {t: '$$mdi:chevron-down$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
   - {h: '$$mdi:triangle$$', type: trans}
-  - {t: '$$mdi:chevron-down$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
+  - {h: '$$mdi:triangle$$', type: trans}
   - TP Cancel
   - Alt Number Layer
   - Command Layer
