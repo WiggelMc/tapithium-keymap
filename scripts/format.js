@@ -1,5 +1,9 @@
 // @ts-check
 
+/**
+ * @import {} from "./format.d.ts"
+ */
+
 import assert from "node:assert";
 import * as fs from "node:fs";
 import { argv } from "node:process";
