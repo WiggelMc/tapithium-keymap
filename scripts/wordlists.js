@@ -88,6 +88,14 @@ export const digits = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
 
 export const digitsHexLowercase = [...digits, "a", "b", "c", "d", "e", "f"];
 
+function range(a, b) {
+  return new Array(b - a).fill(0).map((_, i) => a + i);
+}
+
+export const hexNumbers = range(0, 0xffff + 1).map(
+  (n) => `0x${Number(n).toString(16)}`,
+);
+
 export const numberSymbols = [
   ":",
   "*",
@@ -104,4 +112,3 @@ export const numberSymbols = [
   ">",
   ".",
 ];
-
